@@ -360,21 +360,56 @@ ul.commentlist .counter {
  *   Footer
  */
 #bottom {
+    background-color: #465065;
     padding: 30px 0 40px;
 }
 
-#bottom ul {
-    float: right;
-    list-style: none;
+#bottom > ul {
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-direction: normal;
+    -moz-box-direction: normal;
+    -webkit-box-orient: horizontal;
+    -moz-box-orient: horizontal;
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    -webkit-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -webkit-box-pack: center;
+    -moz-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-align-content: center;
+    -ms-flex-line-pack: center;
+    align-content: center;
+    -webkit-box-align: stretch;
+    -moz-box-align: stretch;
+    -webkit-align-items: stretch;
+    -ms-flex-align: stretch;
+    align-items: stretch;
+
+    padding-bottom: 20px;
 }
 
-#bottom li {
-    float: left;
-    padding-left: 35px;
-
-    font-size: 14px;
+#bottom .row {
+    display: inline-block;
+    vertical-align: top;
+    margin: 10px 40px;
 }
 
-#bottom a {
-    text-decoration: none;
+#bottom .row li {
+    display: block;
+    text-align: left;
+}
+
+#bottom .row li a {
+    display: block;
+    color: #636B7D;
+    font-family: sans-serif;
 }
