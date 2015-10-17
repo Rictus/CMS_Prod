@@ -25,9 +25,9 @@
                     'class' => 'btn secondary'
                 )); ?>
 
-                <?php echo Html::link('admin/pages/delete/' . $page->id, __('global.delete'), array(
+            <!--    --><?php /*echo Html::link('admin/pages/delete/' . $page->id, __('global.delete'), array(
                     'class' => 'btn delete red'
-                )); ?>
+                )); */?>
             </aside>
         </div>
     </fieldset>

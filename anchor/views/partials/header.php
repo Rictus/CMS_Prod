@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="utf-8">
     <title><?php echo __('global.manage'); ?><?php echo Config::meta('sitename'); ?></title>

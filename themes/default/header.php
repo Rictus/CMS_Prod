@@ -1,7 +1,7 @@
 <!doctype html>
-<html lang="en">
+<html lang="fr">
 <head>
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
     <title><?php echo page_title('Page can’t be found'); ?> - <?php echo site_name(); ?></title>
 
     <meta name="description" content="<?php echo site_description(); ?>">
@@ -67,7 +67,7 @@
 
     <header id="top">
         <div class="logo">
-            <a href="<?php echo Uri::to('admin/posts'); ?>">
+            <a href="<?php echo Uri::to('/'); ?>">
                 <img src="<?php echo asset_url('/img/CETI.png') ?>"
                      alt="Logo du site de Ronald Virag">
             </a>

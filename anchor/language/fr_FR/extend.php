@@ -2,7 +2,7 @@
 
 return array(
 
-	'extend' => 'Extentions',
+	'extend' => 'Extensions',
 
 	'fields' => 'Champs personnalisés',
 	'fields_desc' => 'Créer des champs additionnels',

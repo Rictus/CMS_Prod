@@ -20,10 +20,10 @@
                     <a href="">Info éditeur</a>
                 </li>
                 <li>
-                    <a href="">Mentions légagles</a>
+                    <a href="">Mentions legales</a>
                 </li>
                 <li>
-                    <a href="">Crédits</a>
+                    <a href="">Credits</a>
                 </li>
             </ul>
         </div>
@@ -33,7 +33,7 @@
                     <a href="">Plan du site</a>
                 </li>
                 <li>
-                    <a href="">Réseaux sociaux</a>
+                    <a href="">Reseaux sociaux</a>
                 </li>
             </ul>
 

@@ -36,13 +36,13 @@ function relative_time($date) {
 	}
 
 	$times = array(
-		31104000 => 'year',
-		2592000 => 'month',
-		604800 => 'week',
-		86400 => 'day',
-		3600 => 'hour',
+		31104000 => 'année',
+		2592000 => 'mois',
+		604800 => 'semaine',
+		86400 => 'jour',
+		3600 => 'heure',
 		60 => 'minute',
-		1 => 'second'
+		1 => 'seconde'
 	);
 
 	foreach($times as $seconds => $title) {
@@ -50,7 +50,7 @@ function relative_time($date) {
 
 		if($rounded > 1) {
 			$rounded = round($rounded);
-			return $rounded . ' ' . pluralise($rounded, $title) . ' ago';
+			return 'Il y a '.$rounded . ' ' . pluralise($rounded, $title) . ' ';
 		}
 	}
 }

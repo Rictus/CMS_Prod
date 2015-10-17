@@ -2,6 +2,14 @@
  *
  */
 
+
+@font-face {
+    font-family: 'proxima-nova';
+    src: url('../fonts/ProximaNova/ProximaNova-Reg.otf');
+}
+*{
+    font-family: 'proxima-nova', 'Arial', sans-serif;
+}
 h1 {
     padding: 80px 0 40px;
 
@@ -242,7 +250,7 @@ h1 {
 
     color: #98a2b1;
     font-size: 14px;
-    font-style: italic;
+    font-weight: bold;
 
     white-space: nowrap;
 }
@@ -410,6 +418,5 @@ ul.commentlist .counter {
 
 #bottom .row li a {
     display: block;
-    color: #636B7D;
-    font-family: sans-serif;
+    color: #939fba;
 }
