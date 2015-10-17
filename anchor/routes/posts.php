@@ -82,14 +82,6 @@ Route::collection(array('before' => 'auth'), function () {
         $input = Input::get(array('title', 'slug', 'description', 'created',
             'html', 'css', 'js', 'category', 'status', 'comments'));
 
-        // if there is no slug try and create one from the title
-        if (empty($input['slug'])) {
-            $input['slug'] = $input['title'];
-        }
-
-        // convert to ascii
-        $input['slug'] = slug($input['slug']);
-
         // encode title
         $input['title'] = e($input['title'], ENT_COMPAT);
 
@@ -99,12 +91,23 @@ Route::collection(array('before' => 'auth'), function () {
             return Post::where('slug', '=', $str)->where('id', '<>', $id)->count() == 0;
         });
 
-        $validator->check('title')
-            ->is_max(3, __('posts.title_missing'));
+
+        // if there is no slug try and create one from title
+        if (empty($input['slug'])) {
+            $input['slug'] = $input['title'];
+        }
+        // convert to ascii
+        $input['slug'] = slug($input['slug']);
+
+        do {
+            //Check for duplication
+            $isDuplicate = Post::where('slug', '=', $input['slug'])->where('id', '<>', $id)->count() > 0;
+            if ($isDuplicate) {
+                $input['slug'] = slug(noise(10));
+            }
+        } while ($isDuplicate);
 
         $validator->check('slug')
-            ->is_max(3, __('posts.slug_missing'))
-            ->is_duplicate(__('posts.slug_duplicate'))
             ->not_regex('#^[0-9_-]+$#', __('posts.slug_invalid'));
 
         if ($errors = $validator->errors()) {
@@ -167,10 +170,6 @@ Route::collection(array('before' => 'auth'), function () {
         $input = Input::get(array('title', 'slug', 'description', 'created',
             'html', 'css', 'js', 'category', 'status', 'comments'));
 
-        // if there is no slug try and create one from the title
-        if (empty($input['slug'])) {
-            $input['slug'] = $input['title'];
-        }
 
         // convert to ascii
         $input['slug'] = slug($input['slug']);
@@ -184,13 +183,27 @@ Route::collection(array('before' => 'auth'), function () {
             return Post::where('slug', '=', $str)->count() == 0;
         });
 
-        $validator->check('title')
-            ->is_max(3, __('posts.title_missing'));
+        /*$validator->check('title')
+            ->is_max(3, __('posts.title_missing'));*/
+
+        // if there is no slug try and create one from title
+        if (empty($input['slug'])) {
+            $input['slug'] = $input['title'];
+        }
+        // convert to ascii
+        $input['slug'] = slug($input['slug']);
+
+        do {
+            //Check for duplication
+            $isDuplicate = Post::where('slug', '=', $input['slug'])->count() > 0;
+            if ($isDuplicate) {
+                $input['slug'] = slug(noise(10));
+            }
+        } while ($isDuplicate);
 
         $validator->check('slug')
-            ->is_max(3, __('posts.slug_missing'))
-            ->is_duplicate(__('posts.slug_duplicate'))
             ->not_regex('#^[0-9_-]+$#', __('posts.slug_invalid'));
+
 
         if ($errors = $validator->errors()) {
             Input::flash();
@@ -261,7 +274,7 @@ Route::collection(array('before' => 'auth'), function () {
         $filepath = $uploader->upload($file);
 
 //        $uri = Config::app('url', '/') . '/content/' . basename($filepath);
-        $uri = '/content/' . basename($filepath); 
+        $uri = '/content/' . basename($filepath);
         $output = array('uploaded' => 1, 'url' => $uri, 'fileName' => $file['name']);
 
         return Response::json($output);

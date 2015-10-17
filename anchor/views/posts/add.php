@@ -35,11 +35,11 @@
 
         <fieldset class="meta split">
             <div class="wrap">
-                <p>
-                    <label><?php echo __('posts.slug'); ?>:</label>
-                    <?php echo Form::text('slug', Input::previous('slug')); ?>
-                    <em><?php echo __('posts.slug_explain'); ?></em>
-                </p>
+                <!--<p>
+                    <label><?php /*echo __('posts.slug'); */?>:</label>
+                    <?php /*echo Form::text('slug', Input::previous('slug')); */?>
+                    <em><?php /*echo __('posts.slug_explain'); */?></em>
+                </p>-->
 
                 <p>
                     <label for="description"><?php echo __('posts.description'); ?>:</label>
