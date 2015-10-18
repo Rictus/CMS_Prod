@@ -6,7 +6,9 @@
 
     <meta name="description" content="<?php echo site_description(); ?>">
 
+    <link rel="stylesheet" href="<?php echo theme_url('/css/custom_font.css'); ?>">
     <link rel="stylesheet" href="<?php echo theme_url('/css/reset.css'); ?>">
+    <link rel="stylesheet" href="<?php echo theme_url('/css/bootstrap.min.css'); ?>">
     <link rel="stylesheet" href="<?php echo theme_url('/css/style.css'); ?>">
     <link rel="stylesheet" href="<?php echo theme_url('/css/small.css'); ?>" media="(max-width: 400px)">
 
@@ -139,10 +141,11 @@
                         </li>
                     <?php endwhile; ?>
 
-<!--                    <li class="tray">-->
-<!--                        <a href="#tray" class="linky"><img src="--><?php //echo theme_url('img/categories.png'); ?><!--"-->
-<!--                                                           alt="Categories" title="View my posts by category"></a>-->
-<!--                    </li>-->
+                    <!--                    <li class="tray">-->
+                    <!--                        <a href="#tray" class="linky"><img src="-->
+                    <?php //echo theme_url('img/categories.png'); ?><!--"-->
+                    <!--                                                           alt="Categories" title="View my posts by category"></a>-->
+                    <!--                    </li>-->
                 </ul>
             </nav>
         <?php endif; ?>

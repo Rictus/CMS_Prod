@@ -1,15 +1,11 @@
 /**
  *
  */
-
-
-@font-face {
-    font-family: 'proxima-nova';
-    src: url('../fonts/ProximaNova/ProximaNova-Reg.otf');
-}
-*{
+ 
+* {
     font-family: 'proxima-nova', 'Arial', sans-serif;
 }
+
 h1 {
     padding: 80px 0 40px;
 
@@ -229,6 +225,10 @@ h1 {
 /**
  *   Give some extra space to single-page wrappers
  */
+.content {
+    padding-top: 25px;
+}
+
 .content.wrap {
     padding-bottom: 50px;
 }
@@ -419,10 +419,4 @@ ul.commentlist .counter {
 #bottom .row li a {
     display: block;
     color: #939fba;
-}
-
-time {
-    display: block;
-    padding-bottom: 20px;
-    font-weight: bold;
 }
