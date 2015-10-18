@@ -63,11 +63,12 @@
                     <article class="wrap">
                         <time
                             datetime="<?php echo date(DATE_W3C, article_time()); ?>"><?php echo relative_time(article_time()); ?></time>
-                        <h1>
-                            <a href="<?php echo article_url(); ?>"
-                               title="<?php echo article_title(); ?>"><?php echo article_title(); ?></a>
-                        </h1>
-
+                        <?php if (count(article_title()) > 1): ?>
+                            <h1>
+                                <a href="<?php echo article_url(); ?>"
+                                   title="<?php echo article_title(); ?>"><?php echo article_title(); ?></a>
+                            </h1>
+                        <?php endif; ?>
                         <div class="content">
                             <?php echo article_markdown(); ?>
                         </div>
@@ -101,7 +102,7 @@
             <?php endif; ?>
 
         <?php else: ?>
-            <p>Looks like you have some writing to do!</p>
+            <p>Aucun article.</p>
         <?php endif; ?>
 
     </section>

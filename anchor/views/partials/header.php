@@ -32,8 +32,14 @@
                         </a>
                     </li>
 
-                    <?php $menu = array('posts', 'comments', 'pages', /*'menu',*/
-                        'categories', 'users', 'extend'); ?>
+                    <?php
+                    //Old version of menu
+                    $menu = array('posts', 'comments', 'pages',
+                        'categories', 'users', 'extend');
+                    //Current version
+                    $menu = array('posts', 'pages', 'categories', 'users', 'dossier');
+                    ?>
+
                     <?php foreach ($menu as $url): ?>
                         <li <?php if (strpos(Uri::current(), $url) !== false) echo 'class="active"'; ?>>
                             <a href="<?php echo Uri::to('admin/' . $url); ?>">

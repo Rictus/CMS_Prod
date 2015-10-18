@@ -31,7 +31,7 @@ function category_posts($categoryTitle)
 <?php echo page_content(); ?>
         <?php $posts = category_posts(page_title()); ?>
         <?php if ($posts == false) {
-            echo "Aucun posts dans cette catégorie.";
+            echo "Aucun posts dans cette catÃ©gorie : ".page_title();
         } else {
             $nbPost = count($posts);
 
