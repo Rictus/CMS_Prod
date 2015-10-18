@@ -420,3 +420,9 @@ ul.commentlist .counter {
     display: block;
     color: #939fba;
 }
+
+time {
+    display: block;
+    padding-bottom: 20px;
+    font-weight: bold;
+}

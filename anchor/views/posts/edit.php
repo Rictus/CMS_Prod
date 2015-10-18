@@ -91,12 +91,11 @@
         </fieldset>
     </form>
 
-    <script src="<?php echo asset('anchor/views/assets/js/dragdrop.js'); ?>"></script>
-    <script src="<?php echo asset('anchor/views/assets/js/upload-fields.js'); ?>"></script>
+<!--    <script src="--><?php //echo asset('anchor/views/assets/js/dragdrop.js'); ?><!--"></script>-->
+<!--    <script src="--><?php //echo asset('anchor/views/assets/js/upload-fields.js'); ?><!--"></script>-->
     <script src="<?php echo asset('anchor/views/assets/js/text-resize.js'); ?>"></script>
     <script src="<?php echo asset('anchor/views/assets/js/ckeditor/ckeditor.js'); ?>"></script>
     <!--<script src="--><?php //echo asset('anchor/views/assets/js/editor.js'); ?><!--"></script>-->
-    <script src="<?php echo asset('anchor/views/assets/js/dragdrop.js'); ?>"></script>
     <script src="<?php echo asset('anchor/views/assets/js/ckeditor_init.js'); ?>"></script>
 
     <script>

@@ -27,7 +27,7 @@ function category_posts($categoryTitle)
 
 <?php theme_include('header'); ?>
 
-<?php echo page_title() ?>
+<?php //echo page_title() ?>
 <?php echo page_content(); ?>
         <?php $posts = category_posts(page_title()); ?>
         <?php if ($posts == false) {
