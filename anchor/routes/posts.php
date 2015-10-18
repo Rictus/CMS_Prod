@@ -82,6 +82,10 @@ Route::collection(array('before' => 'auth'), function () {
         $input = Input::get(array('title', 'slug', 'description', 'created',
             'html', 'css', 'js', 'category', 'status', 'comments'));
 
+        /** Valeurs en dur **/
+        $input['comments'] = 0;
+        $input['status'] = 'published';
+
         // encode title
         $input['title'] = e($input['title'], ENT_COMPAT);
 
@@ -92,7 +96,16 @@ Route::collection(array('before' => 'auth'), function () {
         });
 
 
-        // if there is no slug try and create one from title
+        if (is_null($input['description']) || empty($input['description'])) {
+            $input['description'] = " ";
+        }
+        if (is_null($input['css']) || empty($input['css'])) {
+            $input['css'] = " ";
+        }
+        if (is_null($input['js']) || empty($input['js'])) {
+            $input['js'] = " ";
+        }
+        // if there is no slug, create one from title
         if (empty($input['slug'])) {
             $input['slug'] = $input['title'];
         }
@@ -126,10 +139,6 @@ Route::collection(array('before' => 'auth'), function () {
 
         if (is_null($input['comments'])) {
             $input['comments'] = 0;
-        }
-
-        if (empty($input['html'])) {
-            $input['status'] = 'draft';
         }
 
         Post::update($id, $input);
@@ -170,6 +179,10 @@ Route::collection(array('before' => 'auth'), function () {
         $input = Input::get(array('title', 'slug', 'description', 'created',
             'html', 'css', 'js', 'category', 'status', 'comments'));
 
+        /** Valeurs en dur **/
+        $input['comments'] = 0;
+        $input['status'] = 'published';
+
 
         // convert to ascii
         $input['slug'] = slug($input['slug']);
@@ -183,9 +196,15 @@ Route::collection(array('before' => 'auth'), function () {
             return Post::where('slug', '=', $str)->count() == 0;
         });
 
-        /*$validator->check('title')
-            ->is_max(3, __('posts.title_missing'));*/
-
+        if (is_null($input['description']) || empty($input['description'])) {
+            $input['description'] = " ";
+        }
+        if (is_null($input['css']) || empty($input['css'])) {
+            $input['css'] = " ";
+        }
+        if (is_null($input['js']) || empty($input['js'])) {
+            $input['js'] = " ";
+        }
         // if there is no slug try and create one from title
         if (empty($input['slug'])) {
             $input['slug'] = $input['title'];
@@ -225,9 +244,6 @@ Route::collection(array('before' => 'auth'), function () {
             $input['comments'] = 0;
         }
 
-        if (empty($input['html'])) {
-            $input['status'] = 'draft';
-        }
 
         $post = Post::create($input);
 
