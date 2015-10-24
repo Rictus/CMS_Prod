@@ -3,7 +3,7 @@
  */
  
 * {
-    font-family: 'proxima-nova', 'Arial', sans-serif;
+    font-family: 'proxima-nova', 'Arial', sans-serif!important;
 }
 
 h1 {
@@ -73,17 +73,13 @@ h1 {
 }
 
 #top {
-    overflow: hidden;
-    padding: 20px 35px;
-
+    padding: 40px 30px;
     background: #fff;
-    border-bottom: 1px solid rgba(22, 36, 54, .1);
 }
 
 #top a {
     float: left;
 
-    font-size: 13px;
     font-weight: 500;
     text-decoration: none;
 
@@ -94,33 +90,6 @@ h1 {
     color: #4171b1;
 }
 
-#top ul {
-    list-style: none;
-    float: right;
-}
-
-#top ul li {
-    float: left;
-    padding-left: 40px;
-}
-
-#top ul a {
-    display: inline-block;
-    color: #555f6d;
-}
-
-#top ul img {
-    display: inline-block;
-    vertical-align: middle;
-
-    position: relative;
-    top: -2px;
-
-    width: 16px;
-    height: 16px;
-
-    opacity: .4;
-}
 
 #top ul a:hover img {
     opacity: .7;
@@ -138,15 +107,12 @@ h1 {
 }
 
 .items > li {
-    padding: 70px 0 60px;
-
     color: #97aec9;
     background: #3c4552;
 }
 
 .posts .items > li:first-child {
-    background: #fff !important;
-    padding: 110px 0;
+    background: #fff;
 }
 
 .items li h1 a, .posts .items > li:first-child h2 a {

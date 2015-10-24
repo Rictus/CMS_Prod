@@ -1,3 +1,6 @@
+<?php
+setlocale(LC_ALL, 'fr_FR');
+?>
 <!doctype html>
 <html lang="fr">
 <head>
@@ -44,32 +47,32 @@
 </head>
 <body class="<?php echo body_class(); ?>">
 <div class="main-wrap">
-    <div class="slidey" id="tray">
+    <!-- <div class="slidey" id="tray">
         <div class="wrap">
-            <form id="search" action="<?php echo search_url(); ?>" method="post">
+            <form id="search" action="<?php /*echo search_url(); */ ?>" method="post">
                 <label for="term">Search my blog:</label>
                 <input type="search" id="term" name="term" placeholder="To search, type and hit enter&hellip;"
-                       value="<?php echo search_term(); ?>">
+                       value="<?php /*echo search_term(); */ ?>">
             </form>
 
             <aside>
                 <b>Categories</b>
                 <ul>
-                    <?php while (categories()): ?>
+                    <?php /*while (categories()): */ ?>
                         <li>
-                            <a href="<?php echo category_url(); ?>" title="<?php echo category_description(); ?>">
-                                <?php echo category_title(); ?> <span><?php echo category_count(); ?></span>
+                            <a href="<?php /*echo category_url(); */ ?>" title="<?php /*echo category_description(); */ ?>">
+                                <?php /*echo category_title(); */ ?> <span><?php /*echo category_count(); */ ?></span>
                             </a>
                         </li>
-                    <?php endwhile; ?>
+                    <?php /*endwhile; */ ?>
                 </ul>
             </aside>
         </div>
-    </div>
+    </div>-->
 
     <header id="top">
         <div class="logo">
-            <a href="<?php echo Uri::to('/'); ?>">
+            <a class="logo-img" href="<?php echo Uri::to('/'); ?>">
                 <img src="<?php echo asset_url('/img/CETI.png') ?>"
                      alt="Logo du site de Ronald Virag">
             </a>
@@ -81,54 +84,6 @@
             </div>
 
         </div>
-        <style>
-            #top {
-                display: -webkit-box;
-                display: -webkit-flex;
-                display: -ms-flexbox;
-                display: flex;
-                -webkit-box-orient: horizontal;
-                -webkit-box-direction: normal;
-                -webkit-flex-direction: row;
-                -ms-flex-direction: row;
-                flex-direction: row;
-                -webkit-flex-wrap: nowrap;
-                -ms-flex-wrap: nowrap;
-                flex-wrap: nowrap;
-                -webkit-box-pack: justify;
-                -webkit-justify-content: space-between;
-                -ms-flex-pack: justify;
-                justify-content: space-between;
-            }
-
-            .logo, .logo a {
-                display: inline-block;
-            }
-
-            .logo img {
-                width: 60px;
-            }
-
-            .logo .headline {
-                display: inline-block;
-                color: black;
-                font-size: 15px;
-                line-height: 19px;
-                padding-left: 20px;
-            }
-
-            .logo .underHeadline {
-                color: #989898;
-                font-size: inherit;
-                line-height: inherit;
-            }
-
-            nav {
-                display: inline-block;
-                vertical-align: bottom;
-            }
-
-        </style>
 
         <?php if (has_menu_items()): ?>
             <nav id="main" role="navigation">

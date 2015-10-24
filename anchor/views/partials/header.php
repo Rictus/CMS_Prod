@@ -37,7 +37,7 @@
                     $menu = array('posts', 'comments', 'pages',
                         'categories', 'users', 'extend');
                     //Current version
-                    $menu = array('posts', 'pages', 'categories', 'users', 'dossier');
+                    $menu = array('posts', 'pages', 'categories', 'users', 'dossiers');
                     ?>
 
                     <?php foreach ($menu as $url): ?>

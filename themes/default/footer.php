@@ -17,7 +17,7 @@
         <div class="row">
             <ul>
                 <li>
-                    <a href="">Info éditeur</a>
+                    <a href="">Info Ã©diteur</a>
                 </li>
                 <li>
                     <a href="">Mentions legales</a>

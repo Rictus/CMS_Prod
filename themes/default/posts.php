@@ -1,58 +1,56 @@
 <?php theme_include('header'); ?>
 <?php theme_include('header_image'); ?>
     <section class="content">
-        <div class="headline wrap">
+        <div class="bigText wrap">
             <ul>
                 Evaluer pour :
                 <li>- mieux traiter les dysfonctionnments</li>
-                <li>- prevenir les mefaits des facteurs de risque vasculaire</li>
                 <li>- corriger les mefaits du vieillissements</li>
+                <li>- prevenir les mefaits des facteurs de risque vasculaire</li>
             </ul>
         </div>
-        <div class="row">
-            <div class="col-md-6 col-md-offset-3">
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="colTitle">Nos compétences :</div>
-                        <ul>
-                            <div class="listTitle">DYSFONCTION SEXUELLES</div>
-                            <li>- Désir, érection, éjaculation</li>
-                            <li>- Problèmes de couple</li>
-                            <li>- Maladie de Lapeyronie</li>
-                            <li>- Anomalie morphologiques</li>
-                        </ul>
+        <div class="">
+            <div class="listOfPostsContainer">
+                <div class="listOfPosts">
+                    <div class="colTitle">Nos compétences :</div>
+                    <ul>
+                        <div class="listTitle">DYSFONCTION SEXUELLES</div>
+                        <li>- Désir, érection, éjaculation</li>
+                        <li>- Problèmes de couple</li>
+                        <li>- Maladie de Lapeyronie</li>
+                        <li>- Anomalie morphologiques</li>
+                    </ul>
 
-                        <ul>
-                            <div class="listTitle">MALADIE VASCULAIRE</div>
-                            <li>- Varices, variscosités</li>
-                            <li>- Lymphatiques</li>
-                            <li>- Artérites, Anévrysmes</li>
-                            <li>- Phlébites, Ulcères</li>
-                        </ul>
-                        <ul>
-                            <div class="listTitle">MÉDECINE RÉGÉNÉRATIVE</div>
-                            <li>- Détection du risque vasculaire</li>
-                            <li>- Thérapie cellulaire autologue</li>
-                        </ul>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="colTitle">Bilans personnalisés adaptés à chacun :</div>
-                        <ul>
-                            <div class="listTitle">POUR LES DYSFONCTIONS</div>
-                            <li>- Questionnaire spécifique</li>
-                            <li>- Test pharmacologique avec échographie</li>
-                            <li>- Bilan psychologique MMPI</li>
-                            <li>- Étude biologique</li>
-                            <li>- Cavernoscanner</li>
-                        </ul>
-                        <ul>
-                            <div class="listTitle">DÉPISTAGE CARDIO VASCULAIRE ET MÉTABOLIQUE</div>
-                            <li>- Oligoscan et étude biologique</li>
-                            <li>- Mesure de l’intima media</li>
-                            <li>- Endopath</li>
-                        </ul>
+                    <ul>
+                        <div class="listTitle">MALADIE VASCULAIRE</div>
+                        <li>- Varices, variscosités</li>
+                        <li>- Lymphatiques</li>
+                        <li>- Artérites, Anévrysmes</li>
+                        <li>- Phlébites, Ulcères</li>
+                    </ul>
+                    <ul>
+                        <div class="listTitle">MÉDECINE RÉGÉNÉRATIVE</div>
+                        <li>- Détection du risque vasculaire</li>
+                        <li>- Thérapie cellulaire autologue</li>
+                    </ul>
+                </div>
+                <div class="listOfPosts">
+                    <div class="colTitle">Bilans personnalisés adaptés à chacun :</div>
+                    <ul>
+                        <div class="listTitle">Pour les dysfonctions</div>
+                        <li>- Questionnaire spécifique</li>
+                        <li>- Test pharmacologique avec échographie</li>
+                        <li>- Bilan psychologique MMPI</li>
+                        <li>- Étude biologique</li>
+                        <li>- Cavernoscanner</li>
+                    </ul>
+                    <ul>
+                        <div class="listTitle">Dépistage cardio vasculaire et métabolique</div>
+                        <li>- Oligoscan et étude biologique</li>
+                        <li>- Mesure de l’intima media</li>
+                        <li>- Endopath</li>
+                    </ul>
 
-                    </div>
                 </div>
             </div>
         </div>
@@ -92,14 +90,14 @@
                 <?php endwhile; ?>
             </ul>
 
-            <?php if (has_pagination()): ?>
+            <?php /*if (has_pagination()): */?><!--
                 <nav class="pagination">
                     <div class="wrap">
-                        <?php echo posts_prev(); ?>
-                        <?php echo posts_next(); ?>
+                        <?php /*echo posts_prev(); */?>
+                        <?php /*echo posts_next(); */?>
                     </div>
                 </nav>
-            <?php endif; ?>
+            --><?php /*endif; */?>
 
         <?php else: ?>
             <p>Aucun article.</p>

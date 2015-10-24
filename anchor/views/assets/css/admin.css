@@ -882,3 +882,12 @@ input:not([type=checkbox]):not([type=radio]) {
 td {
     vertical-align: top !important;
 }
+
+.hidden, #hidden, .hide, #hide {
+    visibility: hidden;
+    height: 0;
+    width: 0;
+    font-size: 0;
+    color: white;
+    display: none;
+}

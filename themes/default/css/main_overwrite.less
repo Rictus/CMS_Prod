@@ -1,39 +1,43 @@
-ul,
-ul li {
+@import "./mixins.less";
+
+ul, ul li {
   display: block;
   padding: 0;
   margin: 0;
   list-style-type: none;
 }
-table,
-tr,
-td,
-th {
+
+table, tr, td, th {
   border: none !important;
   border-collapse: collapse !important;
   margin: auto !important;
 }
+
 td {
   width: auto !important;
   vertical-align: top !important;
 }
+
 /**
  * Custom Virag
  */
 .cont {
   position: relative;
 }
+
 time {
   display: block;
   padding-bottom: 20px;
   font-weight: bold;
 }
+
 .wrap {
   min-width: 0;
   max-width: 100%;
   width: 75%;
   margin: 0 auto;
 }
+
 .topText {
   position: absolute;
   top: 20px;
@@ -47,14 +51,17 @@ time {
   display: block;
   color: #9EA4B0;
 }
+
 .topText > div {
   text-align: center;
   font-size: 3vw;
   line-height: 4vw;
 }
+
 .topText .bold {
   font-weight: bold;
 }
+
 .buttons {
   position: absolute;
   bottom: 20px;
@@ -64,6 +71,7 @@ time {
   margin: auto;
   font-weight: normal;
   font-size: 32px;
+
   display: -webkit-box;
   display: -moz-box;
   display: -ms-flexbox;
@@ -93,6 +101,7 @@ time {
   -ms-flex-align: center;
   align-items: center;
 }
+
 .buttons .button {
   position: relative;
   display: inline-block;
@@ -103,10 +112,12 @@ time {
   border-radius: 25px;
   border: solid 2px white;
 }
+
 .button.preicon_call {
   position: relative;
   padding-left: 44px;
 }
+
 .button.preicon_call:before {
   content: '';
   display: block;
@@ -120,11 +131,13 @@ time {
   background-position: center left;
   background-size: 19px;
 }
+
 .button_white {
   text-decoration: none;
   color: white;
-  background: rgba(0, 0, 0, 0.2);
+  background: rgba(0, 0, 0, .2);
 }
+
 #top {
   display: -webkit-box;
   display: -webkit-flex;
@@ -143,95 +156,93 @@ time {
   -ms-flex-pack: justify;
   justify-content: space-between;
 }
-.logo,
-.logo a {
+
+.logo, .logo a {
   display: inline-block;
 }
+
 .logo img {
   width: 60px;
 }
+
 .logo {
   float: none;
+  .logo-img {
+    display: inline-block;
+    vertical-align: top;
+  }
+  .headline {
+    position: relative;
+    top: -3px;
+    display: inline-block;
+    margin: auto;
+    color: black;
+    font-weight: normal;
+    font-size: 17px;
+    line-height: 23px;
+    margin-left: 30px;
+
+  }
+  .underHeadline {
+    color: #989898;
+    font-size: inherit;
+    line-height: inherit;
+  }
 }
-.logo .logo-img {
-  display: inline-block;
-  vertical-align: top;
-}
-.logo .headline {
-  position: relative;
-  top: -3px;
-  display: inline-block;
-  margin: auto;
-  color: black;
-  font-weight: normal;
-  font-size: 17px;
-  line-height: 23px;
-  margin-left: 30px;
-}
-.logo .underHeadline {
-  color: #989898;
-  font-size: inherit;
-  line-height: inherit;
-}
+
 nav {
   display: inline-block;
   vertical-align: middle;
+
+  ul {
+    li {
+      display: inline-block;
+      margin: 12px;
+      a {
+        font-size: 20px;
+      }
+    }
+  }
 }
-nav ul li {
-  display: inline-block;
-  margin: 12px;
-}
-nav ul li a {
-  font-size: 20px;
-}
+
 .bigText {
   margin: 15px auto;
+  ul {
+    text-align: center;
+    font-size: 40px;
+    li {
+    }
+  }
 }
-.bigText ul {
-  text-align: center;
-  font-size: 40px;
-}
+
 .listOfPostsContainer {
   margin: auto;
   width: 75%;
-  display: flex;
-  -webkit-flex-wrap: nowrap;
-  -moz-flex-wrap: nowrap;
-  -ms-flex-wrap: nowrap;
-  flex-wrap: nowrap;
-  -webkit-flex-direction: row;
-  -moz-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-justify-content: center;
-  -moz-justify-content: center;
-  -ms-justify-content: center;
-  justify-content: center;
-  -webkit-align-items: flex-start;
-  -moz-align-items: flex-start;
-  -ms-align-items: flex-start;
-  align-items: flex-start;
-  -webkit-align-content: center;
-  -moz-align-content: center;
-  -ms-align-content: center;
-  align-content: center;
-}
-@media (max-width: 800px) {
-  .listOfPostsContainer {
+  @media (max-width: 800px) {
     width: 90%;
   }
+
+  .flex-display(flex);
+  .flex-wrap(nowrap);
+  .flex-direction(row);
+  .justify-content(center);
+  .align-items(flex-start);
+  .align-content(center);
 }
+
 .listOfPosts {
   margin: 0 35px;
   font-size: 17px;
+  ul {
+    margin: 10px 0;
+  }
 }
-.listOfPosts ul {
-  margin: 10px 0;
-}
+
 .colTitle {
   font-weight: normal;
   margin-bottom: 15px;
 }
+
 .listTitle {
   text-transform: uppercase;
   margin-bottom: 10px;
