@@ -71,21 +71,9 @@
                 </p>-->
                 <?php foreach ($fields as $field): ?>
                     <p>
-                        <?php if ($field->key == 'typeofproblem'):?>
-                            <label for="extend_<?php echo $field->key; ?>">
-                                <?php echo $field->label; ?>:
-                            </label>
-                            <select id="extend_typeofproblem" name="extend[typeofproblem]">
-                                <option value=""></option>
-                                <option value="masculin">Masculin</option>
-                                <option value="feminim">Féminim</option>
-                            </select>
-                        <?php else: ?>
-
                         <label for="extend_<?php echo $field->key; ?>">
                             <?php echo $field->label; ?>:
                             </label><?php echo Extend::html($field); ?>
-                        <?php endif; ?>
                     </p>
                 <?php endforeach; ?>
 

@@ -70,22 +70,10 @@
                     <em><?php /*echo __('posts.custom_js_explain'); */ ?></em>
                 </p>-->
                 <?php foreach ($fields as $field): ?>
-                    <p>
-                        <?php if ($field->key == 'typeofproblem'):?>
-                            <label for="extend_<?php echo $field->key; ?>">
-                                <?php echo $field->label; ?>:
-                            </label>
-                                <select id="extend_typeofproblem" name="extend[typeofproblem]">
-                                    <option value=""></option>
-                                    <option value="masculing">Masculing</option>
-                                    <option value="feminim">Féminim</option>
-                                </select>
-                        <?php else: ?>
-
+                    <p> 
                         <label for="extend_<?php echo $field->key; ?>">
                             <?php echo $field->label; ?>:
                             </label><?php echo Extend::html($field); ?>
-                        <?php endif; ?>
                     </p>
                 <?php endforeach; ?>
                 <aside class="buttons">

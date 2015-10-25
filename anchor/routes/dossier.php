@@ -1,14 +1,22 @@
 <?php
 
+function getCurrentPageCategoryId()
+{
+    return Category::slug('dossier')->id;
+}
+
 Route::collection(array('before' => 'auth'), function () {
+
+
 
     /*
         List all posts and paginate through them
     */
     Route::get(array('admin/dossiers', 'admin/dossiers/(:num)'), function ($page = 1) {
+        $currentPageCategoryId = getCurrentPageCategoryId();
         $perpage = Config::meta('posts_per_page');
-        $total = Post::count();
-        $posts = Post::sort('created', 'desc')->take($perpage)->skip(($page - 1) * $perpage)->get();
+        $total = Post::where('category', '=', $currentPageCategoryId)->count();
+        $posts = Post::where('category', '=', $currentPageCategoryId)->sort('created', 'desc')->take($perpage)->skip(($page - 1) * $perpage)->get();
         $url = Uri::to('admin/dossiers');
 
         $pagination = new Paginator($posts, $total, $page, $perpage, $url);
@@ -44,7 +52,7 @@ Route::collection(array('before' => 'auth'), function () {
         $vars['category'] = $category;
         $vars['categories'] = Category::sort('title')->get();
 
-        return View::create('posts/index', $vars)
+        return View::create('dossiers/index', $vars)
             ->partial('header', 'partials/header')
             ->partial('footer', 'partials/footer');
     });
@@ -69,7 +77,7 @@ Route::collection(array('before' => 'auth'), function () {
 
         $vars['categories'] = Category::dropdown();
 
-        return View::create('posts/edit', $vars)
+        return View::create('dossiers/edit', $vars)
             ->partial('header', 'partials/header')
             ->partial('footer', 'partials/footer')
             ->partial('editor', 'partials/editor');
@@ -104,8 +112,7 @@ Route::collection(array('before' => 'auth'), function () {
         }
         // if there is no slug, create one from title
         if (empty($input['slug'])) {
-//            $input['slug'] = slug($input['title']);
-            $input['slug'] = "abcd";
+            $input['slug'] = slug($input['title']);
         }
         // convert to ascii
         $input['slug'] = slug($input['slug']);
@@ -173,8 +180,10 @@ Route::collection(array('before' => 'auth'), function () {
     });
 
     Route::post('admin/dossiers/add', function () {
+        $currentPageCategoryId = getCurrentPageCategoryId();
         $input = Input::get(array('title', 'slug', 'description', 'created',
-            'html', 'css', 'js', 'category', 'status', 'comments'));
+            'html', 'css', 'js', 'status', 'comments'));
+        $input['category'] = $currentPageCategoryId;
 
         /** Valeurs en dur **/
         $input['comments'] = 0;

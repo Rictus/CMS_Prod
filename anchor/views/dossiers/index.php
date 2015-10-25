@@ -1,61 +1,62 @@
 <?php echo $header; ?>
 
-<hgroup class="wrap">
-	<h1><?php echo __('posts.posts'); ?></h1>
+    <hgroup class="wrap">
+        <h1><?php echo __('dossiers.dossiers'); ?></h1>
+        <?php if ($posts->count): ?>
+            <nav>
+                <?php echo Html::link('admin/dossiers/add', __('dossiers.create_post'), array('class' => 'btn')); ?>
+            </nav>
+        <?php endif; ?>
+    </hgroup>
 
-	<?php if($posts->count): ?>
-	<nav>
-		<?php echo "<div id='HEY'></div>"; ?>
-		<?php echo Html::link('admin/posts/add', __('posts.create_post'), array('class' => 'btn')); ?>
-	</nav>
-	<?php endif; ?>
-</hgroup>
+    <section class="wrap">
+        <?php echo $messages; ?>
 
-<section class="wrap">
-	<?php echo $messages; ?>
-
+        <!--
+	//Don't need this nav, this page is only for "dossiers"
 	<nav class="sidebar">
-		<?php echo Html::link('admin/posts', __('global.all'), array(
+		<?php /*echo Html::link('admin/dossiers', __('global.all'), array(
 			'class' => isset($category) ? '' : 'active'
-		)); ?>
-	    <?php foreach($categories as $cat): ?>
-		<?php echo Html::link('admin/posts/category/' . $cat->slug, $cat->title, array(
+		)); */ ?>
+	    <?php /*foreach($categories as $cat): */ ?>
+		<?php /*echo Html::link('admin/dossiers/category/' . $cat->slug, $cat->title, array(
 			'class' => (isset($category) and $category->id == $cat->id) ? 'active' : ''
-		)); ?>
-	    <?php endforeach; ?>
-	</nav>
+		)); */ ?>
+	    <?php /*endforeach; */ ?>
+	</nav>-->
 
-	<?php if($posts->count): ?>
-	<ul class="main list">
-		<?php foreach($posts->results as $article): ?>
-		<li>
-			<a href="<?php echo Uri::to('admin/posts/edit/' . $article->id); ?>">
-				<strong><?php echo $article->title; ?></strong>
+        <?php if ($posts->count): ?>
+            <ul class="main list">
+                <?php foreach ($posts->results as $article): ?>
+                    <li>
+                        <a href="<?php echo Uri::to('admin/dossiers/edit/' . $article->id); ?>">
+                            <strong><?php echo $article->title; ?></strong>
 				<span>
 					<time><?php echo Date::format($article->created); ?></time>
 
-					<em class="status <?php echo $article->status; ?>" title="<?php echo __('global.' . $article->status); ?>">
-						<?php echo __('global.' . $article->status); ?>
-					</em>
+					<em class="status <?php echo $article->status; ?>"
+                        title="<?php echo __('global.' . $article->status); ?>">
+                        <?php echo __('global.' . $article->status); ?>
+                    </em>
 				</span>
 
-				<p><?php echo strip_tags($article->description); ?></p>
-			</a>
-		</li>
-		<?php endforeach; ?>
-	</ul>
+                            <p><?php echo strip_tags($article->description); ?></p>
+                        </a>
+                    </li>
+                <?php endforeach; ?>
+            </ul>
 
-	<aside class="paging"><?php echo $posts->links(); ?></aside>
+            <aside class="paging"><?php echo $posts->links(); ?></aside>
 
-	<?php else: ?>
+        <?php else: ?>
 
-	<p class="empty posts">
-		<span class="icon"></span>
-		<?php echo __('posts.noposts_desc'); ?><br>
-		<?php echo Html::link('admin/posts/add', __('posts.create_post'), array('class' => 'btn')); ?>
-	</p>
+            <p class="empty posts">
+                <span class="icon"></span>
+                <?php echo __('dossiers.noposts_desc'); ?><br>
+                <?php echo Html::link('admin/dossiers/add', __('dossiers.create_post'), array('class' => 'btn')); ?>
+            </p>
 
-	<?php endif; ?>
-</section>
+        <?php endif; ?>
+    </section>
 
 <?php echo $footer; ?>

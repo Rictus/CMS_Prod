@@ -1,6 +1,5 @@
 <?php echo $header; ?>
-
-    <form method="post" action="<?php echo Uri::to('admin/posts/edit/' . $article->id); ?>"
+    <form method="post" action="<?php echo Uri::to('admin/dossiers/edit/' . $article->id); ?>"
           enctype="multipart/form-data" novalidate>
 
         <input name="token" type="hidden" value="<?php echo $token; ?>">
@@ -14,12 +13,12 @@
         <fieldset class="main">
             <div class="wrap">
                 <?php echo Form::text('title', Input::previous('title', $article->title), array(
-                    'placeholder' => __('posts.title'),
+                    'placeholder' => __('dossiers.title'),
                     'autocomplete' => 'off',
                     'autofocus' => 'true'
                 )); ?>
                 <?php echo Form::textarea('html', Input::previous('html', $article->html), array(
-                    'placeholder' => __('posts.content_explain')
+                    'placeholder' => __('dossiers.content_explain')
                 )); ?>
 
                 <?php echo $editor; ?>
@@ -29,45 +28,47 @@
         <fieldset class="meta split">
             <div class="wrap">
                 <p class="hidden">
-                    <label><?php echo __('posts.slug');  ?>:</label>
+                    <label><?php echo __('dossiers.slug');  ?>:</label>
                     <?php echo Form::text('slug', Input::previous('slug', $article->slug));  ?>
-                    <em><?php echo __('posts.slug_explain');  ?></em>
+                    <em><?php echo __('dossiers.slug_explain');  ?></em>
                 </p>
 
                 <!--<p>
-                    <label for="description"><?php /*echo __('posts.description'); */ ?>:</label>
+                    <label for="description"><?php /*echo __('dossiers.description'); */ ?>:</label>
                     <?php /*echo Form::textarea('description', Input::previous('description', $article->description)); */ ?>
-                    <em><?php /*echo __('posts.description_explain'); */ ?></em>
+                    <em><?php /*echo __('dossiers.description_explain'); */ ?></em>
                 </p>
 
                 <p>
-                    <label for="status"><?php /*echo __('posts.status'); */ ?>:</label>
+                    <label for="status"><?php /*echo __('dossiers.status'); */ ?>:</label>
                     <?php /*echo Form::select('status', $statuses, Input::previous('status', $article->status)); */ ?>
-                    <em><?php /*echo __('posts.status_explain'); */ ?></em>
+                    <em><?php /*echo __('dossiers.status_explain'); */ ?></em>
                 </p>-->
 
+                <!--
+                //Don't need to change the cateogy if it doesn't change
                 <p>
-                    <label for="category"><?php echo __('posts.category'); ?>:</label>
-                    <?php echo Form::select('category', $categories, Input::previous('category', $article->category)); ?>
-                    <em><?php echo __('posts.category_explain'); ?></em>
-                </p>
+                    <label for="category"><?php /*echo __('dossiers.category'); */?>:</label>
+                    <?php /*echo Form::select('category', $categories, Input::previous('category', $article->category)); */?>
+                    <em><?php /*echo __('dossiers.category_explain'); */?></em>
+                </p>-->
 
                 <!--<p>
-                    <label><?php /*echo __('posts.allow_comments'); */ ?>:</label>
+                    <label><?php /*echo __('dossiers.allow_comments'); */ ?>:</label>
                     <?php /*echo Form::checkbox('comments', 1, Input::previous('comments', $article->comments) == 1); */ ?>
-                    <em><?php /*echo __('posts.allow_comments_explain'); */ ?></em>
+                    <em><?php /*echo __('dossiers.allow_comments_explain'); */ ?></em>
                 </p>
 
                 <p>
-                    <label><?php /*echo __('posts.custom_css'); */ ?>:</label>
+                    <label><?php /*echo __('dossiers.custom_css'); */ ?>:</label>
                     <?php /*echo Form::textarea('css', Input::previous('css', $article->css)); */ ?>
-                    <em><?php /*echo __('posts.custom_css_explain'); */ ?></em>
+                    <em><?php /*echo __('dossiers.custom_css_explain'); */ ?></em>
                 </p>
 
                 <p>
-                    <label for="js"><?php /*echo __('posts.custom_js'); */ ?>:</label>
+                    <label for="js"><?php /*echo __('dossiers.custom_js'); */ ?>:</label>
                     <?php /*echo Form::textarea('js', Input::previous('js', $article->js)); */ ?>
-                    <em><?php /*echo __('posts.custom_js_explain'); */ ?></em>
+                    <em><?php /*echo __('dossiers.custom_js_explain'); */ ?></em>
                 </p>-->
                 <?php foreach ($fields as $field): ?>
                     <p>
@@ -95,7 +96,7 @@
                         'class' => 'btn'
                     )); ?>
 
-                    <?php echo Html::link('admin/posts/delete/' . $article->id, __('global.delete'), array(
+                    <?php echo Html::link('admin/dossiers/delete/' . $article->id, __('global.delete'), array(
                         'class' => 'btn delete red'
                     )); ?>
                 </aside>

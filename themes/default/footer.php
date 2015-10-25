@@ -39,7 +39,7 @@
 
         </div>
         <!-- /*
-        <li><a href="<?php echo rss_url(); ?>">RSS</a></li>
+        <li><a href="<?php echo rss_url(); ?>">RSS DESC</a></li>
         <?php if (twitter_account()): ?>
             <li><a href="<?php echo twitter_url(); ?>">@<?php echo twitter_account(); ?></a></li>
         <?php endif; ?>

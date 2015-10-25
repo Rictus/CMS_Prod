@@ -1,4 +1,4 @@
-<?php theme_include('header'); ?>
+<?php theme_include('header'); theme_include('page_utils');?>
 
     <section class="content wrap" id="article-<?php echo article_id(); ?>">
         <h1><?php echo article_title(); ?></h1>
@@ -17,6 +17,23 @@
             <?php //endif; ?><!-- --><?php //echo article_custom_field('attribution'); ?><!--</p>-->
         </section>
     </section>
+
+
+
+<?php
+//Some content to add after an article
+
+switch(article_category_slug()) {
+	case 'journal':
+		break;
+	case 'dossier':
+		//Here, adding the summary
+		displayDossierSummary();
+		break;
+	case 'publication':
+		break;
+}
+?>
 
 
 <?php /*if(comments_open()): */ ?><!--
@@ -65,5 +82,4 @@
 
 		</section>
 		--><?php /*endif; */ ?>
-
 <?php theme_include('footer'); ?>
