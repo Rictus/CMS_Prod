@@ -1,5 +1,4 @@
 <?php echo $header; ?>
-    dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd
     <form method="post" action="<?php echo Uri::to('admin/dossiers/add'); ?>" enctype="multipart/form-data" novalidate>
 
         <input name="token" type="hidden" value="<?php echo $token; ?>">
@@ -77,10 +76,11 @@
                             </label>
                                 <select id="extend_typeofproblem" name="extend[typeofproblem]">
                                     <option value=""></option>
-                                    <option value="masculing">Masculing</option>
-                                    <option value="feminim">Féminim</option>
+                                    <option value="masculin">Masculin</option>
+                                    <option value="feminin">Féminin</option>
                                 </select>
                         <?php else: ?>
+
 
                         <label for="extend_<?php echo $field->key; ?>">
                             <?php echo $field->label; ?>:

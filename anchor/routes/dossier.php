@@ -173,7 +173,7 @@ Route::collection(array('before' => 'auth'), function () {
 
         $vars['categories'] = Category::dropdown();
 
-        return View::create('posts/add', $vars)
+        return View::create('dossiers/add', $vars)
             ->partial('header', 'partials/header')
             ->partial('footer', 'partials/footer')
             ->partial('editor', 'partials/editor');

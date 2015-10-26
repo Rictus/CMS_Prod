@@ -45,7 +45,7 @@ time {
   transform: translate(-50%, 0);
   margin: auto;
   display: block;
-  color: #9EA4B0;
+  color: black;
 }
 .topText > div {
   text-align: center;
@@ -169,7 +169,7 @@ time {
   margin-left: 30px;
 }
 .logo .underHeadline {
-  color: #989898;
+  color: black;
   font-size: inherit;
   line-height: inherit;
 }
@@ -185,14 +185,14 @@ nav ul li a {
   font-size: 20px;
 }
 .bigText {
-  margin: 15px auto;
+  margin: 30px auto !important;
 }
 .bigText ul {
   text-align: center;
   font-size: 40px;
 }
 .listOfPostsContainer {
-  margin: auto;
+  margin: 120px auto !important;
   width: 75%;
   display: flex;
   -webkit-flex-wrap: nowrap;
@@ -224,15 +224,159 @@ nav ul li a {
 .listOfPosts {
   margin: 0 35px;
   font-size: 17px;
+  line-height: 25px;
+  color: #586377;
+  font-weight: normal;
+  text-align: left;
+  text-decoration: none;
+  letter-spacing: 1px;
 }
 .listOfPosts ul {
   margin: 10px 0;
 }
 .colTitle {
+  font-size: 17px;
+  line-height: 25px;
+  color: #586377;
   font-weight: normal;
+  text-align: left;
+  text-decoration: none;
+  letter-spacing: 1px;
   margin-bottom: 15px;
 }
 .listTitle {
   text-transform: uppercase;
   margin-bottom: 10px;
+}
+.bio {
+  margin: 120px auto !important;
+  padding: 0 60px;
+  font-size: 17px;
+  line-height: 25px;
+  color: #586377;
+  font-weight: normal;
+  text-align: left;
+  text-decoration: none;
+  letter-spacing: 1px;
+}
+.bio .mainBio {
+  font-size: 17px;
+  line-height: 25px;
+  color: #586377;
+  font-weight: normal;
+  text-align: left;
+  text-decoration: none;
+  letter-spacing: 1px;
+  font-size: 24px;
+  line-height: 31px;
+  margin: 10px 0;
+}
+.bio .bioPicture {
+  padding-top: 10px;
+}
+.bio .bioPicture img {
+  display: block;
+  width: 39%;
+  margin: auto;
+  min-width: 250px;
+}
+.link {
+  font-size: 17px;
+  line-height: 25px;
+  color: #586377;
+  font-weight: normal;
+  text-align: left;
+  text-decoration: none;
+  letter-spacing: 1px;
+  font-weight: bold;
+}
+.link,
+.link:hover,
+.link:before,
+.link:before:hover {
+  color: #586377;
+}
+.pre-chevron:before {
+  content: '>';
+  font-size: 17px;
+  line-height: 25px;
+  color: #586377;
+  font-weight: normal;
+  text-align: left;
+  text-decoration: none;
+  letter-spacing: 1px;
+  margin: 0 10px 0 0;
+  font-weight: 900;
+}
+.team {
+  margin: 120px auto !important;
+}
+.team .title {
+  font-size: 17px;
+  line-height: 25px;
+  color: #586377;
+  font-weight: normal;
+  text-align: left;
+  text-decoration: none;
+  letter-spacing: 1px;
+  margin: 30px auto !important;
+  text-align: center;
+}
+.team .row {
+  margin: 0;
+}
+.team .peopleDesc {
+  padding: 20px 70px;
+}
+.team .job {
+  font-size: 17px;
+  line-height: 25px;
+  color: #586377;
+  font-weight: normal;
+  text-align: left;
+  text-decoration: none;
+  letter-spacing: 1px;
+  text-align: center;
+}
+.team .people {
+  font-size: 17px;
+  line-height: 25px;
+  color: #586377;
+  font-weight: normal;
+  text-align: left;
+  text-decoration: none;
+  letter-spacing: 1px;
+  font-size: 24px;
+  line-height: 31px;
+  text-align: center;
+  font-weight: bold;
+}
+/**
+ *  MAIN RULES MIXINS
+ */
+.classicTextRules {
+  font-size: 17px;
+  line-height: 25px;
+  color: #586377;
+  font-weight: normal;
+  text-align: left;
+  text-decoration: none;
+  letter-spacing: 1px;
+}
+.titleTextRules {
+  font-size: 17px;
+  line-height: 25px;
+  color: #586377;
+  font-weight: normal;
+  text-align: left;
+  text-decoration: none;
+  letter-spacing: 1px;
+  font-size: 24px;
+  line-height: 31px;
+}
+.mediumSectionSeparation {
+  margin: 120px auto !important;
+}
+.smallSectionSeparation {
+  margin: 30px auto !important;
 }

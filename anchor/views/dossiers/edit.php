@@ -79,7 +79,7 @@
                             <select id="extend_typeofproblem" name="extend[typeofproblem]">
                                 <option value=""></option>
                                 <option value="masculin">Masculin</option>
-                                <option value="feminim">Féminim</option>
+                                <option value="feminin">Féminin</option>
                             </select>
                         <?php else: ?>
 
