@@ -1,10 +1,7 @@
 /**
  *
  */
- 
-* {
-    font-family: 'proxima-nova', 'Arial', sans-serif!important;
-}
+
 
 h1 {
     padding: 80px 0 40px;
@@ -380,9 +377,4 @@ ul.commentlist .counter {
 #bottom .row li {
     display: block;
     text-align: left;
-}
-
-#bottom .row li a {
-    display: block;
-    color: #939fba;
 }

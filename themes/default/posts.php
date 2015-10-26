@@ -68,14 +68,14 @@
                 maladies du cœur et des vaisseaux.
             </div>
             <div class="row">
-                <div class="col-lg-6 col-md-6 col-sm-9 col-xs-10">
+                <div class="bioContent col-lg-6 col-md-6 col-sm-9 col-xs-10">
                     Le Docteur Virag est fort d'une expérience de plus de trente ans en recherches et expériences
                     cliniques.Il est membre de l'Académie Nationale de Chirurgie, ancien interne des Hôpitaux de Paris,
                     ancien chef de clinique à la Faculté de Paris, docteur en médecine, spécialisé en chirurgie,
                     compétent en angiologie et sexologie vous reçoit à Paris en consultation, discrète, individuelle et
                     de couple
                 </div>
-                <div class="col-lg-6 col-md-6 col-sm-9 col-xs-10">
+                <div class="bioContent col-lg-6 col-md-6 col-sm-9 col-xs-10">
                     Bilan par doppler, échographie, électromyogramme, cavernoscanner. <br> Il utilise une approche
                     médicalisée fondée sur des techniques et des traitement innovants. Le Docteur Virag a publié plus de
                     soixante-dix publications dans des grandes revues scientifiques et est l'auteur de plusieurs livres

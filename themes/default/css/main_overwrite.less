@@ -1,6 +1,6 @@
 @import "./mixins.less";
 
-@mainTextColor: #586377;
+@mainTextColor: #465065;
 ul, ul li {
   display: block;
   padding: 0;
@@ -50,7 +50,12 @@ time {
   transform: translate(-50%, 0);
   margin: auto;
   display: block;
-  color: black;
+  font-family: 'ProximaNova-Thin', Arial, sans-serif;
+  font-size: 25px;
+  color: @mainTextColor;
+  letter-spacing: 2.5px;
+  line-height: 35px;
+  text-align: center;
 }
 
 .topText > div {
@@ -70,8 +75,6 @@ time {
   transform: translateX(-50%);
   display: block;
   margin: auto;
-  font-weight: normal;
-  font-size: 32px;
 
   display: -webkit-box;
   display: -moz-box;
@@ -106,17 +109,28 @@ time {
 .buttons .button {
   position: relative;
   display: inline-block;
-  padding: 7px 32px;
+  padding: 13px 0;
   margin: 7px;
   -webkit-border-radius: 25px;
   -moz-border-radius: 25px;
-  border-radius: 25px;
-  border: solid 2px white;
+
+  font-family: 'ProximaNova-Semibold', Arial, sans-serif;
+  font-size: 17px;
+  color: #FFFFFF;
+  letter-spacing: 1.7px;
+  line-height: 21px;
+
+  text-align: center;
+  background:rgba(194,199,205,0.80);
+  border:2px solid #FFFFFF;
+  border-radius:40px;
+  width:208px;
+  height:50px;
 }
 
 .button.preicon_call {
   position: relative;
-  padding-left: 44px;
+  padding-left: 26px;
 }
 
 .button.preicon_call:before {
@@ -125,12 +139,12 @@ time {
   position: absolute;
   top: 19px;
   left: 19px;
-  height: 19px;
-  width: 19px;
+  height: 13px;
+  width: 14px;
   background-image: url('../img/Telephone.png');
   background-repeat: no-repeat;
   background-position: center left;
-  background-size: 19px;
+  background-size: 13px;
 }
 
 .button_white {
@@ -177,11 +191,14 @@ time {
     top: -3px;
     display: inline-block;
     margin: auto;
-    color: black;
-    font-weight: normal;
-    font-size: 17px;
-    line-height: 23px;
     margin-left: 30px;
+
+    font-family: 'ProximaNova-Light', Arial, sans-serif;
+    font-size: 13px;
+    color: #465065;
+    letter-spacing: 1px;
+    line-height: 18px;
+    text-align: left;
 
   }
   .underHeadline {
@@ -200,24 +217,25 @@ nav {
       display: inline-block;
       margin: 12px;
       a {
-        font-size: 20px;
+        font-family: 'ProximaNova-Regular', Arial, sans-serif;
+        font-size: 15px;
+        color: rgba(69, 80, 101, 0.60);
+        letter-spacing: 1.5px;
+        line-height: 18px;
       }
     }
   }
 }
 
 .bigText {
-  .smallSectionSeparation;
-  ul {
-    text-align: center;
-    font-size: 40px;
-    li {
-    }
+  margin: 57px auto 45px auto;
+  ul, li {
+    .bigTitleTextRules;
   }
 }
 
 .listOfPostsContainer {
-  .mediumSectionSeparation;
+  margin: 42px auto 0 auto;
   width: 75%;
   @media (max-width: 800px) {
     width: 90%;
@@ -232,15 +250,14 @@ nav {
 }
 
 .listOfPosts {
-  margin: 0 35px;
-  .classicTextRules;
+  margin: 0 29px 0 29px;
+  .columnTextRules;
   ul {
     margin: 10px 0;
   }
 }
 
 .colTitle {
-  .classicTextRules;
   margin-bottom: 15px;
 }
 
@@ -250,48 +267,45 @@ nav {
 }
 
 .bio {
-  .mediumSectionSeparation;
-  padding: 0 60px;
-  .classicTextRules;
+  margin: 104px auto 0 auto;
+  padding: 0 97px 0 0;
   .mainBio {
-    .titleTextRules;
-    margin: 10px 0;
+    .semiTitleTextRules;
+    margin: 38px 0 19px 0;
+  }
+  .bioContent {
+    .columnTextRules;
   }
   .bioPicture {
-    padding-top: 10px;
+    padding-top: 53px;
     img {
       display: block;
       width: 39%;
       margin: auto;
-      min-width: 250px;
+      min-width: 260px;
     }
   }
 }
 
 .link {
-  .classicTextRules;
-  font-weight: bold;
+  display: block;
+  margin: 35px 0 66px 0;
   &, &:hover, &:before, &:before:hover {
-    color: @mainTextColor;
+    .linkTextRules;
   }
 }
 
 .pre-chevron {
   &:before {
     content: '>';
-    .classicTextRules;
     margin: 0 10px 0 0;
     font-weight: 900;
   }
 }
 
-
 .team {
-  .mediumSectionSeparation;
   .title {
-    .classicTextRules;
-    .smallSectionSeparation;
-    text-align: center;
+    .smallSectionTitleTextRules;
   }
   .row {
     margin: 0;
@@ -300,39 +314,79 @@ nav {
     padding: 20px 70px;
   }
   .job {
-    .classicTextRules;
+    .columnTextRules;
     text-align: center;
   }
   .people {
-    .titleTextRules;
+    font-family: 'ProximaNova-Bold', Arial, sans-serif;
+    font-size: 17px;
+    color: #465065;
+    letter-spacing: 2.54px;
+    line-height: 24px;
     text-align: center;
-    font-weight: bold;
   }
+}
+
+#bottom .row li a {
+  display: block;
+  .footerLink;
 }
 
 /**
  *  MAIN RULES MIXINS
  */
-.classicTextRules {
-  font-size: 17px;
-  line-height: 25px;
+
+.bigTitleTextRules {
+  //A massive big texte
+  font-family: 'ProximaNova-Light', Arial, sans-serif;
+  font-size: 30px;
   color: @mainTextColor;
-  font-weight: normal;
+  letter-spacing: 3px;
+  line-height: 45px;
+  text-align: center;
+}
+
+.semiTitleTextRules {
+  //A short summary, a content before the real content
+  font-family: 'ProximaNova-Light', Arial, sans-serif;
+  font-size: 17px;
+  color: @mainTextColor;
+  letter-spacing: 1.7px;
+  line-height: 25px;
+  text-align: left;
+}
+
+.linkTextRules {
+  //A clickable bold link with maybe a chevron
+  font-family: 'ProximaNova-Semibold', Arial, sans-serif;
+  font-size: 13px;
+  color: #465065;
+  letter-spacing: 1px;
+  line-height: 20px;
+  text-align: left;
+  text-decoration: none;
+}
+
+.columnTextRules {
+  font-family: 'ProximaNova-Light', Arial, sans-serif;
+  font-size: 13px;
+  line-height: 20px;
+  color: @mainTextColor;
   text-align: left;
   text-decoration: none;
   letter-spacing: 1px;
 }
 
-.titleTextRules {
-  .classicTextRules;
-  font-size: 24px;
-  line-height: 31px;
+.footerLink {
+  .columnTextRules;
+  color: rgba(255, 255, 255, 0.50);
 }
 
-.mediumSectionSeparation {
-  margin: 120px auto !important;
-}
-
-.smallSectionSeparation {
-  margin: 30px auto !important;
+.smallSectionTitleTextRules {
+  font-family: 'ProximaNova-Regular', Arial, sans-serif;
+  font-size: 13px;
+  color: @mainTextColor;
+  letter-spacing: 1.29px;
+  line-height: 27px;
+  text-align: center;
 }

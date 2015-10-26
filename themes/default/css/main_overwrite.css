@@ -45,7 +45,12 @@ time {
   transform: translate(-50%, 0);
   margin: auto;
   display: block;
-  color: black;
+  font-family: 'ProximaNova-Thin', Arial, sans-serif;
+  font-size: 25px;
+  color: #465065;
+  letter-spacing: 2.5px;
+  line-height: 35px;
+  text-align: center;
 }
 .topText > div {
   text-align: center;
@@ -62,8 +67,6 @@ time {
   transform: translateX(-50%);
   display: block;
   margin: auto;
-  font-weight: normal;
-  font-size: 32px;
   display: -webkit-box;
   display: -moz-box;
   display: -ms-flexbox;
@@ -96,16 +99,25 @@ time {
 .buttons .button {
   position: relative;
   display: inline-block;
-  padding: 7px 32px;
+  padding: 13px 0;
   margin: 7px;
   -webkit-border-radius: 25px;
   -moz-border-radius: 25px;
-  border-radius: 25px;
-  border: solid 2px white;
+  font-family: 'ProximaNova-Semibold', Arial, sans-serif;
+  font-size: 17px;
+  color: #FFFFFF;
+  letter-spacing: 1.7px;
+  line-height: 21px;
+  text-align: center;
+  background: rgba(194, 199, 205, 0.8);
+  border: 2px solid #FFFFFF;
+  border-radius: 40px;
+  width: 208px;
+  height: 50px;
 }
 .button.preicon_call {
   position: relative;
-  padding-left: 44px;
+  padding-left: 26px;
 }
 .button.preicon_call:before {
   content: '';
@@ -113,12 +125,12 @@ time {
   position: absolute;
   top: 19px;
   left: 19px;
-  height: 19px;
-  width: 19px;
+  height: 13px;
+  width: 14px;
   background-image: url('../img/Telephone.png');
   background-repeat: no-repeat;
   background-position: center left;
-  background-size: 19px;
+  background-size: 13px;
 }
 .button_white {
   text-decoration: none;
@@ -162,11 +174,13 @@ time {
   top: -3px;
   display: inline-block;
   margin: auto;
-  color: black;
-  font-weight: normal;
-  font-size: 17px;
-  line-height: 23px;
   margin-left: 30px;
+  font-family: 'ProximaNova-Light', Arial, sans-serif;
+  font-size: 13px;
+  color: #465065;
+  letter-spacing: 1px;
+  line-height: 18px;
+  text-align: left;
 }
 .logo .underHeadline {
   color: black;
@@ -182,17 +196,26 @@ nav ul li {
   margin: 12px;
 }
 nav ul li a {
-  font-size: 20px;
+  font-family: 'ProximaNova-Regular', Arial, sans-serif;
+  font-size: 15px;
+  color: rgba(69, 80, 101, 0.6);
+  letter-spacing: 1.5px;
+  line-height: 18px;
 }
 .bigText {
-  margin: 30px auto !important;
+  margin: 57px auto 45px auto;
 }
-.bigText ul {
+.bigText ul,
+.bigText li {
+  font-family: 'ProximaNova-Light', Arial, sans-serif;
+  font-size: 30px;
+  color: #465065;
+  letter-spacing: 3px;
+  line-height: 45px;
   text-align: center;
-  font-size: 40px;
 }
 .listOfPostsContainer {
-  margin: 120px auto !important;
+  margin: 42px auto 0 auto;
   width: 75%;
   display: flex;
   -webkit-flex-wrap: nowrap;
@@ -222,11 +245,11 @@ nav ul li a {
   }
 }
 .listOfPosts {
-  margin: 0 35px;
-  font-size: 17px;
-  line-height: 25px;
-  color: #586377;
-  font-weight: normal;
+  margin: 0 29px 0 29px;
+  font-family: 'ProximaNova-Light', Arial, sans-serif;
+  font-size: 13px;
+  line-height: 20px;
+  color: #465065;
   text-align: left;
   text-decoration: none;
   letter-spacing: 1px;
@@ -235,13 +258,6 @@ nav ul li a {
   margin: 10px 0;
 }
 .colTitle {
-  font-size: 17px;
-  line-height: 25px;
-  color: #586377;
-  font-weight: normal;
-  text-align: left;
-  text-decoration: none;
-  letter-spacing: 1px;
   margin-bottom: 15px;
 }
 .listTitle {
@@ -249,77 +265,63 @@ nav ul li a {
   margin-bottom: 10px;
 }
 .bio {
-  margin: 120px auto !important;
-  padding: 0 60px;
-  font-size: 17px;
-  line-height: 25px;
-  color: #586377;
-  font-weight: normal;
-  text-align: left;
-  text-decoration: none;
-  letter-spacing: 1px;
+  margin: 104px auto 0 auto;
+  padding: 0 97px 0 0;
 }
 .bio .mainBio {
+  font-family: 'ProximaNova-Light', Arial, sans-serif;
   font-size: 17px;
+  color: #465065;
+  letter-spacing: 1.7px;
   line-height: 25px;
-  color: #586377;
-  font-weight: normal;
+  text-align: left;
+  margin: 38px 0 19px 0;
+}
+.bio .bioContent {
+  font-family: 'ProximaNova-Light', Arial, sans-serif;
+  font-size: 13px;
+  line-height: 20px;
+  color: #465065;
   text-align: left;
   text-decoration: none;
   letter-spacing: 1px;
-  font-size: 24px;
-  line-height: 31px;
-  margin: 10px 0;
 }
 .bio .bioPicture {
-  padding-top: 10px;
+  padding-top: 53px;
 }
 .bio .bioPicture img {
   display: block;
   width: 39%;
   margin: auto;
-  min-width: 250px;
+  min-width: 260px;
 }
 .link {
-  font-size: 17px;
-  line-height: 25px;
-  color: #586377;
-  font-weight: normal;
-  text-align: left;
-  text-decoration: none;
-  letter-spacing: 1px;
-  font-weight: bold;
+  display: block;
+  margin: 35px 0 66px 0;
 }
 .link,
 .link:hover,
 .link:before,
 .link:before:hover {
-  color: #586377;
+  font-family: 'ProximaNova-Semibold', Arial, sans-serif;
+  font-size: 13px;
+  color: #465065;
+  letter-spacing: 1px;
+  line-height: 20px;
+  text-align: left;
+  text-decoration: none;
 }
 .pre-chevron:before {
   content: '>';
-  font-size: 17px;
-  line-height: 25px;
-  color: #586377;
-  font-weight: normal;
-  text-align: left;
-  text-decoration: none;
-  letter-spacing: 1px;
   margin: 0 10px 0 0;
   font-weight: 900;
 }
-.team {
-  margin: 120px auto !important;
-}
 .team .title {
-  font-size: 17px;
-  line-height: 25px;
-  color: #586377;
-  font-weight: normal;
-  text-align: left;
-  text-decoration: none;
-  letter-spacing: 1px;
-  margin: 30px auto !important;
+  font-family: 'ProximaNova-Regular', Arial, sans-serif;
+  font-size: 13px;
+  color: #465065;
+  letter-spacing: 1.29px;
+  line-height: 27px;
   text-align: center;
 }
 .team .row {
@@ -329,54 +331,86 @@ nav ul li a {
   padding: 20px 70px;
 }
 .team .job {
-  font-size: 17px;
-  line-height: 25px;
-  color: #586377;
-  font-weight: normal;
+  font-family: 'ProximaNova-Light', Arial, sans-serif;
+  font-size: 13px;
+  line-height: 20px;
+  color: #465065;
   text-align: left;
   text-decoration: none;
   letter-spacing: 1px;
   text-align: center;
 }
 .team .people {
+  font-family: 'ProximaNova-Bold', Arial, sans-serif;
   font-size: 17px;
-  line-height: 25px;
-  color: #586377;
-  font-weight: normal;
+  color: #465065;
+  letter-spacing: 2.54px;
+  line-height: 24px;
+  text-align: center;
+}
+#bottom .row li a {
+  display: block;
+  font-family: 'ProximaNova-Light', Arial, sans-serif;
+  font-size: 13px;
+  line-height: 20px;
+  color: #465065;
   text-align: left;
   text-decoration: none;
   letter-spacing: 1px;
-  font-size: 24px;
-  line-height: 31px;
-  text-align: center;
-  font-weight: bold;
+  color: rgba(255, 255, 255, 0.5);
 }
 /**
  *  MAIN RULES MIXINS
  */
-.classicTextRules {
+.bigTitleTextRules {
+  font-family: 'ProximaNova-Light', Arial, sans-serif;
+  font-size: 30px;
+  color: #465065;
+  letter-spacing: 3px;
+  line-height: 45px;
+  text-align: center;
+}
+.semiTitleTextRules {
+  font-family: 'ProximaNova-Light', Arial, sans-serif;
   font-size: 17px;
+  color: #465065;
+  letter-spacing: 1.7px;
   line-height: 25px;
-  color: #586377;
-  font-weight: normal;
+  text-align: left;
+}
+.linkTextRules {
+  font-family: 'ProximaNova-Semibold', Arial, sans-serif;
+  font-size: 13px;
+  color: #465065;
+  letter-spacing: 1px;
+  line-height: 20px;
+  text-align: left;
+  text-decoration: none;
+}
+.columnTextRules {
+  font-family: 'ProximaNova-Light', Arial, sans-serif;
+  font-size: 13px;
+  line-height: 20px;
+  color: #465065;
   text-align: left;
   text-decoration: none;
   letter-spacing: 1px;
 }
-.titleTextRules {
-  font-size: 17px;
-  line-height: 25px;
-  color: #586377;
-  font-weight: normal;
+.footerLink {
+  font-family: 'ProximaNova-Light', Arial, sans-serif;
+  font-size: 13px;
+  line-height: 20px;
+  color: #465065;
   text-align: left;
   text-decoration: none;
   letter-spacing: 1px;
-  font-size: 24px;
-  line-height: 31px;
+  color: rgba(255, 255, 255, 0.5);
 }
-.mediumSectionSeparation {
-  margin: 120px auto !important;
-}
-.smallSectionSeparation {
-  margin: 30px auto !important;
+.smallSectionTitleTextRules {
+  font-family: 'ProximaNova-Regular', Arial, sans-serif;
+  font-size: 13px;
+  color: #465065;
+  letter-spacing: 1.29px;
+  line-height: 27px;
+  text-align: center;
 }
