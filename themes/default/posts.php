@@ -110,6 +110,55 @@
         </div>
     </div>
 
+    <div class="lastPost">
+        <div class="inner">
+            <div class="date">13 mai 2015</div>
+            <div class="title">Des spermatozoïdes fabriqués  en laboratoire : c'est important  pour les couples
+                infertiles
+            </div>
+            <div class="picture"><img src="<?php echo theme_url("./img/Actu.png"); ?>" alt=""></div>
+        </div>
+    </div>
+
+    <div class="lastPublications">
+        <div class="inner row">
+            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 publication">
+                <div class="picture"><img
+                        src="<?php echo theme_url("./img/A09CFF26-B8D5-49A5-9F16-DF5FE45EE14B@2x.png"); ?>" alt="">
+                </div>
+                <div class="title">ERECTION THE USER GUIDE</div>
+                <div class="description">Erection, mode d'emploi a l'ambition d'apporter à un maximum de lecteurs un
+                    maximum d'informations sur un organe qui est non seulement indispensable à une sexualité harmonieuse
+                    mais aussi à la construction de la masculinité.
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 publication">
+                <div class="picture"><img
+                        src="<?php echo theme_url("./img/E905F90B-6F77-4232-A3F0-9340937969BC@2x.png"); ?>" alt="">
+                </div>
+                <div class="title">LE SEXE DE  L’HOMME</div>
+                <div class="description">« Tout ce que vous avez toujours voulu savoir sur le sexe (de l'homme) sans
+                    oser le demander... ", le docteur Virag vous l'explique dans cet ouvrage qui aborde tous les aspects
+                    de la question sans en omettre aucun, dans un langage accessible, précis et dénué de jugement
+                    moral »
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 publication">
+                <div class="picture"><img
+                        src="<?php echo theme_url("./img/4B07E9F2-C0D8-4C72-896E-B17C30F6E219@2x.png"); ?>" alt="">
+                </div>
+                <div class="title">LES INJECTIONS INTRACAVERNEUSES</div>
+                <div class="description">Ouvrage technique, destiné plutôt au monde médical, mais parfaitement
+                    intelligible par un public intéressé par la question. En 106 pages, l'ensemble des questions posées
+                    par cette technique qui reste le traitement le plus efficace de la dysfonction érectile est abordé.
+                </div>
+            </div>
+        </div>
+        <div class="linkContainer">
+            <a href="" class="link pre-chevron">Accéder aux livres</a>
+        </div>
+    </div>
+
     <!--
         <?php /*if (has_posts()): */ ?>
             <ul class="items">
@@ -161,4 +210,5 @@
         --><?php /*endif; */ ?>
 
 
+<?php theme_include('mapContact'); ?>
 <?php theme_include('footer'); ?>

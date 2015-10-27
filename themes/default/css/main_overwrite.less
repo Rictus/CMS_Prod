@@ -1,5 +1,7 @@
 @import "./mixins.less";
 
+@classicSectionBackground: white;
+@alternativeSectionBackground: rgba(241, 242, 246, 0.50);
 @mainTextColor: #465065;
 ul, ul li {
   display: block;
@@ -106,51 +108,77 @@ time {
   align-items: center;
 }
 
-.buttons .button {
+.button {
   position: relative;
   display: inline-block;
-  padding: 13px 0;
+  padding: 13px;
   margin: 7px;
   -webkit-border-radius: 25px;
   -moz-border-radius: 25px;
 
   font-family: 'ProximaNova-Semibold', Arial, sans-serif;
   font-size: 17px;
-  color: #FFFFFF;
   letter-spacing: 1.7px;
   line-height: 21px;
-
   text-align: center;
-  background:rgba(194,199,205,0.80);
-  border:2px solid #FFFFFF;
-  border-radius:40px;
-  width:208px;
-  height:50px;
 }
 
-.button.preicon_call {
+.pre-icon {
   position: relative;
-  padding-left: 26px;
+  &:before {
+    content: '';
+    display: block;
+    position: absolute;
+    background-repeat: no-repeat;
+    background-position: center left;
+  }
 }
 
-.button.preicon_call:before {
-  content: '';
-  display: block;
-  position: absolute;
-  top: 19px;
-  left: 19px;
-  height: 13px;
-  width: 14px;
-  background-image: url('../img/Telephone.png');
-  background-repeat: no-repeat;
-  background-position: center left;
-  background-size: 13px;
+.button.pre-icon_call {
+  .pre-icon;
+  padding-left: 42px;
+  &:before {
+    top: 19px;
+    left: 19px;
+    height: 13px;
+    width: 14px;
+    background-image: url('../img/Telephone.png');
+    background-size: 13px;
+  }
+}
+
+.button.pre-icon_calendar {
+  .pre-icon;
+  padding-left: 40px;
+  &:before {
+    top: 16px;
+    left: 19px;
+    height: 16px;
+    width: 16px;
+    background-image: url('../img/Calendar.png');
+    background-size: 16px;
+  }
 }
 
 .button_white {
   text-decoration: none;
-  color: white;
-  background: rgba(0, 0, 0, .2);
+  border: 2px solid #FFFFFF;
+  border-radius: 40px;
+  color: #FFFFFF;
+
+  background: rgba(194, 199, 205, 0.80);
+}
+
+.button_grey {
+  border: 2px solid rgba(70, 80, 101, 0.30);
+  border-radius: 40px;
+  width: 265px;
+  height: 50px;
+
+  font-size: 17px;
+  color: rgba(69, 80, 101, 0.60);
+  letter-spacing: 1.7px;
+  line-height: 21px;
 }
 
 #top {
@@ -229,6 +257,7 @@ nav {
 
 .bigText {
   margin: 57px auto 45px auto;
+  background-color: @classicSectionBackground;
   ul, li {
     .bigTitleTextRules;
   }
@@ -237,6 +266,7 @@ nav {
 .listOfPostsContainer {
   margin: 42px auto 0 auto;
   width: 75%;
+  background-color: @classicSectionBackground;
   @media (max-width: 800px) {
     width: 90%;
   }
@@ -269,6 +299,7 @@ nav {
 .bio {
   margin: 104px auto 0 auto;
   padding: 0 97px 0 0;
+  background-color: @alternativeSectionBackground;
   .mainBio {
     .semiTitleTextRules;
     margin: 38px 0 19px 0;
@@ -287,11 +318,92 @@ nav {
   }
 }
 
-.link {
+.lastPost {
+  width: 100%;
+  background-color: @alternativeSectionBackground;
+  padding: 53px 0 53px 0;
+  .inner {
+    .responsiveWidth(416px);
+    margin: auto;
+  }
+  .date {
+    .smallSectionTitleTextRules;
+  }
+  .title {
+    .postTitleTextRules;
+  }
+  .picture {
+    margin: 21px auto 21px auto;
+    img {
+      display: block;
+      margin: auto;
+      padding: 10px;
+      width: 100%;
+    }
+  }
+}
+
+.lastPublications {
+  width: 100%;
+  .inner {
+    .responsiveWidth(700px);
+    margin: auto;
+  }
+  .publication {
+    .responsiveWidth(200px);
+    margin: 0 25px;
+    padding: 0;
+    &:first-child {
+      margin-left: 0;
+    }
+    &:last-child {
+      margin-right: 0;
+    }
+
+    .picture {
+      .responsiveWidth(90px);
+      height: auto;
+      margin: 19px auto;
+    }
+    .title {
+      .columnTextRules;
+      text-align: center;
+      letter-spacing: 2px;
+
+      margin: 0 auto 24px auto;
+    }
+    .description {
+      .columnTextRules;
+    }
+  }
+}
+
+.linkContainer {
   display: block;
+  margin: auto;
+  padding: 0;
+  .link {
+    text-align: center;
+  }
+}
+
+.link {
+  &:not(.inline-link) {
+    display: block;
+  }
   margin: 35px 0 66px 0;
   &, &:hover, &:before, &:before:hover {
     .linkTextRules;
+  }
+}
+
+.inline-link {
+  display: inline;
+}
+
+.hidden-link {
+  &, &:hover, &:before, &:before:hover {
+    color: @mainTextColor;
   }
 }
 
@@ -304,7 +416,9 @@ nav {
 }
 
 .team {
+  margin: 0 auto 75px auto;
   .title {
+    padding-top: 63px;
     .smallSectionTitleTextRules;
   }
   .row {
@@ -332,9 +446,53 @@ nav {
   .footerLink;
 }
 
+.mapContact {
+  background-color: @alternativeSectionBackground;
+  .inner {
+    .responsiveWidth(700px);
+    padding-top: 61px;
+    padding-bottom: 56px;
+    margin: 0 auto 0 auto;
+  }
+  .mapPicture {
+    margin: 0 70px 0 5px;
+    img {
+      .responsiveWidth(223px);
+    }
+  }
+  .contactInformations {
+    .columnTextRules;
+    margin: 30px 5px 15px 0;
+    .address {
+
+    }
+    .town {
+
+    }
+    .tel {
+
+    }
+    .mail {
+
+    }
+  }
+}
+
 /**
  *  MAIN RULES MIXINS
  */
+.dateTextRules {
+
+}
+
+.postTitleTextRules {
+  font-family: 'ProximaNova-Light';
+  font-size: 25px;
+  color: @mainTextColor;
+  letter-spacing: 2.5px;
+  line-height: 33px;
+  text-align: center;
+}
 
 .bigTitleTextRules {
   //A massive big texte
@@ -360,7 +518,7 @@ nav {
   //A clickable bold link with maybe a chevron
   font-family: 'ProximaNova-Semibold', Arial, sans-serif;
   font-size: 13px;
-  color: #465065;
+  color: @mainTextColor;
   letter-spacing: 1px;
   line-height: 20px;
   text-align: left;

@@ -96,46 +96,83 @@ time {
   -ms-flex-align: center;
   align-items: center;
 }
-.buttons .button {
+.button {
   position: relative;
   display: inline-block;
-  padding: 13px 0;
+  padding: 13px;
   margin: 7px;
   -webkit-border-radius: 25px;
   -moz-border-radius: 25px;
   font-family: 'ProximaNova-Semibold', Arial, sans-serif;
   font-size: 17px;
-  color: #FFFFFF;
   letter-spacing: 1.7px;
   line-height: 21px;
   text-align: center;
-  background: rgba(194, 199, 205, 0.8);
-  border: 2px solid #FFFFFF;
-  border-radius: 40px;
-  width: 208px;
-  height: 50px;
 }
-.button.preicon_call {
+.pre-icon {
   position: relative;
-  padding-left: 26px;
 }
-.button.preicon_call:before {
+.pre-icon:before {
   content: '';
   display: block;
   position: absolute;
+  background-repeat: no-repeat;
+  background-position: center left;
+}
+.button.pre-icon_call {
+  position: relative;
+  padding-left: 42px;
+}
+.button.pre-icon_call:before {
+  content: '';
+  display: block;
+  position: absolute;
+  background-repeat: no-repeat;
+  background-position: center left;
+}
+.button.pre-icon_call:before {
   top: 19px;
   left: 19px;
   height: 13px;
   width: 14px;
   background-image: url('../img/Telephone.png');
+  background-size: 13px;
+}
+.button.pre-icon_calendar {
+  position: relative;
+  padding-left: 40px;
+}
+.button.pre-icon_calendar:before {
+  content: '';
+  display: block;
+  position: absolute;
   background-repeat: no-repeat;
   background-position: center left;
-  background-size: 13px;
+}
+.button.pre-icon_calendar:before {
+  top: 16px;
+  left: 19px;
+  height: 16px;
+  width: 16px;
+  background-image: url('../img/Calendar.png');
+  background-size: 16px;
 }
 .button_white {
   text-decoration: none;
-  color: white;
-  background: rgba(0, 0, 0, 0.2);
+  border: 2px solid #FFFFFF;
+  border-radius: 40px;
+  color: #FFFFFF;
+  background: rgba(194, 199, 205, 0.8);
+}
+.button_grey {
+  border: 2px solid rgba(70, 80, 101, 0.3);
+  border-radius: 40px;
+  width: 265px;
+  height: 50px;
+  font-size: 17px;
+  color: rgba(69, 80, 101, 0.6);
+  letter-spacing: 1.7px;
+  line-height: 21px;
 }
 #top {
   display: -webkit-box;
@@ -204,6 +241,7 @@ nav ul li a {
 }
 .bigText {
   margin: 57px auto 45px auto;
+  background-color: white;
 }
 .bigText ul,
 .bigText li {
@@ -217,6 +255,7 @@ nav ul li a {
 .listOfPostsContainer {
   margin: 42px auto 0 auto;
   width: 75%;
+  background-color: white;
   display: flex;
   -webkit-flex-wrap: nowrap;
   -moz-flex-wrap: nowrap;
@@ -267,6 +306,7 @@ nav ul li a {
 .bio {
   margin: 104px auto 0 auto;
   padding: 0 97px 0 0;
+  background-color: rgba(241, 242, 246, 0.5);
 }
 .bio .mainBio {
   font-family: 'ProximaNova-Light', Arial, sans-serif;
@@ -295,9 +335,117 @@ nav ul li a {
   margin: auto;
   min-width: 260px;
 }
-.link {
+.lastPost {
+  width: 100%;
+  background-color: rgba(241, 242, 246, 0.5);
+  padding: 53px 0 53px 0;
+}
+.lastPost .inner {
+  width: 416px;
+  margin: auto;
+}
+@media (max-width: 416px) {
+  .lastPost .inner {
+    width: 100%;
+  }
+}
+.lastPost .date {
+  font-family: 'ProximaNova-Regular', Arial, sans-serif;
+  font-size: 13px;
+  color: #465065;
+  letter-spacing: 1.29px;
+  line-height: 27px;
+  text-align: center;
+}
+.lastPost .title {
+  font-family: 'ProximaNova-Light';
+  font-size: 25px;
+  color: #465065;
+  letter-spacing: 2.5px;
+  line-height: 33px;
+  text-align: center;
+}
+.lastPost .picture {
+  margin: 21px auto 21px auto;
+}
+.lastPost .picture img {
   display: block;
+  margin: auto;
+  padding: 10px;
+  width: 100%;
+}
+.lastPublications {
+  width: 100%;
+}
+.lastPublications .inner {
+  width: 700px;
+  margin: auto;
+}
+@media (max-width: 700px) {
+  .lastPublications .inner {
+    width: 100%;
+  }
+}
+.lastPublications .publication {
+  width: 200px;
+  margin: 0 25px;
+  padding: 0;
+}
+@media (max-width: 200px) {
+  .lastPublications .publication {
+    width: 100%;
+  }
+}
+.lastPublications .publication:first-child {
+  margin-left: 0;
+}
+.lastPublications .publication:last-child {
+  margin-right: 0;
+}
+.lastPublications .publication .picture {
+  width: 90px;
+  height: auto;
+  margin: 19px auto;
+}
+@media (max-width: 90px) {
+  .lastPublications .publication .picture {
+    width: 100%;
+  }
+}
+.lastPublications .publication .title {
+  font-family: 'ProximaNova-Light', Arial, sans-serif;
+  font-size: 13px;
+  line-height: 20px;
+  color: #465065;
+  text-align: left;
+  text-decoration: none;
+  letter-spacing: 1px;
+  text-align: center;
+  letter-spacing: 2px;
+  margin: 0 auto 24px auto;
+}
+.lastPublications .publication .description {
+  font-family: 'ProximaNova-Light', Arial, sans-serif;
+  font-size: 13px;
+  line-height: 20px;
+  color: #465065;
+  text-align: left;
+  text-decoration: none;
+  letter-spacing: 1px;
+}
+.linkContainer {
+  display: block;
+  margin: auto;
+  padding: 0;
+}
+.linkContainer .link {
+  text-align: center;
+}
+.link {
   margin: 35px 0 66px 0;
+}
+.link:not(.inline-link) {
+  display: block;
 }
 .link,
 .link:hover,
@@ -311,12 +459,25 @@ nav ul li a {
   text-align: left;
   text-decoration: none;
 }
+.inline-link {
+  display: inline;
+}
+.hidden-link,
+.hidden-link:hover,
+.hidden-link:before,
+.hidden-link:before:hover {
+  color: #465065;
+}
 .pre-chevron:before {
   content: '>';
   margin: 0 10px 0 0;
   font-weight: 900;
 }
+.team {
+  margin: 0 auto 75px auto;
+}
 .team .title {
+  padding-top: 63px;
   font-family: 'ProximaNova-Regular', Arial, sans-serif;
   font-size: 13px;
   color: #465065;
@@ -359,9 +520,52 @@ nav ul li a {
   letter-spacing: 1px;
   color: rgba(255, 255, 255, 0.5);
 }
+.mapContact {
+  background-color: rgba(241, 242, 246, 0.5);
+}
+.mapContact .inner {
+  width: 700px;
+  padding-top: 61px;
+  padding-bottom: 56px;
+  margin: 0 auto 0 auto;
+}
+@media (max-width: 700px) {
+  .mapContact .inner {
+    width: 100%;
+  }
+}
+.mapContact .mapPicture {
+  margin: 0 70px 0 5px;
+}
+.mapContact .mapPicture img {
+  width: 223px;
+}
+@media (max-width: 223px) {
+  .mapContact .mapPicture img {
+    width: 100%;
+  }
+}
+.mapContact .contactInformations {
+  font-family: 'ProximaNova-Light', Arial, sans-serif;
+  font-size: 13px;
+  line-height: 20px;
+  color: #465065;
+  text-align: left;
+  text-decoration: none;
+  letter-spacing: 1px;
+  margin: 30px 5px 15px 0;
+}
 /**
  *  MAIN RULES MIXINS
  */
+.postTitleTextRules {
+  font-family: 'ProximaNova-Light';
+  font-size: 25px;
+  color: #465065;
+  letter-spacing: 2.5px;
+  line-height: 33px;
+  text-align: center;
+}
 .bigTitleTextRules {
   font-family: 'ProximaNova-Light', Arial, sans-serif;
   font-size: 30px;

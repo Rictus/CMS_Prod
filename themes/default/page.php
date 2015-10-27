@@ -41,4 +41,5 @@ switch (page_slug()) {
     <!--            --><? // endwhile; ?>
     <!--        --><?php //endwhile; ?>
 
+<?php theme_include('mapContact'); ?>
 <?php theme_include('footer'); ?>
