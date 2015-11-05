@@ -21,20 +21,38 @@ function category_posts($categoryTitle)
 }
 
 
-function displayDossierSummary()
+function displayDossierSummary($summaryInArticlePage = true)
 {
     $posts = category_posts('dossier');
-//    print_r($posts);
-    echo "<div class='summary'>";
-    for ($i = 0; $i < count($posts); $i++) {
+    echo "<div class='summary col-lg-6 col-lg-offset-3 col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 col-xs-12'>";
+
+    if (!$summaryInArticlePage)
+        echo "<h1 class='pageTitle'>Étude et information <br>en andrologie & sexologie.</h1>"; //could be page title from admin
+
+    echo "<div class='summary-col col-lg-6 col-md-6 col-sm-6 col-xs-12'>";
+    for ($i = 0; $i < count($posts) / 2; $i++) {
         $curPost = $posts[$i]->data;
         $postTitle = $curPost['title'];
         $postSlug = $curPost['slug'];
-        echo '<a class="summary-link" href=./posts/' . $postSlug . '>' . $postTitle . '</a><br>';
-//        var_dump($curPost);
-        echo "<br>";
+        if($summaryInArticlePage)
+            echo '<a class="summary-link" href=' . $postSlug . '>' . $postTitle . '</a> ';
+        else
+            echo '<a class="summary-link" href=./posts/' . $postSlug . '>' . $postTitle . '</a> ';
     }
-    echo "</div>";
+    echo "</div>";//col
+
+    echo "<div class='summary-col col-lg-6 col-md-6 col-sm-6 col-xs-12'>";
+    for ($i = count($posts) / 2; $i < count($posts); $i++) {
+        $curPost = $posts[$i]->data;
+        $postTitle = $curPost['title'];
+        $postSlug = $curPost['slug'];
+        if($summaryInArticlePage)
+            echo '<a class="summary-link" href=' . $postSlug . '>' . $postTitle . '</a>';
+        else
+            echo '<a class="summary-link" href=./posts/' . $postSlug . '>' . $postTitle . '</a>';
+    }
+    echo "</div>"; //col
+    echo "</div>";//summary
 
 }
 

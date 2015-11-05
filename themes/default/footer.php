@@ -17,23 +17,23 @@
         <div class="row">
             <ul>
                 <li>
-                    <a href="">Info éditeur</a>
+                    <a href="#">Info éditeur</a>
                 </li>
                 <li>
-                    <a href="">Mentions legales</a>
+                    <a href="#">Mentions legales</a>
                 </li>
                 <li>
-                    <a href="">Credits</a>
+                    <a href="#">Credits</a>
                 </li>
             </ul>
         </div>
         <div class="row">
             <ul>
                 <li>
-                    <a href="">Plan du site</a>
+                    <a href="#">Plan du site</a>
                 </li>
                 <li>
-                    <a href="">Reseaux sociaux</a>
+                    <a href="#">Reseaux sociaux</a>
                 </li>
             </ul>
 
@@ -49,8 +49,3 @@
         //*/ -->
     </ul>
 </footer>
-</div>
-
-</div>
-</body>
-</html>

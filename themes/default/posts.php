@@ -55,12 +55,12 @@
         </div>
     </div>
     <div class="bio row">
-        <div class="col-lg-5 col-md-5 col-sm-6 col-xs-12">
+        <div class="bioImgCol col-lg-5 col-md-5 col-sm-6 col-xs-12">
             <div class="bioPicture">
                 <img src="<?php echo theme_url("./img/Portrait.png") ?>" alt="Photo de Ronald Virag">
             </div>
         </div>
-        <div class="col-lg-7 col-md-7 col-sm-6 col-xs-12">
+        <div class="bioTextCol col-lg-7 col-md-7 col-sm-6 col-xs-12">
             <div class="mainBio">
                 Le Docteur Virag, né le 7 décembre 1938, médecin et chirurgien en sexologie à Paris dans le huitième
                 arrondissement, est un spécialiste des troubles sexuels au Centre d'Explorations et Traitements de
@@ -82,7 +82,7 @@
                     dont le dernier « Erection mode d'emploi ».
                 </div>
             </div>
-            <a class="link pre-chevron" href="">En savoir plus</a>
+            <a class="link pre-chevron" href="#">En savoir plus</a>
         </div>
     </div>
 
@@ -155,7 +155,7 @@
             </div>
         </div>
         <div class="linkContainer">
-            <a href="" class="link pre-chevron">Accéder aux livres</a>
+            <a href="#" class="link pre-chevron">Accéder aux livres</a>
         </div>
     </div>
 

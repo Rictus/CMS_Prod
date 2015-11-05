@@ -12,15 +12,13 @@ theme_include('page_utils');
 
 <?php
 switch (page_slug()) {
-    case 'journal':
-//    case 'blog': //maybe
+    case 'blog':
         echo page_content();
         displayAllPostsCategory();
         break;
     case 'dossier':
-        echo "<h1>Étude et information en andrologie & sexologie.</h1>";
         echo page_content();
-        displayDossierSummary();
+        displayDossierSummary(false);
         break;
     case 'publication':
         echo page_content();

@@ -43,7 +43,7 @@ time {
   -ms-transform: translate(-50%, 0);
   -o-transform: translate(-50%, 0);
   transform: translate(-50%, 0);
-  margin: auto;
+  margin: 30px auto auto auto;
   display: block;
   font-family: 'ProximaNova-Thin', Arial, sans-serif;
   font-size: 25px;
@@ -254,8 +254,9 @@ nav ul li a {
 }
 .listOfPostsContainer {
   margin: 42px auto 0 auto;
-  width: 75%;
+  width: 70%;
   background-color: white;
+  max-width: 670px;
   display: flex;
   -webkit-flex-wrap: nowrap;
   -moz-flex-wrap: nowrap;
@@ -278,7 +279,7 @@ nav ul li a {
   -ms-align-content: center;
   align-content: center;
 }
-@media (max-width: 800px) {
+@media (max-width: 670px) {
   .listOfPostsContainer {
     width: 90%;
   }
@@ -286,8 +287,8 @@ nav ul li a {
 .listOfPosts {
   margin: 0 29px 0 29px;
   font-family: 'ProximaNova-Light', Arial, sans-serif;
-  font-size: 13px;
-  line-height: 20px;
+  font-size: 15px;
+  line-height: 23px;
   color: #465065;
   text-align: left;
   text-decoration: none;
@@ -308,9 +309,13 @@ nav ul li a {
   padding: 0 97px 0 0;
   background-color: rgba(241, 242, 246, 0.5);
 }
+.bio .bioTextCol {
+  padding-left: 60px;
+  padding-right: 60px;
+}
 .bio .mainBio {
   font-family: 'ProximaNova-Light', Arial, sans-serif;
-  font-size: 17px;
+  font-size: 19px;
   color: #465065;
   letter-spacing: 1.7px;
   line-height: 25px;
@@ -319,8 +324,8 @@ nav ul li a {
 }
 .bio .bioContent {
   font-family: 'ProximaNova-Light', Arial, sans-serif;
-  font-size: 13px;
-  line-height: 20px;
+  font-size: 15px;
+  line-height: 23px;
   color: #465065;
   text-align: left;
   text-decoration: none;
@@ -332,8 +337,16 @@ nav ul li a {
 .bio .bioPicture img {
   display: block;
   width: 39%;
-  margin: auto;
+  margin: 0 0 0 auto;
   min-width: 260px;
+}
+.date {
+  font-family: 'ProximaNova-Regular', Arial, sans-serif;
+  font-size: 15px;
+  color: #465065;
+  letter-spacing: 1.29px;
+  line-height: 27px;
+  text-align: center;
 }
 .lastPost {
   width: 100%;
@@ -349,16 +362,8 @@ nav ul li a {
     width: 100%;
   }
 }
-.lastPost .date {
-  font-family: 'ProximaNova-Regular', Arial, sans-serif;
-  font-size: 13px;
-  color: #465065;
-  letter-spacing: 1.29px;
-  line-height: 27px;
-  text-align: center;
-}
 .lastPost .title {
-  font-family: 'ProximaNova-Light';
+  font-family: 'ProximaNova-Light', Arial, sans-serif;
   font-size: 25px;
   color: #465065;
   letter-spacing: 2.5px;
@@ -376,6 +381,7 @@ nav ul li a {
 }
 .lastPublications {
   width: 100%;
+  padding-top: 53px;
 }
 .lastPublications .inner {
   width: 700px;
@@ -403,19 +409,18 @@ nav ul li a {
   margin-right: 0;
 }
 .lastPublications .publication .picture {
-  width: 90px;
-  height: auto;
   margin: 19px auto;
 }
-@media (max-width: 90px) {
-  .lastPublications .publication .picture {
-    width: 100%;
-  }
+.lastPublications .publication .picture img {
+  display: block;
+  width: auto;
+  margin: auto;
+  height: 100px;
 }
 .lastPublications .publication .title {
   font-family: 'ProximaNova-Light', Arial, sans-serif;
-  font-size: 13px;
-  line-height: 20px;
+  font-size: 15px;
+  line-height: 23px;
   color: #465065;
   text-align: left;
   text-decoration: none;
@@ -426,8 +431,8 @@ nav ul li a {
 }
 .lastPublications .publication .description {
   font-family: 'ProximaNova-Light', Arial, sans-serif;
-  font-size: 13px;
-  line-height: 20px;
+  font-size: 15px;
+  line-height: 23px;
   color: #465065;
   text-align: left;
   text-decoration: none;
@@ -452,7 +457,7 @@ nav ul li a {
 .link:before,
 .link:before:hover {
   font-family: 'ProximaNova-Semibold', Arial, sans-serif;
-  font-size: 13px;
+  font-size: 15px;
   color: #465065;
   letter-spacing: 1px;
   line-height: 20px;
@@ -479,7 +484,7 @@ nav ul li a {
 .team .title {
   padding-top: 63px;
   font-family: 'ProximaNova-Regular', Arial, sans-serif;
-  font-size: 13px;
+  font-size: 15px;
   color: #465065;
   letter-spacing: 1.29px;
   line-height: 27px;
@@ -493,8 +498,8 @@ nav ul li a {
 }
 .team .job {
   font-family: 'ProximaNova-Light', Arial, sans-serif;
-  font-size: 13px;
-  line-height: 20px;
+  font-size: 15px;
+  line-height: 23px;
   color: #465065;
   text-align: left;
   text-decoration: none;
@@ -503,17 +508,65 @@ nav ul li a {
 }
 .team .people {
   font-family: 'ProximaNova-Bold', Arial, sans-serif;
-  font-size: 17px;
+  font-size: 19.55px;
   color: #465065;
   letter-spacing: 2.54px;
-  line-height: 24px;
+  line-height: 27px;
   text-align: center;
+}
+/**
+ *   Footer
+ */
+#bottom {
+  clear: both;
+  background-color: #465065;
+  padding: 30px 0 40px;
+}
+#bottom > ul {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-direction: normal;
+  -moz-box-direction: normal;
+  -webkit-box-orient: horizontal;
+  -moz-box-orient: horizontal;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -webkit-box-pack: center;
+  -moz-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-align-content: center;
+  -ms-flex-line-pack: center;
+  align-content: center;
+  -webkit-box-align: stretch;
+  -moz-box-align: stretch;
+  -webkit-align-items: stretch;
+  -ms-flex-align: stretch;
+  align-items: stretch;
+  padding-bottom: 20px;
+}
+#bottom .row {
+  display: inline-block;
+  vertical-align: top;
+  margin: 10px 40px;
+}
+#bottom .row li {
+  display: block;
+  text-align: left;
 }
 #bottom .row li a {
   display: block;
   font-family: 'ProximaNova-Light', Arial, sans-serif;
-  font-size: 13px;
-  line-height: 20px;
+  font-size: 15px;
+  line-height: 23px;
   color: #465065;
   text-align: left;
   text-decoration: none;
@@ -521,6 +574,7 @@ nav ul li a {
   color: rgba(255, 255, 255, 0.5);
 }
 .mapContact {
+  clear: both;
   background-color: rgba(241, 242, 246, 0.5);
 }
 .mapContact .inner {
@@ -547,25 +601,64 @@ nav ul li a {
 }
 .mapContact .contactInformations {
   font-family: 'ProximaNova-Light', Arial, sans-serif;
-  font-size: 13px;
-  line-height: 20px;
+  font-size: 15px;
+  line-height: 23px;
   color: #465065;
   text-align: left;
   text-decoration: none;
   letter-spacing: 1px;
   margin: 30px 5px 15px 0;
 }
+.pageTitle {
+  font-family: 'ProximaNova-Light', Arial, sans-serif;
+  font-size: 30px;
+  color: #465065;
+  letter-spacing: 3px;
+  line-height: 45px;
+  text-align: center;
+}
+.summary {
+  margin-top: 80px;
+  margin-bottom: 75px;
+}
+.summary .summary-link {
+  font-family: 'ProximaNova-Light', Arial, sans-serif;
+  font-size: 16px;
+  line-height: 27px;
+  color: #465065;
+  letter-spacing: 2px;
+  text-align: left;
+  text-transform: uppercase;
+  display: block;
+  margin: 40px 0;
+}
+.articleContainer h1:first-child {
+  font-family: 'ProximaNova-Light', Arial, sans-serif;
+  font-size: 30px;
+  color: #465065;
+  letter-spacing: 3px;
+  line-height: 45px;
+  text-align: center;
+}
+.articleContainer article {
+  font-family: 'ProximaNova-Light', Arial, sans-serif;
+  font-size: 19px;
+  color: #465065;
+  letter-spacing: 1.7px;
+  line-height: 25px;
+  text-align: left;
+}
+.articleContainer .date {
+  font-family: 'ProximaNova-Regular', Arial, sans-serif;
+  font-size: 13px;
+  color: #465065;
+  letter-spacing: 1.29px;
+  line-height: 27px;
+  text-align: left;
+}
 /**
  *  MAIN RULES MIXINS
  */
-.postTitleTextRules {
-  font-family: 'ProximaNova-Light';
-  font-size: 25px;
-  color: #465065;
-  letter-spacing: 2.5px;
-  line-height: 33px;
-  text-align: center;
-}
 .bigTitleTextRules {
   font-family: 'ProximaNova-Light', Arial, sans-serif;
   font-size: 30px;
@@ -574,17 +667,49 @@ nav ul li a {
   line-height: 45px;
   text-align: center;
 }
+.postTitleTextRules {
+  font-family: 'ProximaNova-Light', Arial, sans-serif;
+  font-size: 25px;
+  color: #465065;
+  letter-spacing: 2.5px;
+  line-height: 33px;
+  text-align: center;
+}
 .semiTitleTextRules {
   font-family: 'ProximaNova-Light', Arial, sans-serif;
-  font-size: 17px;
+  font-size: 19px;
   color: #465065;
   letter-spacing: 1.7px;
   line-height: 25px;
   text-align: left;
 }
+.articleTitleTextRules {
+  font-family: 'ProximaNova-Light', Arial, sans-serif;
+  font-size: 30px;
+  color: #465065;
+  letter-spacing: 3px;
+  line-height: 45px;
+  text-align: center;
+}
+.articleTextRules {
+  font-family: 'ProximaNova-Light', Arial, sans-serif;
+  font-size: 19px;
+  color: #465065;
+  letter-spacing: 1.7px;
+  line-height: 25px;
+  text-align: left;
+}
+.articleDateRules {
+  font-family: 'ProximaNova-Regular', Arial, sans-serif;
+  font-size: 13px;
+  color: #465065;
+  letter-spacing: 1.29px;
+  line-height: 27px;
+  text-align: left;
+}
 .linkTextRules {
   font-family: 'ProximaNova-Semibold', Arial, sans-serif;
-  font-size: 13px;
+  font-size: 15px;
   color: #465065;
   letter-spacing: 1px;
   line-height: 20px;
@@ -593,8 +718,8 @@ nav ul li a {
 }
 .columnTextRules {
   font-family: 'ProximaNova-Light', Arial, sans-serif;
-  font-size: 13px;
-  line-height: 20px;
+  font-size: 15px;
+  line-height: 23px;
   color: #465065;
   text-align: left;
   text-decoration: none;
@@ -602,8 +727,8 @@ nav ul li a {
 }
 .footerLink {
   font-family: 'ProximaNova-Light', Arial, sans-serif;
-  font-size: 13px;
-  line-height: 20px;
+  font-size: 15px;
+  line-height: 23px;
   color: #465065;
   text-align: left;
   text-decoration: none;
@@ -612,9 +737,17 @@ nav ul li a {
 }
 .smallSectionTitleTextRules {
   font-family: 'ProximaNova-Regular', Arial, sans-serif;
-  font-size: 13px;
+  font-size: 15px;
   color: #465065;
   letter-spacing: 1.29px;
   line-height: 27px;
   text-align: center;
+}
+.summaryLinkTextRules {
+  font-family: 'ProximaNova-Light', Arial, sans-serif;
+  font-size: 16px;
+  line-height: 27px;
+  color: #465065;
+  letter-spacing: 2px;
+  text-align: left;
 }

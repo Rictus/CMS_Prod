@@ -1,37 +1,43 @@
-<?php theme_include('header'); theme_include('page_utils');?>
+<?php theme_include('header');
+theme_include('page_utils'); ?>
+    <div class="articleContainer col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 col-xs-12 col-sm-offset-0">
+        <section class="content wrap" id="article-<?php echo article_id(); ?>">
 
-    <section class="content wrap" id="article-<?php echo article_id(); ?>">
-        <h1><?php echo article_title(); ?></h1>
+            <h1><?php echo article_title(); ?></h1>
 
-        <article>
-            <?php echo article_markdown(); ?>
-        </article>
+			<?php
+			echo "<time class='date' datetime=" . date(DATE_W3C, article_time()) . ">" . date('d F o', article_time()) . "</time>";
+			?>
 
-        <section class="footnote">
-            <!-- Unfortunately, CSS means everything's got to be inline. -->
-            <!--				<p>This article is my -->
-            <?php //echo numeral(total_articles()); ?><!-- oldest. It is -->
-            <?php //echo count_words(article_markdown()); ?><!-- words long-->
-            <?php //if(comments_open()): ?><!--, and it’s got -->
-            <?php //echo total_comments() . pluralise(total_comments(), ' comment'); ?><!-- for now.-->
-            <?php //endif; ?><!-- --><?php //echo article_custom_field('attribution'); ?><!--</p>-->
+            <article>
+                <?php echo article_markdown(); ?>
+            </article>
+
+            <section class="footnote">
+                <!-- Unfortunately, CSS means everything's got to be inline. -->
+                <!--				<p>This article is my -->
+                <?php //echo numeral(total_articles()); ?><!-- oldest. It is -->
+                <?php //echo count_words(article_markdown()); ?><!-- words long-->
+                <?php //if(comments_open()): ?><!--, and it’s got -->
+                <?php //echo total_comments() . pluralise(total_comments(), ' comment'); ?><!-- for now.-->
+                <?php //endif; ?><!-- --><?php //echo article_custom_field('attribution'); ?><!--</p>-->
+            </section>
         </section>
-    </section>
-
+    </div>
 
 
 <?php
 //Some content to add after an article
 
-switch(article_category_slug()) {
-	case 'journal':
-		break;
-	case 'dossier':
-		//Here, adding the summary
-		displayDossierSummary();
-		break;
-	case 'publication':
-		break;
+switch (article_category_slug()) {
+    case 'blog':
+        break;
+    case 'dossier':
+        //Here, adding the summary
+        displayDossierSummary(true);
+        break;
+    case 'publication':
+        break;
 }
 ?>
 
@@ -82,4 +88,5 @@ switch(article_category_slug()) {
 
 		</section>
 		--><?php /*endif; */ ?>
+<?php theme_include('mapContact'); ?>
 <?php theme_include('footer'); ?>

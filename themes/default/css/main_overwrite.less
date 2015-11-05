@@ -50,7 +50,7 @@ time {
   -ms-transform: translate(-50%, 0);
   -o-transform: translate(-50%, 0);
   transform: translate(-50%, 0);
-  margin: auto;
+  margin: 30px auto auto auto;
   display: block;
   font-family: 'ProximaNova-Thin', Arial, sans-serif;
   font-size: 25px;
@@ -265,9 +265,10 @@ nav {
 
 .listOfPostsContainer {
   margin: 42px auto 0 auto;
-  width: 75%;
+  width: 70%;
   background-color: @classicSectionBackground;
-  @media (max-width: 800px) {
+  max-width: 670px;
+  @media (max-width: 670px) {
     width: 90%;
   }
 
@@ -300,6 +301,13 @@ nav {
   margin: 104px auto 0 auto;
   padding: 0 97px 0 0;
   background-color: @alternativeSectionBackground;
+  .bioImgCol {
+
+  }
+  .bioTextCol {
+    padding-left: 60px;
+    padding-right: 60px;
+  }
   .mainBio {
     .semiTitleTextRules;
     margin: 38px 0 19px 0;
@@ -312,10 +320,14 @@ nav {
     img {
       display: block;
       width: 39%;
-      margin: auto;
+      margin: 0 0 0 auto;
       min-width: 260px;
     }
   }
+}
+
+.date {
+  .smallSectionTitleTextRules;
 }
 
 .lastPost {
@@ -326,9 +338,7 @@ nav {
     .responsiveWidth(416px);
     margin: auto;
   }
-  .date {
-    .smallSectionTitleTextRules;
-  }
+
   .title {
     .postTitleTextRules;
   }
@@ -345,6 +355,7 @@ nav {
 
 .lastPublications {
   width: 100%;
+  padding-top: 53px;
   .inner {
     .responsiveWidth(700px);
     margin: auto;
@@ -361,9 +372,13 @@ nav {
     }
 
     .picture {
-      .responsiveWidth(90px);
-      height: auto;
       margin: 19px auto;
+      img {
+        display: block;
+        width: auto;
+        margin: auto;
+        height: 100px;
+      }
     }
     .title {
       .columnTextRules;
@@ -433,12 +448,65 @@ nav {
   }
   .people {
     font-family: 'ProximaNova-Bold', Arial, sans-serif;
-    font-size: 17px;
+    font-size: 19.55px;
     color: #465065;
     letter-spacing: 2.54px;
-    line-height: 24px;
+    line-height: 27px;
     text-align: center;
   }
+}
+
+/**
+ *   Footer
+ */
+#bottom {
+  clear: both;
+  background-color: #465065;
+  padding: 30px 0 40px;
+}
+
+#bottom > ul {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-direction: normal;
+  -moz-box-direction: normal;
+  -webkit-box-orient: horizontal;
+  -moz-box-orient: horizontal;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -webkit-box-pack: center;
+  -moz-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-align-content: center;
+  -ms-flex-line-pack: center;
+  align-content: center;
+  -webkit-box-align: stretch;
+  -moz-box-align: stretch;
+  -webkit-align-items: stretch;
+  -ms-flex-align: stretch;
+  align-items: stretch;
+
+  padding-bottom: 20px;
+}
+
+#bottom .row {
+  display: inline-block;
+  vertical-align: top;
+  margin: 10px 40px;
+}
+
+#bottom .row li {
+  display: block;
+  text-align: left;
 }
 
 #bottom .row li a {
@@ -447,6 +515,7 @@ nav {
 }
 
 .mapContact {
+  clear: both;
   background-color: @alternativeSectionBackground;
   .inner {
     .responsiveWidth(700px);
@@ -478,24 +547,41 @@ nav {
   }
 }
 
+.pageTitle {
+  .bigTitleTextRules;
+}
+
+.summary {
+  margin-top: 80px;
+  margin-bottom: 75px;
+  .summary-col {
+
+  }
+  .summary-link {
+    .summaryLinkTextRules;
+    text-transform: uppercase;
+    display: block;
+    margin:40px 0;
+  }
+}
+
+.articleContainer {
+  h1:first-child {
+    .articleTitleTextRules;
+  }
+  article {
+    .articleTextRules;
+  }
+  .date {
+    .articleDateRules;
+  }
+}
+
 /**
  *  MAIN RULES MIXINS
  */
-.dateTextRules {
-
-}
-
-.postTitleTextRules {
-  font-family: 'ProximaNova-Light';
-  font-size: 25px;
-  color: @mainTextColor;
-  letter-spacing: 2.5px;
-  line-height: 33px;
-  text-align: center;
-}
 
 .bigTitleTextRules {
-  //A massive big texte
   font-family: 'ProximaNova-Light', Arial, sans-serif;
   font-size: 30px;
   color: @mainTextColor;
@@ -504,20 +590,46 @@ nav {
   text-align: center;
 }
 
+.postTitleTextRules {
+  font-family: 'ProximaNova-Light', Arial, sans-serif;
+  font-size: 25px;
+  color: @mainTextColor;
+  letter-spacing: 2.5px;
+  line-height: 33px;
+  text-align: center;
+}
+
 .semiTitleTextRules {
   //A short summary, a content before the real content
   font-family: 'ProximaNova-Light', Arial, sans-serif;
-  font-size: 17px;
+  font-size: 19px;
   color: @mainTextColor;
   letter-spacing: 1.7px;
   line-height: 25px;
   text-align: left;
 }
 
+.articleTitleTextRules {
+  .bigTitleTextRules;
+}
+
+.articleTextRules {
+  .semiTitleTextRules;
+}
+
+.articleDateRules {
+  font-family: 'ProximaNova-Regular', Arial, sans-serif;
+  font-size: 13px;
+  color: @mainTextColor;
+  letter-spacing: 1.29px;
+  line-height: 27px;
+  text-align: left;
+}
+
 .linkTextRules {
   //A clickable bold link with maybe a chevron
   font-family: 'ProximaNova-Semibold', Arial, sans-serif;
-  font-size: 13px;
+  font-size: 15px;
   color: @mainTextColor;
   letter-spacing: 1px;
   line-height: 20px;
@@ -527,8 +639,8 @@ nav {
 
 .columnTextRules {
   font-family: 'ProximaNova-Light', Arial, sans-serif;
-  font-size: 13px;
-  line-height: 20px;
+  font-size: 15px;
+  line-height: 23px;
   color: @mainTextColor;
   text-align: left;
   text-decoration: none;
@@ -542,9 +654,19 @@ nav {
 
 .smallSectionTitleTextRules {
   font-family: 'ProximaNova-Regular', Arial, sans-serif;
-  font-size: 13px;
+  font-size: 15px;
   color: @mainTextColor;
   letter-spacing: 1.29px;
   line-height: 27px;
   text-align: center;
 }
+
+.summaryLinkTextRules {
+  font-family: 'ProximaNova-Light', Arial, sans-serif;
+  font-size: 16px;
+  line-height: 27px;
+  color: @mainTextColor;
+  letter-spacing: 2px;
+  text-align: left;
+}
+
