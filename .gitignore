@@ -4,13 +4,8 @@ Thumbs.db
 *.esproj
 *.log
 *.gz
-
-# env
-/anchor/config/dev
-
-# user mod_rewrite
-/.htaccess
-
+.idea
+.idea/*
 # phpunit tests
 /tests
 
