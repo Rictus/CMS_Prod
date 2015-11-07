@@ -203,6 +203,8 @@ time {
   float: none;
 }
 .logo .logo-img {
+  position: relative;
+  top: -3px;
   display: inline-block;
   vertical-align: top;
 }
@@ -246,10 +248,10 @@ nav ul li a {
 .bigText ul,
 .bigText li {
   font-family: 'ProximaNova-Light', Arial, sans-serif;
-  font-size: 30px;
+  font-size: 37px;
   color: #465065;
   letter-spacing: 3px;
-  line-height: 45px;
+  line-height: 50px;
   text-align: center;
 }
 .listOfPostsContainer {
@@ -611,10 +613,10 @@ nav ul li a {
 }
 .pageTitle {
   font-family: 'ProximaNova-Light', Arial, sans-serif;
-  font-size: 30px;
+  font-size: 37px;
   color: #465065;
   letter-spacing: 3px;
-  line-height: 45px;
+  line-height: 50px;
   text-align: center;
 }
 .summary {
@@ -634,10 +636,10 @@ nav ul li a {
 }
 .articleContainer h1:first-child {
   font-family: 'ProximaNova-Light', Arial, sans-serif;
-  font-size: 30px;
+  font-size: 37px;
   color: #465065;
   letter-spacing: 3px;
-  line-height: 45px;
+  line-height: 50px;
   text-align: center;
 }
 .articleContainer article {
@@ -647,6 +649,7 @@ nav ul li a {
   letter-spacing: 1.7px;
   line-height: 25px;
   text-align: left;
+  line-height: 30px;
 }
 .articleContainer .date {
   font-family: 'ProximaNova-Regular', Arial, sans-serif;
@@ -661,10 +664,10 @@ nav ul li a {
  */
 .bigTitleTextRules {
   font-family: 'ProximaNova-Light', Arial, sans-serif;
-  font-size: 30px;
+  font-size: 37px;
   color: #465065;
   letter-spacing: 3px;
-  line-height: 45px;
+  line-height: 50px;
   text-align: center;
 }
 .postTitleTextRules {
@@ -685,10 +688,10 @@ nav ul li a {
 }
 .articleTitleTextRules {
   font-family: 'ProximaNova-Light', Arial, sans-serif;
-  font-size: 30px;
+  font-size: 37px;
   color: #465065;
   letter-spacing: 3px;
-  line-height: 45px;
+  line-height: 50px;
   text-align: center;
 }
 .articleTextRules {
@@ -698,6 +701,7 @@ nav ul li a {
   letter-spacing: 1.7px;
   line-height: 25px;
   text-align: left;
+  line-height: 30px;
 }
 .articleDateRules {
   font-family: 'ProximaNova-Regular', Arial, sans-serif;
