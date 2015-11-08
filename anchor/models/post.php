@@ -1,64 +1,75 @@
 <?php
 
-class Post extends Base {
+class Post extends Base
+{
 
-	public static $table = 'posts';
+    public static $table = 'posts';
 
-	public static function id($id) {
-		return static::get('id', $id);
-	}
+    public static function id($id)
+    {
+        return static::get('id', $id);
+    }
 
-	public static function slug($slug) {
-		return static::get('slug', $slug);
-	}
+    public static function slug($slug)
+    {
+        return static::get('slug', $slug);
+    }
 
-	private static function get($row, $val) {
-		return static::left_join(Base::table('users'), Base::table('users.id'), '=', Base::table('posts.author'))
-			->where(Base::table('posts.'.$row), '=', $val)
-			->fetch(array(Base::table('posts.*'),
-				Base::table('users.id as author_id'),
-				Base::table('users.bio as author_bio'),
-				Base::table('users.real_name as author_name')));
-	}
+    public static function category($catId)
+    {
+        return static::get('category', $catId);
+    }
 
-	public static function listing($category = null, $page = 1, $per_page = 10) {
-		// get total
-		$query = static::left_join(Base::table('users'), Base::table('users.id'), '=', Base::table('posts.author'))
-			->where(Base::table('posts.status'), '=', 'published');
+    private static function get($row, $val)
+    {
+        return static::left_join(Base::table('users'), Base::table('users.id'), '=', Base::table('posts.author'))
+            ->where(Base::table('posts.' . $row), '=', $val)
+            ->fetch(array(Base::table('posts.*'),
+                Base::table('users.id as author_id'),
+                Base::table('users.bio as author_bio'),
+                Base::table('users.real_name as author_name')));
+    }
 
-		if($category) {
-			$query->where(Base::table('posts.category'), '=', $category->id);
-		}
+    public static function listing($category = null, $page = 1, $per_page = 10)
+    {
+        // get total
+        $query = static::left_join(Base::table('users'), Base::table('users.id'), '=', Base::table('posts.author'))
+            ->where(Base::table('posts.status'), '=', 'published');
 
-		$total = $query->count();
+        if ($category) {
+            $query->where(Base::table('posts.category'), '=', $category->id);
+        }
 
-		// get posts
-		$posts = $query->sort(Base::table('posts.created'), 'desc')
-			->take($per_page)
-			->skip(--$page * $per_page)
-			->get(array(Base::table('posts.*'),
-				Base::table('users.id as author_id'),
-				Base::table('users.bio as author_bio'),
-				Base::table('users.real_name as author_name')));
+        $total = $query->count();
 
-		return array($total, $posts);
-	}
+        // get posts
+        $posts = $query->sort(Base::table('posts.created'), 'desc')
+            ->take($per_page)
+            ->skip(--$page * $per_page)
+            ->get(array(Base::table('posts.*'),
+                Base::table('users.id as author_id'),
+                Base::table('users.bio as author_bio'),
+                Base::table('users.real_name as author_name')));
 
-	public static function search($term, $page = 1, $per_page = 10) {
-		$query = static::left_join(Base::table('users'), Base::table('users.id'), '=', Base::table('posts.author'))
-			->where(Base::table('posts.status'), '=', 'published')
-			->where(Base::table('posts.title'), 'like', '%' . $term . '%');
+        return array($total, $posts);
+    }
 
-		$total = $query->count();
+    public static function search($term, $page = 1, $per_page = 10)
+    {
+        $query = static::left_join(Base::table('users'), Base::table('users.id'), '=', Base::table('posts.author'))
+            ->where(Base::table('posts.status'), '=', 'published')
+            ->where(Base::table('posts.title'), 'like', '%' . $term . '%');
 
-		$posts = $query->take($per_page)
-			->skip(--$page * $per_page)
-			->get(array(Base::table('posts.*'),
-				Base::table('users.id as author_id'),
-				Base::table('users.bio as author_bio'),
-				Base::table('users.real_name as author_name')));
+        $total = $query->count();
 
-		return array($total, $posts);
-	}
+        $posts = $query->take($per_page)
+            ->skip(--$page * $per_page)
+            ->get(array(Base::table('posts.*'),
+                Base::table('users.id as author_id'),
+                Base::table('users.bio as author_bio'),
+                Base::table('users.real_name as author_name')));
+
+        return array($total, $posts);
+    }
 
 }

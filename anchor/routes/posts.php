@@ -1,7 +1,6 @@
 <?php
 
 Route::collection(array('before' => 'auth'), function () {
-
     /*
         List all posts and paginate through them
     */

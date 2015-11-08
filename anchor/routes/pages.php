@@ -10,16 +10,16 @@ Route::collection(array('before' => 'auth,csrf'), function () {
         $total = Page::count();
         $pages = Page::sort('title')->take($perpage)->skip(($page - 1) * $perpage)->get();
         $url = Uri::to('admin/pages');
-
         $pagination = new Paginator($pages, $total, $page, $perpage, $url);
 
         $vars['messages'] = Notify::read();
         $vars['pages'] = $pagination;
         $vars['status'] = 'all';
-
-        return View::create('pages/index', $vars)
+        $res = View::create('pages/index', $vars)
             ->partial('header', 'partials/header')
             ->partial('footer', 'partials/footer');
+//        print_r($res);
+        return $res;
     });
 
     /*

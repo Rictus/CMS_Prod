@@ -28,6 +28,12 @@ time {
   padding-bottom: 20px;
   font-weight: bold;
 }
+.centerLine {
+  background-color: rgba(69, 80, 101, 0.6);
+  width: 571px;
+  height: 1px;
+  margin: 38px auto;
+}
 .wrap {
   min-width: 0;
   max-width: 100%;
@@ -440,6 +446,10 @@ nav ul li a {
   text-decoration: none;
   letter-spacing: 1px;
 }
+.lastPublications .link,
+.lastPublications .link:hover {
+  text-align: center;
+}
 .linkContainer {
   display: block;
   margin: auto;
@@ -463,7 +473,6 @@ nav ul li a {
   color: #465065;
   letter-spacing: 1px;
   line-height: 20px;
-  text-align: left;
   text-decoration: none;
 }
 .inline-link {
@@ -515,6 +524,31 @@ nav ul li a {
   letter-spacing: 2.54px;
   line-height: 27px;
   text-align: center;
+}
+/**
+*  Pagination
+*/
+.paginationContainer .pagination {
+  display: block;
+  margin: auto;
+}
+.paginationContainer a {
+  display: inline-block;
+  margin: 0 8px;
+  font-family: 'ProximaNova-Light', Arial, sans-serif;
+  font-size: 17px;
+  color: #465065;
+  letter-spacing: 1.7px;
+  line-height: 25px;
+  text-align: center;
+}
+.paginationContainer a.prevNext {
+  font-size: 13px;
+  letter-spacing: 1.29px;
+}
+.paginationContainer a.active {
+  font-family: 'ProximaNova-Semibold', Arial, sans-serif;
+  font-weight: bold;
 }
 /**
  *   Footer
@@ -717,7 +751,6 @@ nav ul li a {
   color: #465065;
   letter-spacing: 1px;
   line-height: 20px;
-  text-align: left;
   text-decoration: none;
 }
 .columnTextRules {

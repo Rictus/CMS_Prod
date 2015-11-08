@@ -3,6 +3,12 @@
 @classicSectionBackground: white;
 @alternativeSectionBackground: rgba(241, 242, 246, 0.50);
 @mainTextColor: #465065;
+@proximaNovaThin : 'ProximaNova-Thin', Arial, sans-serif;
+@proximaNovaLight : 'ProximaNova-Light', Arial, sans-serif;
+@proximaNovaRegular : 'ProximaNova-Regular', Arial, sans-serif;
+@proximaNovaSemibold : 'ProximaNova-Semibold', Arial, sans-serif;
+@proximaNovaBold : 'ProximaNova-Bold', Arial, sans-serif;
+
 ul, ul li {
   display: block;
   padding: 0;
@@ -34,6 +40,13 @@ time {
   font-weight: bold;
 }
 
+.centerLine {
+  background-color: rgba(69, 80, 101, 0.60);
+  width: 571px;
+  height: 1px;
+  margin: 38px auto;
+}
+
 .wrap {
   min-width: 0;
   max-width: 100%;
@@ -52,7 +65,8 @@ time {
   transform: translate(-50%, 0);
   margin: 30px auto auto auto;
   display: block;
-  font-family: 'ProximaNova-Thin', Arial, sans-serif;
+  font-family: @proximaNovaThin;
+
   font-size: 25px;
   color: @mainTextColor;
   letter-spacing: 2.5px;
@@ -116,7 +130,7 @@ time {
   -webkit-border-radius: 25px;
   -moz-border-radius: 25px;
 
-  font-family: 'ProximaNova-Semibold', Arial, sans-serif;
+  font-family: @proximaNovaSemibold;
   font-size: 17px;
   letter-spacing: 1.7px;
   line-height: 21px;
@@ -223,7 +237,7 @@ time {
     margin: auto;
     margin-left: 30px;
 
-    font-family: 'ProximaNova-Light', Arial, sans-serif;
+    font-family: @proximaNovaLight;
     font-size: 13px;
     color: #465065;
     letter-spacing: 1px;
@@ -247,7 +261,7 @@ nav {
       display: inline-block;
       margin: 12px;
       a {
-        font-family: 'ProximaNova-Regular', Arial, sans-serif;
+        font-family: @proximaNovaRegular;
         font-size: 15px;
         color: rgba(69, 80, 101, 0.60);
         letter-spacing: 1.5px;
@@ -394,6 +408,11 @@ nav {
       .columnTextRules;
     }
   }
+  .link {
+    &, &:hover {
+      text-align: center;
+    }
+  }
 }
 
 .linkContainer {
@@ -450,12 +469,40 @@ nav {
     text-align: center;
   }
   .people {
-    font-family: 'ProximaNova-Bold', Arial, sans-serif;
+    font-family: @proximaNovaBold;
     font-size: 19.55px;
     color: #465065;
     letter-spacing: 2.54px;
     line-height: 27px;
     text-align: center;
+  }
+}
+
+/**
+*  Pagination
+*/
+.paginationContainer {
+  .pagination {
+    display: block;
+    margin: auto;
+  }
+  a {
+    display: inline-block;
+    margin: 0 8px;
+    font-family: @proximaNovaLight;
+    font-size: 17px;
+    color: @mainTextColor;
+    letter-spacing: 1.7px;
+    line-height: 25px;
+    text-align: center;
+  }
+  a.prevNext {
+    font-size: 13px;
+    letter-spacing: 1.29px;
+  }
+  a.active {
+    font-family: @proximaNovaSemibold;
+    font-weight: bold;
   }
 }
 
@@ -564,7 +611,7 @@ nav {
     .summaryLinkTextRules;
     text-transform: uppercase;
     display: block;
-    margin:40px 0;
+    margin: 40px 0;
   }
 }
 
@@ -585,7 +632,7 @@ nav {
  */
 
 .bigTitleTextRules {
-  font-family: 'ProximaNova-Light', Arial, sans-serif;
+  font-family: @proximaNovaLight;
   font-size: 37px;
   color: @mainTextColor;
   letter-spacing: 3px;
@@ -594,7 +641,7 @@ nav {
 }
 
 .postTitleTextRules {
-  font-family: 'ProximaNova-Light', Arial, sans-serif;
+  font-family: @proximaNovaLight;
   font-size: 25px;
   color: @mainTextColor;
   letter-spacing: 2.5px;
@@ -604,7 +651,7 @@ nav {
 
 .semiTitleTextRules {
   //A short summary, a content before the real content
-  font-family: 'ProximaNova-Light', Arial, sans-serif;
+  font-family: @proximaNovaLight;
   font-size: 19px;
   color: @mainTextColor;
   letter-spacing: 1.7px;
@@ -622,7 +669,7 @@ nav {
 }
 
 .articleDateRules {
-  font-family: 'ProximaNova-Regular', Arial, sans-serif;
+  font-family: @proximaNovaRegular;
   font-size: 13px;
   color: @mainTextColor;
   letter-spacing: 1.29px;
@@ -631,18 +678,16 @@ nav {
 }
 
 .linkTextRules {
-  //A clickable bold link with maybe a chevron
-  font-family: 'ProximaNova-Semibold', Arial, sans-serif;
+  font-family: @proximaNovaSemibold;
   font-size: 15px;
   color: @mainTextColor;
   letter-spacing: 1px;
   line-height: 20px;
-  text-align: left;
   text-decoration: none;
 }
 
 .columnTextRules {
-  font-family: 'ProximaNova-Light', Arial, sans-serif;
+  font-family: @proximaNovaLight;
   font-size: 15px;
   line-height: 23px;
   color: @mainTextColor;
@@ -657,7 +702,7 @@ nav {
 }
 
 .smallSectionTitleTextRules {
-  font-family: 'ProximaNova-Regular', Arial, sans-serif;
+  font-family: @proximaNovaRegular;
   font-size: 15px;
   color: @mainTextColor;
   letter-spacing: 1.29px;
@@ -666,11 +711,10 @@ nav {
 }
 
 .summaryLinkTextRules {
-  font-family: 'ProximaNova-Light', Arial, sans-serif;
+  font-family: @proximaNovaLight;
   font-size: 16px;
   line-height: 27px;
   color: @mainTextColor;
   letter-spacing: 2px;
   text-align: left;
 }
-
