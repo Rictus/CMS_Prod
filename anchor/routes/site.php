@@ -247,7 +247,6 @@ Route::post('search', function () {
  * Blog Page
  */
 Route::get(array('blog', 'blog/(:any)'), function ($pageNumber = 1) {
-    echo "page route : " . $pageNumber;
     $page = Page::slug('blog');
     $category = Category::slug('blog');
     $per_page = Config::meta('posts_per_page');

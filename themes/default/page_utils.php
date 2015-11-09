@@ -19,16 +19,95 @@ function category_posts()
     return $posts;
 }
 
-function appendClickableHTMLArticle($id, $title, $date, $author, $content, $link, $addSeparatorLine = false)
+/**
+ * Close all tags for a given html
+ * E.g :  <p>abcde<b>dza
+ * return <p>abcde<b>dza</b></p>
+ * @param $html
+ * @return string
+ */
+function closetags($html)
 {
+    #put all opened tags into an array
+    preg_match_all("#<([a-z]+)( .*)?(?!/)>#iU", $html, $result);
+    $openedtags = $result[1];
+    #put all closed tags into an array
+    preg_match_all("#</([a-z]+)>#iU", $html, $result);
+    $closedtags = $result[1];
+    $len_opened = count($openedtags);
+    # all tags are closed
+    if (count($closedtags) == $len_opened) {
+        return $html;
+    }
+    $openedtags = array_reverse($openedtags);
+    # close tags
+    for ($i = 0; $i < $len_opened; $i++) {
+        if (!in_array($openedtags[$i], $closedtags)) {
+            $html .= "</" . $openedtags[$i] . ">";
+        } else {
+            unset ($closedtags[array_search($openedtags[$i], $closedtags)]);
+        }
+    }
+    return $html;
+}
+
+/**
+ * Remove the last sentence of a given str. A sentence should end with a .
+ * @param $str
+ * @return string
+ */
+function removeLastSentence($str)
+{
+    $splittedStr = preg_split("/\./", $str);
+    array_pop($splittedStr);
+    return implode(".", $splittedStr) . ".";
+}
+
+function removeStyleAttribute($str)
+{
+    return preg_replace('/style=(\'|").*(\'|")/mi', '', $str);
+}
+
+
+function removeLastWord($str)
+{
+    $splittedStr = preg_split("/\ /", $str);
+    array_pop($splittedStr);
+    return implode(" ", $splittedStr);
+}
+
+/**
+ * Limit a given htmltext to a given number of characters without removing html tags
+ * @param $htmlText
+ * @param int $limit
+ */
+function limitHTMLText($htmlText, $limit = 350)
+{
+    $str = substr($htmlText, 0, $limit); //$limit first chars of $htmlText, tags included
+    $strWithoutHTMLTags = strip_tags($str); //Removing tags, calculating length
+    $i = strlen($str);
+    while (strlen($strWithoutHTMLTags) < $limit && $i < strlen($htmlText)) { //If length not enough and if there is still some text to add : adding chars
+        $str .= $htmlText[$i];
+        $strWithoutHTMLTags = strip_tags($str); //Removing tags for calculating length of the text only
+        $i++;
+    }
+    return closetags($str);
+}
+
+function appendClickablePreviewArticles($id, $title, $date, $author, $content, $link, $addSeparatorLine = false)
+{
+    $contentText = limitHTMLText($content, 350);
+    $contentText = closetags(removeLastWord($contentText) . " …");
+    $contentText = removeStyleAttribute($contentText);
+
     echo '<a class="hiddenLink articleLink" href="' . $link . '">';
-    echo '<div class="articleContainer col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 col-xs-12 col-sm-offset-0">
+    echo '<div class="articleContainer preview col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 col-xs-12 col-sm-offset-0">
         <section class="content wrap" id="article-' . $id . '">';
 
-    echo '<h1 class="">' . $title . '</h1>';
-    echo '<time class="date" datetime="' . date(DATE_W3C, $date) . '">' . date('d F o', $date) . '</time>';
 
-    echo '<article >' . $content . '</article>';
+    echo '<time class="date" datetime="' . date(DATE_W3C, $date) . '">' . date('d F o', $date) . '</time>';
+    echo '<h1 class="">' . $title . '</h1>';
+    echo '<article >' . $contentText . '</article>';
     echo "</section>";
     if ($addSeparatorLine)
         echo "<div class='centerLine'></div>";
@@ -93,7 +172,7 @@ function displayBlogPostsPreview()
         $curPost = $posts[$i]->data;
         $link = "/posts/" . $curPost['slug'];
         $date = strtotime($curPost['created']);
-        appendClickableHTMLArticle($curPost['id'], $curPost['title'], $date, $curPost['author'], $curPost['html'], $link, true);
+        appendClickablePreviewArticles($curPost['id'], $curPost['title'], $date, $curPost['author'], $curPost['html'], $link, true);
     }
 
     echo "<div class='paginationContainer col-lg-4 col-lg-offset-4 col-md-4 col-md-offset-4 col-sm-4 col-sm-offset-4 col-xs-4 col-xs-offset-4'><div class='pagination'>";
