@@ -265,6 +265,10 @@ nav ul li a {
   width: 70%;
   background-color: white;
   max-width: 670px;
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flexbox;
+  display: -ms-flex;
   display: flex;
   -webkit-flex-wrap: nowrap;
   -moz-flex-wrap: nowrap;
@@ -525,12 +529,64 @@ nav ul li a {
   line-height: 27px;
   text-align: center;
 }
+.publicationContasiner .bookRow {
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flexbox;
+  display: -ms-flex;
+  display: flex;
+  -webkit-flex-direction: row;
+  -moz-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-flex-wrap: wrap;
+  -moz-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -webkit-justify-content: center;
+  -moz-justify-content: center;
+  -ms-justify-content: center;
+  justify-content: center;
+  -webkit-align-items: stretch;
+  -moz-align-items: stretch;
+  -ms-align-items: stretch;
+  align-items: stretch;
+  -webkit-align-content: stretch;
+  -moz-align-content: stretch;
+  -ms-align-content: stretch;
+  align-content: stretch;
+}
+.publicationContasiner .book {
+  display: block;
+  width: 200px;
+  margin: 0 50px 60px 50px;
+}
+.publicationContasiner .book .bookImg {
+  display: block;
+  margin: auto;
+  height: 120px;
+  width: auto;
+}
+.publicationContasiner .book .bookTitle {
+  margin: 24px auto 10px auto;
+  text-align: center;
+  font-family: 'ProximaNova-Light', Arial, sans-serif;
+  font-size: 13px;
+  color: #465065;
+  letter-spacing: 2px;
+  line-height: 20px;
+  text-transform: uppercase;
+}
 /**
 *  Pagination
 */
 .paginationContainer .pagination {
   display: block;
   margin: auto;
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flexbox;
+  display: -ms-flex;
   display: flex;
   -webkit-flex-direction: row;
   -moz-flex-direction: row;

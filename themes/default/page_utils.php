@@ -113,7 +113,6 @@ function appendClickablePreviewArticles($id, $title, $date, $author, $content, $
         echo "<div class='centerLine'></div>";
     echo "</div>";
     echo "</a>";
-
 }
 
 function displayDossierSummary($summaryInArticlePage = true)

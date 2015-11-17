@@ -13,7 +13,7 @@ switch (page_slug()) {
         break;
     case 'publication':
         echo page_content();
-        displayAllPostsCategory();
+        theme_include("publication");
         break;
 }
 
