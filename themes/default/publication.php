@@ -93,7 +93,66 @@
                 économique. Le Viagra est - il un médicament ord ...
             </div>
         </div>
-
+        <div class="dropdown">
+            <div class="dropdown-drop title">2014</div>
+            <div class="dropdown-content">
+                <div class="publication">
+                    <div class="date">18 avril 2015</div>
+                    <div class="text">Le traitement de l'impuissance sexuelle entre sécurité sanitaire et contrainte
+                        économique. Le Viagra est - il un médicament ord ...
+                    </div>
+                </div>
+                <div class="publication">
+                    <div class="date">13 mai 2015</div>
+                    <div class="text">Des spermatozoïdes fabriqués  en laboratoire : c'est important  pour les couples
+                        infertiles
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="dropdown">
+            <div class="dropdown-drop title">2013</div>
+            <div class="dropdown-content">
+                <div class="publication">
+                    <div class="date">21 novembre 2015</div>
+                    <div class="text">" Si son nom est l'anagramme de celui du Viagra, c'est le fait du hasard. Si les
+                        promoteurs de "la pillule de l'amour" ont retenu un nom proche du sien qui était au départ celui
+                        d'un médicament destiné à aider les hommes à uriner, judicieusement inspiré de "Niagara" ... "
+                    </div>
+                </div>
+                <div class="publication">
+                    <div class="date">18 avril 2015</div>
+                    <div class="text">Le traitement de l'impuissance sexuelle entre sécurité sanitaire et contrainte
+                        économique. Le Viagra est - il un médicament ord ...
+                    </div>
+                </div>
+                <div class="publication">
+                    <div class="date">13 mai 2015</div>
+                    <div class="text">Des spermatozoïdes fabriqués  en laboratoire : c'est important  pour les couples
+                        infertiles
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="dropdown">
+            <div class="dropdown-drop title">2012</div>
+            <div class="dropdown-content">
+                <div class="publication">
+                    <div class="date">13 mai 2015</div>
+                    <div class="text">Des spermatozoïdes fabriqués  en laboratoire : c'est important  pour les couples
+                        infertiles
+                    </div>
+                </div>
+                <div class="publication">
+                    <div class="date">13 mai 2015</div>
+                    <div class="text">Elliovir-Un nouveau complément alimentaire Elliovir conçu d'après les travaux du
+                        CETI
+                        est destiné à protéger l'endothélium vasculaire et le tissu érectile des méfaits des facteurs de
+                        risque vasculaire: diabète, hypertension artérielle, tabac, surpoids, excès de graisse.
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
     <div class="publicationCol">
         <div class="publicationColTitle">Publication <br>scientifique</div>
@@ -118,5 +177,27 @@
                 J Mal Vasc. 2002 Oct;27(4):214-7. French. PMID: 12457126 [PubMed - indexed for MEDLINE]
             </div>
         </div>
+        <div class="dropdown ">
+            <div class="dropdown-drop title">2014</div>
+            <div class="dropdown-content">
+            </div>
+        </div>
+        <div class="dropdown">
+            <div class="dropdown-drop title">2013</div>
+            <div class="dropdown-content">
+            </div>
+        </div>
+        <div class="dropdown ">
+            <div class="dropdown-drop title">2012</div>
+            <div class="dropdown-content">
+            </div>
+        </div>
     </div>
 </div>
+<script>
+    var $dropdowndrop = $('.dropdown-drop');
+    var toggledClass = 'active';
+    $dropdowndrop.click(function (e) {
+        $(this).parent().toggleClass(toggledClass);
+    });
+</script>

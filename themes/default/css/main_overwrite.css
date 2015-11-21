@@ -17,6 +17,16 @@ td {
   width: auto !important;
   vertical-align: top !important;
 }
+.unselectable {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  user-focus: none;
+}
+.clickable {
+  cursor: pointer;
+}
 /**
  * Custom Virag
  */
@@ -653,6 +663,61 @@ nav ul li a {
   letter-spacing: 1.7px;
   line-height: 25px;
   text-align: left;
+}
+.dropdown {
+  position: relative;
+  margin: 34px 0;
+}
+.dropdown:first-child {
+  margin-top: 60px;
+}
+.dropdown .publication {
+  margin: 0 0 40px 0;
+}
+.dropdown .title {
+  font-family: 'ProximaNova-Light', Arial, sans-serif;
+  font-size: 19px;
+  color: #465065;
+  letter-spacing: 1.7px;
+  line-height: 25px;
+  text-align: left;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  user-focus: none;
+  cursor: pointer;
+}
+.dropdown .dropdown-drop {
+  position: relative;
+  padding-left: 15px;
+}
+.dropdown .dropdown-drop:before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+  content: '>';
+  font-family: 'Odin-Bold', Arial, sans-serif;
+  font-size: 15px;
+  color: #465065;
+  letter-spacing: 1.15px;
+  line-height: 20px;
+  text-align: left;
+}
+.dropdown.active .dropdown-drop:before {
+  content: '>';
+  transform: rotate(90deg);
+}
+.dropdown .dropdown-content {
+  height: 0;
+  overflow: hidden;
+  transition: height .5s ease;
+}
+.dropdown.active .dropdown-content {
+  height: auto;
 }
 /**
 *  Pagination

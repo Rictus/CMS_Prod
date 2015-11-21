@@ -1,3 +1,4 @@
+/* P R O X I M A   N O V A */
 @font-face {
     font-family: 'ProximaNova-Light';
     src: url('../fonts/ProximaNova/ProximaNova-Light.otf');
@@ -21,4 +22,11 @@
 @font-face {
     font-family:'ProximaNova-Thin';
     src: url('../fonts/ProximaNova/ProximaNova-Thin.otf');
+}
+
+
+/* O D I N*/
+@font-face {
+    font-family: 'Odin-Bold';
+    src: url('../fonts/Odin/Odin-Bold.otf');
 }
