@@ -478,7 +478,7 @@ nav {
   }
 }
 
-.publicationContasiner {
+.bookContainer {
   .bookRow {
     .flex-display(flex);
     .flex-direction(row);
@@ -509,6 +509,44 @@ nav {
       text-transform: uppercase;
     }
   }
+}
+
+.publicationContainer {
+
+  .flex-display(flex);
+  .flex-direction(row);
+  .flex-wrap(wrap);
+  .justify-content(center);
+  .align-items(flex-start);
+  .align-content(center);
+  margin: 20px 180px;
+
+  .publicationCol {
+    margin: 50px;
+    &:first-child {
+      margin-left: 0;
+    }
+    &:last-child {
+      margin-right: 0;
+    }
+    .flex-grow(1);
+    .flex-shrink(0);
+    .flex-basis(283px;)
+  }
+  .publicationColTitle {
+    .postTitleTextRules;
+  }
+  .publication {
+    margin: 58px 5px 0 5px;
+    .date {
+      .articleDateRules;
+      height: 27px;
+    }
+    .text {
+      .semiTitleTextRules;
+    }
+  }
+
 }
 
 /**
