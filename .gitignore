@@ -8,6 +8,6 @@ Thumbs.db
 .idea/*
 # phpunit tests
 /tests
-
+/node_modules
 # We all love Sublime Text and its awesome plugins, don't we?
 sftp-config.json
