@@ -12,7 +12,16 @@
 
         <fieldset class="main">
             <div class="wrap">
-                <?php echo Form::text('title', Input::previous('title', $article->title), array(
+                <?php
+
+                $pattern = "(^\{.*?\})";
+                $articleTitle = Input::previous('title', $article->title);
+                $typeofproblem = array();
+                preg_match($pattern, $articleTitle, $typeofproblem);
+                $typeofproblem = count($typeofproblem) > 0 ? $typeofproblem[0] : false;
+                $articleTitle = preg_replace($pattern, "", $articleTitle);
+
+                echo Form::text('title', Input::previous('title', $articleTitle), array(
                     'placeholder' => __('dossiers.title'),
                     'autocomplete' => 'off',
                     'autofocus' => 'true'
@@ -28,9 +37,9 @@
         <fieldset class="meta split">
             <div class="wrap">
                 <p class="hidden">
-                    <label><?php echo __('dossiers.slug');  ?>:</label>
-                    <?php echo Form::text('slug', Input::previous('slug', $article->slug));  ?>
-                    <em><?php echo __('dossiers.slug_explain');  ?></em>
+                    <label><?php echo __('dossiers.slug'); ?>:</label>
+                    <?php echo Form::text('slug', Input::previous('slug', $article->slug)); ?>
+                    <em><?php echo __('dossiers.slug_explain'); ?></em>
                 </p>
 
                 <!--<p>
@@ -48,9 +57,9 @@
                 <!--
                 //Don't need to change the cateogy if it doesn't change
                 <p>
-                    <label for="category"><?php /*echo __('dossiers.category'); */?>:</label>
-                    <?php /*echo Form::select('category', $categories, Input::previous('category', $article->category)); */?>
-                    <em><?php /*echo __('dossiers.category_explain'); */?></em>
+                    <label for="category"><?php /*echo __('dossiers.category'); */ ?>:</label>
+                    <?php /*echo Form::select('category', $categories, Input::previous('category', $article->category)); */ ?>
+                    <em><?php /*echo __('dossiers.category_explain'); */ ?></em>
                 </p>-->
 
                 <!--<p>
@@ -72,14 +81,25 @@
                 </p>-->
                 <?php foreach ($fields as $field): ?>
                     <p>
-                        <?php if ($field->key == 'typeofproblem'):?>
+                        <?php if ($field->key == 'typeofproblem'): ?>
                             <label for="extend_<?php echo $field->key; ?>">
                                 <?php echo $field->label; ?>:
                             </label>
                             <select id="extend_typeofproblem" name="extend[typeofproblem]">
-                                <option value=""></option>
-                                <option value="masculin">Masculin</option>
-                                <option value="feminin">Féminin</option>
+                                <?php
+                                echo "extracted : " . $typeofproblem;
+                                echo "title : " . $articleTitle;
+                                if ($typeofproblem && $typeofproblem == "{masculin}") {
+                                    echo '<option value="masculin" selected>Masculin</option>';
+                                } else if ($typeofproblem && $typeofproblem == "{feminin}") {
+                                    echo '<option value="masculin">Masculin</option>';
+                                    echo '<option value="feminin" selected>Feminin</option>';
+                                } else {
+                                    echo '<option value="masculin">Masculin</option>';
+                                    echo '<option value="feminin">Feminin</option>';
+                                    echo '<option value="indifferent" selected>Indifferent</option>';
+                                }
+                                ?>
                             </select>
                         <?php else: ?>
 

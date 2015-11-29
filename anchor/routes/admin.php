@@ -50,13 +50,14 @@ Route::post('admin/login', array('before' => 'csrf', 'main' => function () {
         return Response::redirect('admin/login');
     }
 
-    // check for updates
-    Update::version();
 
-    if (version_compare(Config::get('meta.update_version'), VERSION, '>')) {
-        return Response::redirect('admin/upgrade');
-    }
+    //We do not want to check for new versions of anchor
+    /*    Update::version();
 
+        if (version_compare(Config::get('meta.update_version'), VERSION, '>')) {
+            return Response::redirect('admin/upgrade');
+        }
+    */
     return Response::redirect('admin/posts');
 }));
 

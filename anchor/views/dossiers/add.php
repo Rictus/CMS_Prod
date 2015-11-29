@@ -12,7 +12,11 @@
         <fieldset class="main">
             <div class="wrap">
 
-                <?php echo Form::text('title', Input::previous('title'), array(
+                <?php
+
+                $articleTitle = Input::previous('title');
+
+                echo Form::text('title', $articleTitle, array(
                     'placeholder' => __('dossiers.title'),
                     'autocomplete' => 'off',
                     'autofocus' => 'true'
@@ -29,8 +33,8 @@
             <div class="wrap">
                 <p class="hidden">
                     <label><?php echo __('dossiers.slug'); ?></label>
-                    <?php echo Form::text('slug', Input::previous('slug'));?>
-                    <em><?php echo __('dossiers.slug_explain');?></em>
+                    <?php echo Form::text('slug', Input::previous('slug')); ?>
+                    <em><?php echo __('dossiers.slug_explain'); ?></em>
                 </p>
 
                 <!--  <p>
@@ -45,10 +49,10 @@
                     <em><?php /*echo __('dossiers.status_explain'); */ ?></em>
                 </p>
 -->
-             <!--   <p>
-                    <label><?php /*echo __('dossiers.category'); */?>:</label>
-                    <?php /*echo Form::select('category', $categories, Input::previous('category')); */?>
-                    <em><?php /*echo __('dossiers.category_explain'); */?></em>
+                <!--   <p>
+                    <label><?php /*echo __('dossiers.category'); */ ?>:</label>
+                    <?php /*echo Form::select('category', $categories, Input::previous('category')); */ ?>
+                    <em><?php /*echo __('dossiers.category_explain'); */ ?></em>
                 </p>-->
 
                 <!-- <p>
@@ -70,15 +74,15 @@
                 </p>-->
                 <?php foreach ($fields as $field): ?>
                     <p>
-                        <?php if ($field->key == 'typeofproblem'):?>
+                        <?php if ($field->key == 'typeofproblem'): ?>
                             <label for="extend_<?php echo $field->key; ?>">
                                 <?php echo $field->label; ?>:
                             </label>
-                                <select id="extend_typeofproblem" name="extend[typeofproblem]">
-                                    <option value=""></option>
-                                    <option value="masculin">Masculin</option>
-                                    <option value="feminin">Féminin</option>
-                                </select>
+                            <select id="extend_typeofproblem" name="extend[typeofproblem]">
+                                <option value="masculin">Masculin</option>
+                                <option value="feminin">Féminin</option>
+                                <option value="indifferent">Indifferent</option>
+                            </select>
                         <?php else: ?>
 
 

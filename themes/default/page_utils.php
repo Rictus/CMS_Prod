@@ -115,46 +115,78 @@ function appendClickablePreviewArticles($id, $title, $date, $author, $content, $
     echo "</a>";
 }
 
+function removeTypeofproblem($title)
+{
+    return preg_replace("(^\{.*?\})", "", $title); //Removing existing {} and texte inside it. Only at the beginning
+}
+
+function getTypeofproblem($title)
+{
+    $matchedArray = array();
+    preg_match("(^\{.*?\})", $title, $matchedArray);
+    return $matchedArray;
+}
+
+function displayDossierSummary_PostLink($summaryInArticlePage = true, $post)
+{
+    $postTitle = removeTypeofproblem($post['title']);
+    $postSlug = $post['slug'];
+    if ($summaryInArticlePage)
+        echo '<a class="summary-link" href=' . $postSlug . '>' . $postTitle . '</a> ';
+    else
+        echo '<a class="summary-link" href=./posts/' . $postSlug . '>' . $postTitle . '</a> ';
+}
+
 function displayDossierSummary($summaryInArticlePage = true)
 {
     $posts = category_posts();
+    for ($i = 0; $i < count($posts); $i++) {
+        $matchedArray = getTypeofproblem($posts[$i]->data["title"]);
+        if (count($matchedArray) > 0) {
+            $posts[$i]->data['typeofproblem'] = $matchedArray[0];
+        } else {
+            $posts[$i]->data['typeofproblem'] = false;
+        }
+    }
     echo "
 <div class='summary col-lg-6 col-lg-offset-3 col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 col-xs-12'>";
 
     if (!$summaryInArticlePage)
         echo "<h1 class='pageTitle'>Étude et information <br>en andrologie & sexologie.</h1>"; //could be page title from admin
 
-    echo "
-    <div class='summary-col col-lg-6 col-md-6 col-sm-6 col-xs-12'>";
-    for ($i = 0; $i < count($posts) / 2; $i++) {
-        $curPost = $posts[$i]->data;
-        $postTitle = $curPost['title'];
-        $postSlug = $curPost['slug'];
-        if ($summaryInArticlePage)
-            echo '<a class="summary-link" href=' . $postSlug . '>' . $postTitle . '</a> ';
-        else
-            echo '<a class="summary-link" href=./posts/' . $postSlug . '>' . $postTitle . '</a> ';
-    }
-    echo "
-    </div>
-    ";//col
 
     echo "
     <div class='summary-col col-lg-6 col-md-6 col-sm-6 col-xs-12'>";
-    for ($i = count($posts) / 2; $i < count($posts); $i++) {
+    //First displaying posts with no specified type of problem :
+    for ($i = 0; $i < count($posts); $i++) {
         $curPost = $posts[$i]->data;
-        $postTitle = $curPost['title'];
-        $postSlug = $curPost['slug'];
-        if ($summaryInArticlePage)
-            echo '<a class="summary-link" href=' . $postSlug . '>' . $postTitle . '</a>';
-        else
-            echo '<a class="summary-link" href=./posts/' . $postSlug . '>' . $postTitle . '</a>';
+        if (!$curPost['typeofproblem']) {
+            displayDossierSummary_PostLink($summaryInArticlePage, $curPost);
+        }
     }
+//Then displaying typeofproblem=female
+    echo "<h3>Problème féminin</h3>";
+    for ($i = 0; $i < count($posts); $i++) {
+        $curPost = $posts[$i]->data;
+        if ($curPost['typeofproblem'] == '{feminin}') {
+            displayDossierSummary_PostLink($summaryInArticlePage, $curPost);
+        }
+    }
+    echo "</div>";//col
+
+
     echo "
-    </div>
-    "; //col
-    echo "
-</div>";//summary
+    <div class='summary-col col-lg-6 col-md-6 col-sm-6 col-xs-12'>";
+    echo "<h3>Problème masculin</h3>";
+    //Then displaying typeofproblem=male
+    for ($i = 0; $i < count($posts); $i++) {
+        $curPost = $posts[$i]->data;
+        if ($curPost['typeofproblem'] == '{masculin}') {
+            displayDossierSummary_PostLink($summaryInArticlePage, $curPost);
+        }
+    }
+    echo "</div>"; //col
+    echo "</div>";//summary
 
 }
 

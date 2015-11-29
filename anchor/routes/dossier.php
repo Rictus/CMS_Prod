@@ -5,9 +5,12 @@ function getCurrentPageCategoryId()
     return Category::slug('dossier')->id;
 }
 
+function removeTypeofproblem($title)
+{
+    return preg_replace("(^\{.*?\})", "", $title); //Removing existing {} and texte inside it. Only at the beginning
+}
+
 Route::collection(array('before' => 'auth'), function () {
-
-
 
     /*
         List all posts and paginate through them
@@ -18,6 +21,9 @@ Route::collection(array('before' => 'auth'), function () {
         $total = Post::where('category', '=', $currentPageCategoryId)->count();
         $posts = Post::where('category', '=', $currentPageCategoryId)->sort('created', 'desc')->take($perpage)->skip(($page - 1) * $perpage)->get();
         $url = Uri::to('admin/dossiers');
+        for ($i = 0; $i < count($posts); $i++) {
+            $posts[$i]->data["title"] = removeTypeofproblem($posts[$i]->data["title"]);
+        }
 
         $pagination = new Paginator($posts, $total, $page, $perpage, $url);
 
@@ -44,7 +50,9 @@ Route::collection(array('before' => 'auth'), function () {
         $total = $query->count();
         $posts = $query->sort('created', 'desc')->take($perpage)->skip(($page - 1) * $perpage)->get();
         $url = Uri::to('admin/dossiers/category/' . $category->slug);
-
+        for ($i = 0; $i < count($posts); $i++) {
+            $posts[0]->data["title"] = removeTypeofproblem($posts[0]->data["title"]);
+        }
         $pagination = new Paginator($posts, $total, $page, $perpage, $url);
 
         $vars['messages'] = Notify::read();
@@ -68,7 +76,9 @@ Route::collection(array('before' => 'auth'), function () {
 
         // extended fields
         $vars['fields'] = Extend::fields('post', $id);
-
+//        var_dump($vars['fields'][0]);
+//        var_dump($vars['fields'][0]->value);
+//        die();
         $vars['statuses'] = array(
             'published' => __('global.published'),
             'draft' => __('global.draft'),
@@ -84,15 +94,26 @@ Route::collection(array('before' => 'auth'), function () {
     });
 
     Route::post('admin/dossiers/edit/(:num)', function ($id) {
+        $currentPageCategoryId = getCurrentPageCategoryId();
         $input = Input::get(array('title', 'slug', 'description', 'created',
             'html', 'css', 'js', 'category', 'status', 'comments'));
+
 
         /** Valeurs en dur **/
         $input['comments'] = 0;
         $input['status'] = 'published';
+        $input['category'] = $currentPageCategoryId;
 
         // encode title
         $input['title'] = e($input['title'], ENT_COMPAT);
+
+
+        $input['title'] = removeTypeofproblem($input['title']);
+        $typeofproblem = Input::get(array('extend'));
+        $typeofproblem = $typeofproblem['extend']['typeofproblem'];
+        if ($typeofproblem == 'masculin' || $typeofproblem == 'feminin') {
+            $input['title'] = '{' . $typeofproblem . '}' . $input['title'];
+        }
 
         $validator = new Validator($input);
 
@@ -183,11 +204,12 @@ Route::collection(array('before' => 'auth'), function () {
         $currentPageCategoryId = getCurrentPageCategoryId();
         $input = Input::get(array('title', 'slug', 'description', 'created',
             'html', 'css', 'js', 'status', 'comments'));
-        $input['category'] = $currentPageCategoryId;
+
 
         /** Valeurs en dur **/
         $input['comments'] = 0;
         $input['status'] = 'published';
+        $input['category'] = $currentPageCategoryId;
 
 
         // convert to ascii
@@ -195,6 +217,13 @@ Route::collection(array('before' => 'auth'), function () {
 
         // encode title
         $input['title'] = e($input['title'], ENT_COMPAT);
+
+        $input['title'] = removeTypeofproblem($input['title']);
+        $typeofproblem = Input::get(array('extend'));
+        $typeofproblem = $typeofproblem['extend']['typeofproblem'];
+        if ($typeofproblem == 'masculin' || $typeofproblem == 'feminin') {
+            $input['title'] = '{' . $typeofproblem . '}' . $input['title'];
+        }
 
         $validator = new Validator($input);
 
