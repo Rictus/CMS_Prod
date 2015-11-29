@@ -47,13 +47,12 @@
                     <?php /*echo Form::textarea('description', Input::previous('description', $article->description)); */ ?>
                     <em><?php /*echo __('dossiers.description_explain'); */ ?></em>
                 </p>
-
+ -->
                 <p>
-                    <label for="status"><?php /*echo __('dossiers.status'); */ ?>:</label>
-                    <?php /*echo Form::select('status', $statuses, Input::previous('status', $article->status)); */ ?>
-                    <em><?php /*echo __('dossiers.status_explain'); */ ?></em>
-                </p>-->
-
+                    <label for="status"><?php echo __('posts.status'); ?>:</label>
+                    <?php echo Form::select('status', $statuses, Input::previous('status', $article->status)); ?>
+                    <em><?php echo __('posts.status_explain'); ?></em>
+                </p>
                 <!--
                 //Don't need to change the cateogy if it doesn't change
                 <p>

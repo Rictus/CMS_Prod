@@ -101,7 +101,6 @@ Route::collection(array('before' => 'auth'), function () {
 
         /** Valeurs en dur **/
         $input['comments'] = 0;
-        $input['status'] = 'published';
         $input['category'] = $currentPageCategoryId;
 
         // encode title
@@ -208,7 +207,6 @@ Route::collection(array('before' => 'auth'), function () {
 
         /** Valeurs en dur **/
         $input['comments'] = 0;
-        $input['status'] = 'published';
         $input['category'] = $currentPageCategoryId;
 
 

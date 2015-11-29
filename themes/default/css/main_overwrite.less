@@ -55,9 +55,11 @@ time {
   height: 1px;
   margin: 38px auto;
 }
+
 .transformCenter {
   position: absolute;
-  top: 50%; left: 50%;
+  top: 50%;
+  left: 50%;
 
   transform: translate(-50%, -50%);
 }
@@ -524,7 +526,7 @@ nav {
 
 .dropdown {
   position: relative;
-  margin:34px 0;
+  margin: 34px 0;
   &:first-child {
     margin-top: 60px;
   }
@@ -683,8 +685,13 @@ nav {
 .summary {
   margin-top: 80px;
   margin-bottom: 75px;
-  .summary-col {
-
+  .summary-col-title {
+    font-family: @proximaNovaSemibold;
+    font-size: 13px;
+    color: @mainTextColor;
+    letter-spacing: 2px;
+    line-height: 20px;
+    text-align: left;
   }
   .summary-link {
     .summaryLinkTextRules;
@@ -769,6 +776,10 @@ nav {
 .articleTextRules {
   .semiTitleTextRules;
   line-height: 30px;
+}
+
+.articleAuthorTextRules {
+  .articleDateRules;
 }
 
 .articleDateRules {

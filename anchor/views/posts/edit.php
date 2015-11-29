@@ -29,22 +29,25 @@
         <fieldset class="meta split">
             <div class="wrap">
                 <p class="hidden">
-                    <label><?php echo __('posts.slug');  ?>:</label>
-                    <?php echo Form::text('slug', Input::previous('slug', $article->slug));  ?>
-                    <em><?php echo __('posts.slug_explain');  ?></em>
+                    <label><?php echo __('posts.slug'); ?>:</label>
+                    <?php echo Form::text('slug', Input::previous('slug', $article->slug)); ?>
+                    <em><?php echo __('posts.slug_explain'); ?></em>
                 </p>
 
-                <!--<p>
-                    <label for="description"><?php /*echo __('posts.description'); */ ?>:</label>
-                    <?php /*echo Form::textarea('description', Input::previous('description', $article->description)); */ ?>
-                    <em><?php /*echo __('posts.description_explain'); */ ?></em>
-                </p>
+                <!--   <p>
+                    <label for="description"><?php /*echo __('posts.description'); */
+                ?>:</label>
+                    <?php /*echo Form::textarea('description', Input::previous('description', $article->description)); */
+                ?>
+                    <em><?php /*echo __('posts.description_explain'); */
+                ?></em>
+                </p>-->
 
                 <p>
-                    <label for="status"><?php /*echo __('posts.status'); */ ?>:</label>
-                    <?php /*echo Form::select('status', $statuses, Input::previous('status', $article->status)); */ ?>
-                    <em><?php /*echo __('posts.status_explain'); */ ?></em>
-                </p>-->
+                    <label for="status"><?php echo __('posts.status'); ?>:</label>
+                    <?php echo Form::select('status', $statuses, Input::previous('status', $article->status)); ?>
+                    <em><?php echo __('posts.status_explain'); ?></em>
+                </p>
 
                 <p>
                     <label for="category"><?php echo __('posts.category'); ?>:</label>
@@ -70,11 +73,14 @@
                     <em><?php /*echo __('posts.custom_js_explain'); */ ?></em>
                 </p>-->
                 <?php foreach ($fields as $field): ?>
-                    <p>
-                        <label for="extend_<?php echo $field->key; ?>">
-                            <?php echo $field->label; ?>:
-                            </label><?php echo Extend::html($field); ?>
-                    </p>
+                    <?php switch ($field->key) {
+                        case 'typeofproblem': //Do not show this one
+                            break;
+                        default:
+                            echo "<p><label for='extend_" . $field->key . "'>" . $field->label . "</label>" . Extend::html($field) . "</p>";
+                            break;
+                    }
+                    ?>
                 <?php endforeach; ?>
 
                 <aside class="buttons">

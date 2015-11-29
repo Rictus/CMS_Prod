@@ -42,13 +42,13 @@
                     <?php /*echo Form::textarea('description', Input::previous('description')); */ ?>
                     <em><?php /*echo __('dossiers.description_explain'); */ ?></em>
                 </p>
-
-                <p>
-                    <label><?php /*echo __('dossiers.status'); */ ?>:</label>
-                    <?php /*echo Form::select('status', $statuses, Input::previous('status')); */ ?>
-                    <em><?php /*echo __('dossiers.status_explain'); */ ?></em>
-                </p>
 -->
+                <p>
+                    <label><?php echo __('posts.status'); ?>:</label>
+                    <?php echo Form::select('status', $statuses, Input::previous('status')); ?>
+                    <em><?php echo __('posts.status_explain'); ?></em>
+                </p>
+
                 <!--   <p>
                     <label><?php /*echo __('dossiers.category'); */ ?>:</label>
                     <?php /*echo Form::select('category', $categories, Input::previous('category')); */ ?>

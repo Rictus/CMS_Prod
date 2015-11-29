@@ -165,7 +165,7 @@ function displayDossierSummary($summaryInArticlePage = true)
         }
     }
 //Then displaying typeofproblem=female
-    echo "<h3>Problème féminin</h3>";
+    echo "<div class='summary-col-title'>Problème féminin</div>";
     for ($i = 0; $i < count($posts); $i++) {
         $curPost = $posts[$i]->data;
         if ($curPost['typeofproblem'] == '{feminin}') {
@@ -177,7 +177,7 @@ function displayDossierSummary($summaryInArticlePage = true)
 
     echo "
     <div class='summary-col col-lg-6 col-md-6 col-sm-6 col-xs-12'>";
-    echo "<h3>Problème masculin</h3>";
+    echo "<div class='summary-col-title'>Problème masculin</div>";
     //Then displaying typeofproblem=male
     for ($i = 0; $i < count($posts); $i++) {
         $curPost = $posts[$i]->data;

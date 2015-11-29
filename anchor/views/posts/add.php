@@ -30,8 +30,8 @@
             <div class="wrap">
                 <p class="hidden">
                     <label><?php echo __('posts.slug'); ?></label>
-                    <?php echo Form::text('slug', Input::previous('slug'));?>
-                    <em><?php echo __('posts.slug_explain');?></em>
+                    <?php echo Form::text('slug', Input::previous('slug')); ?>
+                    <em><?php echo __('posts.slug_explain'); ?></em>
                 </p>
 
                 <!--  <p>
@@ -39,13 +39,12 @@
                     <?php /*echo Form::textarea('description', Input::previous('description')); */ ?>
                     <em><?php /*echo __('posts.description_explain'); */ ?></em>
                 </p>
-
-                <p>
-                    <label><?php /*echo __('posts.status'); */ ?>:</label>
-                    <?php /*echo Form::select('status', $statuses, Input::previous('status')); */ ?>
-                    <em><?php /*echo __('posts.status_explain'); */ ?></em>
-                </p>
 -->
+                <p>
+                    <label><?php echo __('posts.status');  ?>:</label>
+                    <?php echo Form::select('status', $statuses, Input::previous('status'));  ?>
+                    <em><?php echo __('posts.status_explain');  ?></em>
+                </p>
                 <p>
                     <label><?php echo __('posts.category'); ?>:</label>
                     <?php echo Form::select('category', $categories, Input::previous('category')); ?>
@@ -70,11 +69,14 @@
                     <em><?php /*echo __('posts.custom_js_explain'); */ ?></em>
                 </p>-->
                 <?php foreach ($fields as $field): ?>
-                    <p> 
-                        <label for="extend_<?php echo $field->key; ?>">
-                            <?php echo $field->label; ?>:
-                            </label><?php echo Extend::html($field); ?>
-                    </p>
+                    <?php switch ($field->key) {
+                        case 'typeofproblem': //Do not show this one
+                            break;
+                        default:
+                            echo "<p><label for='extend_" . $field->key . "'>" . $field->label . "</label>" . Extend::html($field) . "</p>";
+                            break;
+                    }
+                    ?>
                 <?php endforeach; ?>
                 <aside class="buttons">
                     <?php echo Form::button(__('global.save'), array(
