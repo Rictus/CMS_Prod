@@ -1,6 +1,5 @@
 <?php
 theme_include('header');
-theme_include('page_utils');
 
 switch (page_slug()) {
     case 'blog':

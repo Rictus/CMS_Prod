@@ -4,7 +4,7 @@ Thumbs.db
 *.esproj
 *.log
 *.gz
-.idea
+.idea/
 .idea/*
 # phpunit tests
 /tests

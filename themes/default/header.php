@@ -1,11 +1,12 @@
 <?php
 setlocale(LC_ALL, 'fr_FR');
+theme_include('page_utils');
 ?>
 <!doctype html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title><?php echo page_title('Page can’t be found'); ?> - <?php echo site_name(); ?></title>
+    <title><?php echo removeTypeofproblem(page_title('Page can’t be found')); ?> - <?php echo site_name(); ?></title>
 
     <meta name="description" content="<?php echo site_description(); ?>">
 
