@@ -38,32 +38,32 @@ Route::collection(array('before' => 'auth'), function () {
     /*
         List posts by category and paginate through them
     */
-    Route::get(array('admin/dossiers/category/(:any)', 'admin/dossiers/category/(:any)/(:num)'), function ($slug, $page = 1) {
+    /*  Route::get(array('admin/dossiers/category/(:any)', 'admin/dossiers/category/(:any)/(:num)'), function ($slug, $page = 1) {
 
-        if (!$category = Category::slug($slug)) {
-            return Response::error(404);
-        }
+          if (!$category = Category::slug($slug)) {
+              return Response::error(404);
+          }
 
-        $query = Post::where('category', '=', $category->id);
+          $query = Post::where('category', '=', $category->id);
 
-        $perpage = Config::meta('posts_per_page');
-        $total = $query->count();
-        $posts = $query->sort('created', 'desc')->take($perpage)->skip(($page - 1) * $perpage)->get();
-        $url = Uri::to('admin/dossiers/category/' . $category->slug);
-        for ($i = 0; $i < count($posts); $i++) {
-            $posts[0]->data["title"] = removeTypeofproblem($posts[0]->data["title"]);
-        }
-        $pagination = new Paginator($posts, $total, $page, $perpage, $url);
+          $perpage = Config::meta('posts_per_page');
+          $total = $query->count();
+          $posts = $query->sort('created', 'desc')->take($perpage)->skip(($page - 1) * $perpage)->get();
+          $url = Uri::to('admin/dossiers/category/' . $category->slug);
+          for ($i = 0; $i < count($posts); $i++) {
+              $posts[0]->data["title"] = removeTypeofproblem($posts[0]->data["title"]);
+          }
+          $pagination = new Paginator($posts, $total, $page, $perpage, $url);
 
-        $vars['messages'] = Notify::read();
-        $vars['posts'] = $pagination;
-        $vars['category'] = $category;
-        $vars['categories'] = Category::sort('title')->get();
+          $vars['messages'] = Notify::read();
+          $vars['posts'] = $pagination;
+          $vars['category'] = $category;
+          $vars['categories'] = Category::sort('title')->get();
 
-        return View::create('dossiers/index', $vars)
-            ->partial('header', 'partials/header')
-            ->partial('footer', 'partials/footer');
-    });
+          return View::create('dossiers/index', $vars)
+              ->partial('header', 'partials/header')
+              ->partial('footer', 'partials/footer');
+      });*/
 
     /*
         Edit post

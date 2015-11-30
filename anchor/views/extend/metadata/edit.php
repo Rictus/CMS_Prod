@@ -35,7 +35,7 @@
 			<p>
 				<label for="posts_per_page"><?php echo __('metadata.posts_per_page'); ?>:</label>
 				<?php echo Form::input('range', 'posts_per_page', Input::previous('posts_per_page', $meta['posts_per_page']),
-					array('min' => 1, 'max' => 15)); ?>
+					array('min' => 1, 'max' => 20)); ?>
 				<em><?php echo __('metadata.posts_per_page_explain'); ?></em>
 			</p>
 		</fieldset>

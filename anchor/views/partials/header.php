@@ -34,10 +34,9 @@
 
                     <?php
                     //Old version of menu
-                    $menu = array('posts', 'comments', 'pages',
-                        'categories', 'users', 'extend');
+                    $menu = array('posts', 'comments', 'pages', 'categories', 'users', 'extend');
                     //Current version
-                    $menu = array('posts', 'pages', 'categories', 'users', 'dossiers');
+                    $menu = array('posts', 'categories', 'users', 'dossiers', 'blog', 'publications');
                     ?>
 
                     <?php foreach ($menu as $url): ?>
