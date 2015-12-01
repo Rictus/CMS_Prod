@@ -1,6 +1,5 @@
 
-var $editor = $('textarea')[0];
-$editor.id = "ckeditit";
+var $editor = $('textarea.ckeditorgo')[0];
 
 CKEDITOR.editorConfig = function( config ) {
     config.toolbarGroups = [
@@ -25,4 +24,5 @@ CKEDITOR.editorConfig = function( config ) {
     config.image = "/content";
     config.imageUploadUrl = "/content";
 };
-CKEDITOR.replace($editor.id);
+if($editor)
+    CKEDITOR.replace($editor);

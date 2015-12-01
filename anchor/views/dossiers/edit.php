@@ -27,10 +27,10 @@
                     'autofocus' => 'true'
                 )); ?>
                 <?php echo Form::textarea('html', Input::previous('html', $article->html), array(
-                    'placeholder' => __('dossiers.content_explain')
+                    'placeholder' => __('dossiers.content_explain'),
+                    'class' => 'ckeditorgo'
                 )); ?>
 
-                <?php echo $editor; ?>
             </div>
         </fieldset>
 
@@ -101,10 +101,10 @@
                                 ?>
                             </select>
                         <?php else: ?>
-
-                        <label for="extend_<?php echo $field->key; ?>">
-                            <?php echo $field->label; ?>:
-                            </label><?php echo Extend::html($field); ?>
+                            <!--We do not show other extend fields-->
+                            <!-- <label for="extend_<?php /*echo $field->key; */ ?>">
+                            <?php /*echo $field->label; */ ?>:
+                            </label>--><?php /*echo Extend::html($field); */ ?>
                         <?php endif; ?>
                     </p>
                 <?php endforeach; ?>

@@ -19,7 +19,8 @@
                     'autofocus' => 'true'
                 )); ?>
                 <?php echo Form::textarea('html', Input::previous('html'), array(
-                    'placeholder' => __('posts.content_explain')
+                    'placeholder' => __('posts.content_explain'),
+                    'class' => 'ckeditorgo'
                 )); ?>
 
                 <?php echo $editor; ?>
@@ -70,7 +71,8 @@
                 </p>-->
                 <?php foreach ($fields as $field): ?>
                     <?php switch ($field->key) {
-                        case 'typeofproblem': //Do not show this one
+                        case 'typeofproblem':
+                            echo "<p><label for='extend_" . $field->key . "'>" . $field->label . "</label>" . Extend::html($field) . "</p>";
                             break;
                         default:
                             echo "<p><label for='extend_" . $field->key . "'>" . $field->label . "</label>" . Extend::html($field) . "</p>";

@@ -4,7 +4,9 @@ return array(
 
     'publication' => 'Publication',
     'publications' => 'Publications',
-    'create_post' => 'Créer un article' ,
+    'create_post' => 'Créer un article',
+    'create_publication' => 'Ajouter une publication',
+    'create_book' => 'Ajouter un livre',
 
     'posts' => 'Articles',
 
@@ -26,6 +28,7 @@ return array(
 
     'description' => 'Description ',
     'description_explain' => '',
+    'description_placeholder' => 'Description du livre',
 
     'status' => 'Statut ',
     'status_explain' => '',
