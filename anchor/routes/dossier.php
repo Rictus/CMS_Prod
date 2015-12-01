@@ -1,9 +1,6 @@
 <?php
 
-function getCurrentPageCategoryId()
-{
-    return Category::slug('dossier')->id;
-}
+
 
 function removeTypeofproblem($title)
 {
@@ -16,7 +13,7 @@ Route::collection(array('before' => 'auth'), function () {
         List all posts and paginate through them
     */
     Route::get(array('admin/dossiers', 'admin/dossiers/(:num)'), function ($page = 1) {
-        $currentPageCategoryId = getCurrentPageCategoryId();
+        $currentPageCategoryId = getCurrentPageCategoryId('dossier');
         $perpage = Config::meta('posts_per_page');
         $total = Post::where('category', '=', $currentPageCategoryId)->count();
         $posts = Post::where('category', '=', $currentPageCategoryId)->sort('created', 'desc')->take($perpage)->skip(($page - 1) * $perpage)->get();
@@ -94,7 +91,7 @@ Route::collection(array('before' => 'auth'), function () {
     });
 
     Route::post('admin/dossiers/edit/(:num)', function ($id) {
-        $currentPageCategoryId = getCurrentPageCategoryId();
+        $currentPageCategoryId = getCurrentPageCategoryId('dossier');
         $input = Input::get(array('title', 'slug', 'description', 'created',
             'html', 'css', 'js', 'category', 'status', 'comments'));
 
@@ -200,7 +197,7 @@ Route::collection(array('before' => 'auth'), function () {
     });
 
     Route::post('admin/dossiers/add', function () {
-        $currentPageCategoryId = getCurrentPageCategoryId();
+        $currentPageCategoryId = getCurrentPageCategoryId('dossier');
         $input = Input::get(array('title', 'slug', 'description', 'created',
             'html', 'css', 'js', 'status', 'comments'));
 

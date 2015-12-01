@@ -1,10 +1,10 @@
 <?php echo $header; ?>
 
     <hgroup class="wrap">
-        <h1><?php echo __('publications.publications'); ?></h1>
+        <h1><?php echo __('blog.blog'); ?></h1>
         <?php if ($posts->count): ?>
             <nav>
-                <?php echo Html::link('admin/publications/add', __('publications.create_post'), array('class' => 'btn')); ?>
+                <?php echo Html::link('admin/blog/add', __('blog.create_post'), array('class' => 'btn')); ?>
             </nav>
         <?php endif; ?>
     </hgroup>

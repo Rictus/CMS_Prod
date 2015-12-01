@@ -1,17 +1,12 @@
 <?php
 
-function getCurrentPageCategoryId()
-{
-    return Category::slug('publication')->id;
-}
-
 Route::collection(array('before' => 'auth'), function () {
 
     /*
         List all posts and paginate through them
     */
-    Route::get(array('admin/publications', 'admin/pubications/(:num)'), function ($page = 1) {
-        $currentPageCategoryId = getCurrentPageCategoryId();
+    Route::get(array('admin/publications', 'admin/publications/(:num)'), function ($page = 1) {
+        $currentPageCategoryId = getCurrentPageCategoryId('publication');
         $perpage = Config::meta('posts_per_page');
         $total = Post::where('category', '=', $currentPageCategoryId)->count();
         $posts = Post::where('category', '=', $currentPageCategoryId)->sort('created', 'desc')->take($perpage)->skip(($page - 1) * $perpage)->get();

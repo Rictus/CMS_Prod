@@ -21,7 +21,7 @@ CKEDITOR.editorConfig = function( config ) {
 
     config.extraPlugins = 'uploadimage';
 
-    config.removeButtons = 'Subscript,Superscript,Cut,Redo,Copy,Undo,PasteText,PasteFromWord,Paste,Scayt,Link,Unlink,Anchor,SpecialChar,HorizontalRule,Maximize,Source,Strike,Outdent,Indent,Blockquote,Styles,Font,About,RemoveFormat,Underline';
+    config.removeButtons = 'Subscript,Superscript,Cut,Redo,Copy,Undo,PasteText,PasteFromWord,Paste,Scayt,Link,Unlink,Anchor,SpecialChar,HorizontalRule,Maximize,Source,Strike,Outdent,Indent,Blockquote,Styles,Font,About,RemoveFormat,Underline,elementspath';
     config.image = "/content";
     config.imageUploadUrl = "/content";
 };
