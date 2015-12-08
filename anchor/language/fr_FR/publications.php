@@ -48,6 +48,10 @@ return array(
     // messages
     'updated' => 'L\'article a été mis à jour',
     'created' => 'L\'article a été créé',
-    'deleted' => 'L\'article a été supprimé'
+    'created_book' => 'Le livre a été créé',
+    'created_publication' => 'La publication a été créé',
+    'deleted' => 'L\'article a été supprimé',
+    'deleted_book' => 'Le livre a été supprimé',
+    'deleted_publication' => 'La publication a été supprimé'
 
 );

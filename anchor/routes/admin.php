@@ -206,6 +206,24 @@ Route::get('admin/extend', array('before' => 'auth', 'main' => function ($page =
 Route::get('admin/posts/edit/ckeditor/plugins/imageuploader/', array('before' => 'auth', 'main' => function () {
     return View::create('imageuploaded');
 }));
+
+
+/*
+Upload a image
+*/
+Route::post('admin/upload', function () {
+    $uploader = new Uploader(PATH . 'content', array('png', 'jpg', 'bmp', 'gif'));
+    $file = $_FILES['file'];
+    $filepath = $uploader->upload($file);
+
+    //        $uri = Config::app('url', '/') . '/content/' . basename($filepath);
+    $uri = '/content/' . basename($filepath);
+    $output = array('uploaded' => 1, 'url' => $uri, 'fileName' => $file['name']);
+
+    return Response::json($output);
+});
+
+
 /*
 	404 error
 */

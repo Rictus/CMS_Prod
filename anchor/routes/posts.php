@@ -61,6 +61,7 @@ Route::collection(array('before' => 'auth'), function () {
         // extended fields
         $vars['fields'] = Extend::fields('post', $id);
 
+
         $vars['statuses'] = array(
             'published' => __('global.published'),
             'draft' => __('global.draft'),
@@ -181,6 +182,9 @@ Route::collection(array('before' => 'auth'), function () {
         $input['status'] = 'published';
 
 
+        var_dump($input);
+        var_dump(Input::get(array('extend')));
+        die();
         // convert to ascii
         $input['slug'] = slug($input['slug']);
 

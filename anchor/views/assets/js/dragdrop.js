@@ -3,162 +3,174 @@
  *
  * Allows the drag and drop of single files into posts
  */
-$(function() {
-	var zone = $(document), body = $('body');
 
-	var allowed = ['text/css',
-		'text/javascript', 'application/javascript',
-		'text/x-markdown',
-		'image/jpeg', 'image/gif', 'image/png'];
+function initDragdrop(callbackComplete) {
+    var zone = $(document), body = $('body');
 
-	var debug = function(message) {
-		if(window.console) console.log(message);
-	}
+    var allowed = ['text/css',
+        'text/javascript', 'application/javascript',
+        'text/x-markdown',
+        'image/jpeg', 'image/gif', 'image/png'];
 
-	var cancel = function(event) {
-		event.preventDefault();
-		return false;
-	};
+    var debug = function (message) {
+        if (window.console) console.log(message);
+    }
 
-	var open = function(event) {
-		event.preventDefault();
-		body.addClass('draggy');
-		return false;
-	};
+    var cancel = function (event) {
+        event.preventDefault();
+        return false;
+    };
 
-	var close = function(event) {
-		event.preventDefault();
-		body.removeClass('draggy');
-		return false;
-	};
+    var open = function (event) {
+        event.preventDefault();
+        body.addClass('draggy');
+        return false;
+    };
 
-	var drop = function(event) {
-		event.preventDefault();
+    var close = function (event) {
+        event.preventDefault();
+        body.removeClass('draggy');
+        return false;
+    };
 
-		var files = event.target.files || event.dataTransfer.files;
+    var drop = function (event) {
+        event.preventDefault();
 
-		for(var i = 0; i < files.length; i++) {
-			var file = files.item(i);
+        var files = event.target.files || event.dataTransfer.files;
 
-			if(allowed.indexOf(file.type) !== -1) {
-				transfer(file);
-			}
-			else {
-				debug(file.type + ' not supported');
-			}
-		}
+        for (var i = 0; i < files.length; i++) {
+            var file = files.item(i);
 
-		body.removeClass('draggy');
+            if (allowed.indexOf(file.type) !== -1) {
+                transfer(file);
+            }
+            else {
+                debug(file.type + ' not supported');
+            }
+        }
 
-		return false;
-	};
+        body.removeClass('draggy');
 
-	var transfer = function(file) {
-		var reader = new FileReader();
-		reader.file = file;
-		reader.callback = complete;
-		reader.onload = reader.callback;
-		reader.readAsBinaryString(file);
-	};
+        return false;
+    };
 
-	var complete = function() {
-		if(['text/x-markdown'].indexOf(this.file.type) !== -1) {
-			var textarea = $('.main textarea');
+    var transfer = function (file) {
+        var reader = new FileReader();
+        reader.file = file;
+        reader.callback = complete;
+        reader.onload = reader.callback;
+        reader.readAsBinaryString(file);
+    };
 
-			textarea.val(this.result).trigger('keydown');
-		}
+    var complete = function () {
+        if (['text/x-markdown'].indexOf(this.file.type) !== -1) {
+            var textarea = $('.main textarea');
 
-		if(['text/javascript', 'application/javascript'].indexOf(this.file.type) !== -1) {
-			var textarea = $('textarea[name=js]');
+            textarea.val(this.result).trigger('keydown');
+        }
 
-			textarea.val(this.result);
-		}
+        if (['text/javascript', 'application/javascript'].indexOf(this.file.type) !== -1) {
+            var textarea = $('textarea[name=js]');
 
-		if(['text/css'].indexOf(this.file.type) !== -1) {
-			var textarea = $('textarea[name=css]');
+            textarea.val(this.result);
+        }
 
-			textarea.val(this.result);
-		}
+        if (['text/css'].indexOf(this.file.type) !== -1) {
+            var textarea = $('textarea[name=css]');
 
-		if(['image/jpeg', 'image/gif', 'image/png'].indexOf(this.file.type) !== -1) {
-			var path = window.location.pathname, uri, parts = path.split('/');
+            textarea.val(this.result);
+        }
 
-			if(parts[parts.length - 1] == 'add') {
-				uri = path.split('/').slice(0, -1).join('/') + '/upload';
-			}
-			else {
-				uri = path.split('/').slice(0, -2).join('/') + '/upload';
-			}
+        if (['image/jpeg', 'image/gif', 'image/png'].indexOf(this.file.type) !== -1) {
+            var path = window.location.pathname, uri, parts = path.split('/');
 
-			upload(uri, this.file);
-		}
-	};
+            if (parts[parts.length - 1] == 'add') {
+                uri = path.split('/').slice(0, -1).join('/') + '/upload';
+            }
+            else {
+                uri = path.split('/').slice(0, -2).join('/') + '/upload';
+            }
 
-	var upload = function(uri, file) {
-		// Uploading - for Firefox, Google Chrome and Safari
-		var xhr = new XMLHttpRequest();
-		xhr.open("post", uri);
+            upload(uri, this.file);
+        }
+    };
 
-		var formData = new FormData();
-		formData.append('file', file);
+    var upload = function (uri, file) {
+        // Uploading - for Firefox, Google Chrome and Safari
+        $('#upload-file-progress').show();
+        var xhr = new XMLHttpRequest();
+        xhr.open("post", uri);
 
-		xhr.onreadystatechange = function() {
-			if(this.readyState == 4) {
-				return uploaded(file, this.responseText);
-			}
-		}
+        var formData = new FormData();
+        formData.append('file', file);
 
-		if(xhr.upload) {
-			xhr.upload.onprogress = function(e) {
-				upload_progress(e.position || e.loaded, e.totalSize || e.total);
-			};
-		}
-		else {
-			xhr.addEventListener('progress', function(e) {
-				upload_progress(e.position || e.loaded, e.totalSize || e.total);
-			}, false);
-		}
+        xhr.onreadystatechange = function () {
+            if (this.readyState == 4) {
+                return uploaded(file, this.responseText);
+            }
+        }
 
-		// Send the file (doh)
-		xhr.send(formData);
-	};
+        if (xhr.upload) {
+            xhr.upload.onprogress = function (e) {
+                upload_progress(e.position || e.loaded, e.totalSize || e.total);
+            };
+        }
+        else {
+            xhr.addEventListener('progress', function (e) {
+                upload_progress(e.position || e.loaded, e.totalSize || e.total);
+            }, false);
+        }
 
-	var upload_progress = function(position, total) {
-		if(position == total) {
-			$('#upload-file-progress').hide();
-		}
-		else {
-			$('#upload-file-progress').show();
+        // Send the file (doh)
+        xhr.send(formData);
+    };
 
-			$('#upload-file-progress progress').prop('value', position);
-			$('#upload-file-progress progress').prop('max', total);
-		}
-	};
+    var upload_progress = function (position, total) {
+        if (position == total) {
+            $('#upload-file-progress').hide();
+        }
+        else {
+            $('#upload-file-progress').show();
 
-	var uploaded = function(file, response) {
-		var data = JSON.parse(response);
+            $('#upload-file-progress progress').prop('value', position);
+            $('#upload-file-progress progress').prop('max', total);
+        }
+    };
 
-		if(data.uri) {
-			var textarea = $('.main textarea'),
-				element = textarea[0],
-				start = element.selectionStart,
-				value = element.value,
-				img = "\n\n" + '![' + file.name + '](' + data.uri + ')' + "\n\n";
+    var uploaded = function (file, response) {
+        var data = JSON.parse(response);
+        console.log(data);
+        if (callbackComplete) callbackComplete(data.uri || data.url, data.fileName);
+        else {
+            if (data.uri || data.url) {
+                var textarea = $('.main textarea'),
 
-			element.value = value.substring(0, start) + img + value.substring(start);
-			element.selectionStart = element.selectionEnd = start + img.length;
-			textarea.trigger('keydown');
-		}
-	};
+                    element = textarea[0],
+                    start = element.selectionStart,
+                    value = element.value,
+                    img = "\n\n" + '![' + file.name + '](' + data.uri || data.url + ')' + "\n\n";
 
-	if(window.FileReader && window.FileList && window.File) {
-		zone.on('dragover', open);
-		zone.on('dragenter', cancel);
-		zone.on('drop', drop);
-		zone.on('dragleave', cancel);
-		zone.on('dragexit', close);
+                element.value = value.substring(0, start) + img + value.substring(start);
+                element.selectionStart = element.selectionEnd = start + img.length;
+                textarea.trigger('keydown');
+            }
+        }
+    };
 
-		body.append('<div id="upload-file"><span>Upload your file</span></div>');
-		body.append('<div id="upload-file-progress"><progress value="0"></progress></div>');
-	}
-});
+    if (window.FileReader && window.FileList && window.File) {
+        zone.on('dragover', open);
+        zone.on('dragenter', cancel);
+        zone.on('drop', drop);
+        zone.on('dragleave', cancel);
+        zone.on('dragexit', close);
+
+        body.append('<div id="upload-file"><span>Upload your file</span></div>');
+        $fileProgress = $('#upload-file-progress');
+        if ($fileProgress) {
+            $fileProgress.hide();
+        }
+        else {
+            body.append('<div id="upload-file-progress"><progress value="0"></progress></div>');
+        }
+    }
+}
