@@ -58,8 +58,6 @@ Route::collection(array('before' => 'auth'), function () {
             ->partial('footer', 'partials/footer')
             ->partial('editor', 'partials/editor');
     });
-
-
     Route::post('admin/publications/addBook', function () {
         $currentPageCategoryId = getCurrentPageCategoryId('publication');
         $input = Input::get(array('title', 'slug', 'description', 'created',
@@ -143,6 +141,125 @@ Route::collection(array('before' => 'auth'), function () {
 
         return Response::redirect('admin/publications');
     });
+
+
+    /*
+           Delete post
+       */
+    Route::get('admin/publications/deleteBook/(:num)', function ($id) {
+        Post::find($id)->delete();
+
+        Comment::where('post', '=', $id)->delete();
+
+        Query::table(Base::table('post_meta'))->where('post', '=', $id)->delete();
+
+        Notify::success(__('posts.deleted'));
+
+        return Response::redirect('admin/publications');
+    });
+
+
+
+
+
+    /*
+        Edit post
+    */
+    Route::get('admin/publications/editBook/(:num)', function ($id) {
+        $vars['messages'] = Notify::read();
+        $vars['token'] = Csrf::token();
+        $vars['book'] = Post::find($id);
+        $vars['page'] = Registry::get('posts_page');
+
+        // extended fields
+        $vars['fields'] = Extend::fields('post', $id);
+
+        $vars['statuses'] = array(
+            'published' => __('global.published'),
+            'draft' => __('global.draft'),
+            'archived' => __('global.archived')
+        );
+
+        return View::create('publications/editBook', $vars)
+            ->partial('header', 'partials/header')
+            ->partial('footer', 'partials/footer')
+            ->partial('editor', 'partials/editor');
+    });
+
+    Route::post('admin/publications/editBook/(:num)', function ($id) {
+        $currentPageCategoryId = getCurrentPageCategoryId('publication');
+        $input = Input::get(array('title', 'slug', 'description', 'created',
+            'html', 'css', 'js', 'category', 'status', 'comments'));
+
+
+        /** Valeurs en dur **/
+        $input['comments'] = 0;
+        $input['category'] = $currentPageCategoryId;
+
+        // encode title
+        $input['title'] = e($input['title'], ENT_COMPAT);
+
+        $validator = new Validator($input);
+
+        $validator->add('duplicate', function ($str) use ($id) {
+            return Post::where('slug', '=', $str)->where('id', '<>', $id)->count() == 0;
+        });
+
+
+        if (is_null($input['description']) || empty($input['description'])) {
+            $input['description'] = " ";
+        }
+        if (is_null($input['css']) || empty($input['css'])) {
+            $input['css'] = " ";
+        }
+        if (is_null($input['js']) || empty($input['js'])) {
+            $input['js'] = " ";
+        }
+        // if there is no slug, create one from title
+        if (empty($input['slug'])) {
+            $input['slug'] = slug($input['title']);
+        }
+        // convert to ascii
+        $input['slug'] = slug($input['slug']);
+        do {
+            //Check for duplication
+            $isDuplicate = Post::where('slug', '=', $input['slug'])->where('id', '<>', $id)->count() > 0;
+            if ($isDuplicate) {
+                $input['slug'] = slug(noise(10));
+            }
+        } while ($isDuplicate);
+
+        $validator->check('slug')
+            ->not_regex('#^[0-9_-]+$#', __('posts.slug_invalid'));
+
+        if ($errors = $validator->errors()) {
+            Input::flash();
+
+            Notify::error($errors);
+
+            return Response::redirect('admin/dossiers/edit/' . $id);
+        }
+
+        if ($input['created']) {
+            $input['created'] = Date::mysql($input['created']);
+        } else {
+            unset($input['created']);
+        }
+
+        if (is_null($input['comments'])) {
+            $input['comments'] = 0;
+        }
+
+        Post::update($id, $input);
+
+        Extend::process('post', $id);
+
+        Notify::success(__('posts.updated'));
+
+        return Response::redirect('admin/dossiers/edit/' . $id);
+    });
+
+
 
 
 });

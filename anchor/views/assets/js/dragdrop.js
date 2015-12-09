@@ -83,14 +83,13 @@ function initDragdrop(callbackComplete) {
 
         if (['image/jpeg', 'image/gif', 'image/png'].indexOf(this.file.type) !== -1) {
             var path = window.location.pathname, uri, parts = path.split('/');
-
-            if (parts[parts.length - 1] == 'add') {
+          /*  if (parts[parts.length - 1].startsWith("add") || parts[parts.length - 1].startsWith("edit")) {
                 uri = path.split('/').slice(0, -1).join('/') + '/upload';
             }
             else {
                 uri = path.split('/').slice(0, -2).join('/') + '/upload';
-            }
-
+            }*/
+            uri = "/admin/upload";
             upload(uri, this.file);
         }
     };
