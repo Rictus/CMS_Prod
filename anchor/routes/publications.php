@@ -13,6 +13,14 @@ Route::collection(array('before' => 'auth'), function () {
         $url = Uri::to('admin/publications');
 
         //Doing something
+        //Adding extend fields for each posts
+        for ($i = 0; $i < count($posts); $i++) {
+            $posts[$i]->typeofpublication = Extend::value(Extend::field('post', 'typeofpublication', $posts[$i]->id));
+            $posts[$i]->bookimage = Extend::value(Extend::field('post', 'bookimage', $posts[$i]->id));
+            $posts[$i]->externallink = Extend::value(Extend::field('post', 'externallink', $posts[$i]->id));
+        }
+
+
         $pagination = new Paginator($posts, $total, $page, $perpage, $url);
 
         $vars['messages'] = Notify::read();

@@ -2,15 +2,21 @@
 <?php
 $bookImageField = false;
 $externalLinkField = false;
+$typeofpublication = false;
 foreach ($fields as $field) {
     switch ($field->key) {
         case 'bookimage':
             //The process of uploading an image is done with js/ajax.
             //The uploaded filename is then store in a input[type=text]
+            //TODO Need a workaround to change the filename on serverside
             $bookImageField = $field;
             break;
         case 'externallink':
             $externalLinkField = $field;
+            break;
+        case 'typeofpublication':
+            //Say if it's a book or a text publication. Normally book here
+            $typeofpublication = $field;
             break;
         default;
             //We do not get other extends
@@ -58,7 +64,16 @@ foreach ($fields as $field) {
                     echo '<div class="upload_explain">Glissez une image ici pour définir l\'image de votre livre.</div>' .
                         '<div id="upload-file-progress"><progress value="0"></progress></div>';
                 }
+
+                echo Form::text("extend[" . $typeofpublication->key . "]", null, array(
+                    'placeholder' => $bookImageField->label,
+                    'id' => "extend_" . $bookImageField->key,
+                    'value' => 'book',
+                    'class' => 'hide'
+                ));
+
                 ?>
+
 
             </div>
         </fieldset>

@@ -5,7 +5,6 @@
 
 	<?php if($posts->count): ?>
 	<nav>
-		<?php echo "<div id='HEY'></div>"; ?>
 		<?php echo Html::link('admin/posts/add', __('posts.create_post'), array('class' => 'btn')); ?>
 	</nav>
 	<?php endif; ?>
