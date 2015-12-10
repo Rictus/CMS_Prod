@@ -256,7 +256,7 @@ Route::collection(array('before' => 'auth'), function () {
 
         Notify::success(__('posts.updated'));
 
-        return Response::redirect('admin/dossiers/edit/' . $id);
+        return Response::redirect('admin/publications/editBook/' . $id);
     });
 
 

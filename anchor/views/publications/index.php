@@ -56,7 +56,7 @@ foreach ($posts->results as $post) {
                     <li>
                         <a href="<?php echo Uri::to('admin/publications/editBook/' . $post->id); ?>">
                             <strong><?php echo $post->title; ?></strong>
-                            <img width=300 height=auto src="/content/<?php echo $post->bookimage; ?>" alt="">
+                            <img width=auto height=100 src="/content/<?php echo $post->bookimage; ?>" alt="">
 <!--                            <a href="--><?php //echo $book->externallink; ?><!--">Lien vers ce livre</a>--> <!--TODO : Search for a work around to make this link clickable inside the big clickable area.-->
                             <p><?php echo strip_tags($post->description); ?></p>
                             <span>
