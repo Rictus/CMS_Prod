@@ -1,4 +1,15 @@
-<?php echo $header; ?>
+<?php echo $header;
+$typeofproblem = false;
+foreach ($fields as $field) {
+    switch ($field->key) {
+        case 'typeofproblem':
+            $typeofproblem = $field;
+            break;
+        default: /*We do not show other extend fields*/
+            break;
+    }
+}
+?>
     <form method="post" action="<?php echo Uri::to('admin/dossiers/edit/' . $article->id); ?>"
           enctype="multipart/form-data" novalidate>
 
@@ -14,12 +25,7 @@
             <div class="wrap">
                 <?php
 
-                $pattern = "(^\{.*?\})";
                 $articleTitle = Input::previous('title', $article->title);
-                $typeofproblem = array();
-                preg_match($pattern, $articleTitle, $typeofproblem);
-                $typeofproblem = count($typeofproblem) > 0 ? $typeofproblem[0] : false;
-                $articleTitle = preg_replace($pattern, "", $articleTitle);
 
                 echo Form::text('title', Input::previous('title', $articleTitle), array(
                     'placeholder' => __('dossiers.title'),
@@ -78,36 +84,31 @@
                     <?php /*echo Form::textarea('js', Input::previous('js', $article->js)); */ ?>
                     <em><?php /*echo __('dossiers.custom_js_explain'); */ ?></em>
                 </p>-->
-                <?php foreach ($fields as $field): ?>
-                    <p>
-                        <?php if ($field->key == 'typeofproblem'): ?>
-                            <label for="extend_<?php echo $field->key; ?>">
-                                <?php echo $field->label; ?>:
-                            </label>
-                            <select id="extend_typeofproblem" name="extend[typeofproblem]">
-                                <?php
-                                echo "extracted : " . $typeofproblem;
-                                echo "title : " . $articleTitle;
-                                if ($typeofproblem && $typeofproblem == "{masculin}") {
-                                    echo '<option value="masculin" selected>Masculin</option>';
-                                } else if ($typeofproblem && $typeofproblem == "{feminin}") {
-                                    echo '<option value="masculin">Masculin</option>';
-                                    echo '<option value="feminin" selected>Feminin</option>';
-                                } else {
-                                    echo '<option value="masculin">Masculin</option>';
-                                    echo '<option value="feminin">Feminin</option>';
-                                    echo '<option value="indifferent" selected>Indifferent</option>';
-                                }
-                                ?>
-                            </select>
-                        <?php else: ?>
-                            <!--We do not show other extend fields-->
-                            <!-- <label for="extend_<?php /*echo $field->key; */ ?>">
-                            <?php /*echo $field->label; */ ?>:
-                            </label>--><?php /*echo Extend::html($field); */ ?>
-                        <?php endif; ?>
-                    </p>
-                <?php endforeach; ?>
+
+                <p>
+                    <?php if ($typeofproblem): ?>
+                        <label for="extend_<?php echo $typeofproblem->key; ?>">
+                            <?php echo $typeofproblem->label; ?>:
+                        </label>
+                        <select id="extend_typeofproblem" name="extend[typeofproblem]">
+                            <?php
+                            if ($typeofproblem->value->text == "masculin") { //Yeah i know this is shitty
+                                echo '<option value="masculin" selected>Masculin</option>';
+                                echo '<option value="feminin">Feminin</option>';
+                                echo '<option value="indifferent" >Indifferent</option>';
+                            } else if ($typeofproblem->value->text == "feminin") {
+                                echo '<option value="masculin">Masculin</option>';
+                                echo '<option value="feminin" selected>Feminin</option>';
+                                echo '<option value="indifferent" >Indifferent</option>';
+                            } else {
+                                echo '<option value="masculin">Masculin</option>';
+                                echo '<option value="feminin">Feminin</option>';
+                                echo '<option value="indifferent" selected>Indifferent</option>';
+                            }
+                            ?>
+                        </select>
+                    <?php endif; ?>
+                </p>
 
                 <aside class="buttons">
                     <?php echo Form::button(__('global.save'), array(

@@ -18,9 +18,6 @@ Route::collection(array('before' => 'auth'), function () {
         $total = Post::where('category', '=', $currentPageCategoryId)->count();
         $posts = Post::where('category', '=', $currentPageCategoryId)->sort('created', 'desc')->take($perpage)->skip(($page - 1) * $perpage)->get();
         $url = Uri::to('admin/dossiers');
-        for ($i = 0; $i < count($posts); $i++) {
-            $posts[$i]->data["title"] = removeTypeofproblem($posts[$i]->data["title"]);
-        }
 
         $pagination = new Paginator($posts, $total, $page, $perpage, $url);
 
@@ -32,35 +29,6 @@ Route::collection(array('before' => 'auth'), function () {
             ->partial('header', 'partials/header')
             ->partial('footer', 'partials/footer');
     });
-    /*
-        List posts by category and paginate through them
-    */
-    /*  Route::get(array('admin/dossiers/category/(:any)', 'admin/dossiers/category/(:any)/(:num)'), function ($slug, $page = 1) {
-
-          if (!$category = Category::slug($slug)) {
-              return Response::error(404);
-          }
-
-          $query = Post::where('category', '=', $category->id);
-
-          $perpage = Config::meta('posts_per_page');
-          $total = $query->count();
-          $posts = $query->sort('created', 'desc')->take($perpage)->skip(($page - 1) * $perpage)->get();
-          $url = Uri::to('admin/dossiers/category/' . $category->slug);
-          for ($i = 0; $i < count($posts); $i++) {
-              $posts[0]->data["title"] = removeTypeofproblem($posts[0]->data["title"]);
-          }
-          $pagination = new Paginator($posts, $total, $page, $perpage, $url);
-
-          $vars['messages'] = Notify::read();
-          $vars['posts'] = $pagination;
-          $vars['category'] = $category;
-          $vars['categories'] = Category::sort('title')->get();
-
-          return View::create('dossiers/index', $vars)
-              ->partial('header', 'partials/header')
-              ->partial('footer', 'partials/footer');
-      });*/
 
     /*
         Edit post
@@ -73,9 +41,6 @@ Route::collection(array('before' => 'auth'), function () {
 
         // extended fields
         $vars['fields'] = Extend::fields('post', $id);
-//        var_dump($vars['fields'][0]);
-//        var_dump($vars['fields'][0]->value);
-//        die();
         $vars['statuses'] = array(
             'published' => __('global.published'),
             'draft' => __('global.draft'),
@@ -104,12 +69,8 @@ Route::collection(array('before' => 'auth'), function () {
         $input['title'] = e($input['title'], ENT_COMPAT);
 
 
-        $input['title'] = removeTypeofproblem($input['title']);
-        $typeofproblem = Input::get(array('extend'));
-        $typeofproblem = $typeofproblem['extend']['typeofproblem'];
-        if ($typeofproblem == 'masculin' || $typeofproblem == 'feminin') {
-            $input['title'] = '{' . $typeofproblem . '}' . $input['title'];
-        }
+        $extend = Input::get(array('extend'));
+        $typeofproblem = $extend['extend']['typeofproblem'];
 
         $validator = new Validator($input);
 
@@ -213,12 +174,8 @@ Route::collection(array('before' => 'auth'), function () {
         // encode title
         $input['title'] = e($input['title'], ENT_COMPAT);
 
-        $input['title'] = removeTypeofproblem($input['title']);
-        $typeofproblem = Input::get(array('extend'));
-        $typeofproblem = $typeofproblem['extend']['typeofproblem'];
-        if ($typeofproblem == 'masculin' || $typeofproblem == 'feminin') {
-            $input['title'] = '{' . $typeofproblem . '}' . $input['title'];
-        }
+        $extend = Input::get(array('extend'));
+        $typeofproblem = $extend['extend']['typeofproblem'];
 
         $validator = new Validator($input);
 

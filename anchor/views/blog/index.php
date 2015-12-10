@@ -10,11 +10,6 @@
     <section class="wrap">
         <?php echo $messages; ?>
 
-
-
-
-
-
         <?php if ($posts->count): ?>
             <ul class="main list">
                 <?php foreach ($posts->results as $article): ?>
@@ -36,7 +31,6 @@
                 <?php endforeach; ?>
             </ul>
         <?php endif; ?>
-
 
     </section>
 

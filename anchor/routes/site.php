@@ -245,6 +245,56 @@ Route::post('search', function () {
 
 
 /**
+ * Dossier page
+ */
+
+/**
+ * Publication Page
+ */
+Route::get(array('dossier', 'dossier/(:any)'), function ($pageNumber = 1) {
+    $page = Page::slug('dossier');
+    $category = Category::slug('dossier');
+    $per_page = Config::meta('posts_per_page');
+
+    list($total, $posts) = Post::listing($category, $pageNumber, $per_page);
+
+//     get the last page
+    $max_page = ($total > $per_page) ? ceil($total / $per_page) : 1;
+
+    // stop users browsing to non existing ranges
+    if (($pageNumber > $max_page) or ($pageNumber < 1)) {
+        return Response::create(new Template('404'), 404);
+    }
+
+    //Get extend for each post
+    for ($i = 0; $i < count($posts); $i++) {
+        $e = Extend::fields('post', $posts[$i]->id);
+        $newExtendObj = array();
+        for ($j = 0; $j < count($e); $j++) {
+            $key = $e[$j]->key;
+            if (property_exists($e[$j]->value, 'text')) {
+                $value = $e[$j]->value->text;
+                $newExtendObj[$key] = $value;
+            } else {
+                echo "special case h43442";
+                die();
+            }
+        }
+        $posts[$i]->extends = $newExtendObj;
+    }
+
+
+    Registry::set('posts', $posts);
+    Registry::set('page', $page);
+    Registry::set('category', $category);
+    Registry::set('total_posts', $total);
+    Registry::set('maxPageNumber', $max_page);
+    Registry::set('currentPageNumber', $pageNumber);
+
+    return new Template('page');
+});
+
+/**
  * Publication Page
  */
 Route::get(array('publication', 'publication/(:any)'), function ($pageNumber = 1) {

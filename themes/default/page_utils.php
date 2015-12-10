@@ -120,12 +120,6 @@ function removeTypeofproblem($title)
     return preg_replace("(^\{.*?\})", "", $title); //Removing existing {} and texte inside it. Only at the beginning
 }
 
-function getTypeofproblem($title)
-{
-    $matchedArray = array();
-    preg_match("(^\{.*?\})", $title, $matchedArray);
-    return $matchedArray;
-}
 
 function displayDossierSummary_PostLink($summaryInArticlePage = true, $post)
 {
@@ -139,14 +133,9 @@ function displayDossierSummary_PostLink($summaryInArticlePage = true, $post)
 
 function displayDossierSummary($summaryInArticlePage = true)
 {
-    $posts = category_posts();
+    $posts = Registry::get('posts');
     for ($i = 0; $i < count($posts); $i++) {
-        $matchedArray = getTypeofproblem($posts[$i]->data["title"]);
-        if (count($matchedArray) > 0) {
-            $posts[$i]->data['typeofproblem'] = $matchedArray[0];
-        } else {
-            $posts[$i]->data['typeofproblem'] = false;
-        }
+        $posts[$i]->data['typeofproblem'] = $posts[$i]->data['extends']['typeofproblem'];
     }
     echo "
 <div class='summary col-lg-6 col-lg-offset-3 col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 col-xs-12'>";
@@ -160,7 +149,7 @@ function displayDossierSummary($summaryInArticlePage = true)
     //First displaying posts with no specified type of problem :
     for ($i = 0; $i < count($posts); $i++) {
         $curPost = $posts[$i]->data;
-        if (!$curPost['typeofproblem']) {
+        if (!$curPost['typeofproblem'] ||$curPost['typeofproblem']=='indifferent') {
             displayDossierSummary_PostLink($summaryInArticlePage, $curPost);
         }
     }
@@ -168,7 +157,7 @@ function displayDossierSummary($summaryInArticlePage = true)
     echo "<div class='summary-col-title'>Problème féminin</div>";
     for ($i = 0; $i < count($posts); $i++) {
         $curPost = $posts[$i]->data;
-        if ($curPost['typeofproblem'] == '{feminin}') {
+        if ($curPost['typeofproblem'] == 'feminin') {
             displayDossierSummary_PostLink($summaryInArticlePage, $curPost);
         }
     }
@@ -181,7 +170,7 @@ function displayDossierSummary($summaryInArticlePage = true)
     //Then displaying typeofproblem=male
     for ($i = 0; $i < count($posts); $i++) {
         $curPost = $posts[$i]->data;
-        if ($curPost['typeofproblem'] == '{masculin}') {
+        if ($curPost['typeofproblem'] == 'masculin') {
             displayDossierSummary_PostLink($summaryInArticlePage, $curPost);
         }
     }
