@@ -5,7 +5,6 @@ return array(
     'blog' => 'Blog',
     'blogs' => 'Blogs',
     'create_post' => 'Créer un article de blog' ,
-
     'posts' => 'Articles',
 
     'noposts_desc' => 'Aucun article dans ce blog pour l\'instant !',
