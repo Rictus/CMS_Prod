@@ -56,8 +56,8 @@ foreach ($fields as $field): ?>
                     'class' => 'upload_filename hide'
                 ));
                 echo Form::text("extend[" . $typeofpublication->key . "]", null, array(
-                    'placeholder' => $bookimage->label,
-                    'id' => "extend_" . $bookimage->key,
+                    'placeholder' => $typeofpublication->label,
+                    'id' => "extend_" . $typeofpublication->key,
                     'value' => 'book',
                     'class' => 'hide'
                 ));
@@ -88,9 +88,15 @@ foreach ($fields as $field): ?>
             </div>
         </fieldset>
     </form>
+<?php
+addScriptTag('anchor/views/assets/js/dragdrop.js');
+addScriptTag('anchor/views/assets/js/upload-fields.js');
+addScriptTag('anchor/views/assets/js/slug.js');
+addScriptTag('anchor/views/assets/js/text-resize.js');
+addScriptTag('anchor/views/assets/js/ckeditor/ckeditor.js');
+addScriptTag('anchor/views/assets/js/ckeditor_init.js');
+?>
 
-    <script src="<?php echo asset('anchor/views/assets/js/dragdrop.js'); ?>"></script>
-    <script src="<?php echo asset('anchor/views/assets/js/upload-fields.js'); ?>"></script>
     <script>
         initDragdrop(function (url, filename) {
             $('.file-image-preview').attr('src', url).attr('value', url); //adding image to img element to display it
@@ -98,15 +104,6 @@ foreach ($fields as $field): ?>
             console.log(filename); //Displaying filename
             $('.upload_filename').attr("value", filename); //Init value of input text that should store filename
         });
-    </script>
-    <script src="<?php echo asset('anchor/views/assets/js/slug.js'); ?>"></script>
-    <script src="<?php echo asset('anchor/views/assets/js/text-resize.js'); ?>"></script>
-    <script src="<?php echo asset('anchor/views/assets/js/ckeditor/ckeditor.js'); ?>"></script>
-    <!--<script src="--><?php //echo asset('anchor/views/assets/js/editor.js'); ?><!--"></script>-->
-    <script src="<?php echo asset('anchor/views/assets/js/ckeditor_init.js'); ?>"></script>
-
-    <script>
-        //	$('textarea[name=html]').editor();
     </script>
 
 <?php echo $footer; ?>

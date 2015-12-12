@@ -3,26 +3,86 @@
 $posts = Registry::get('posts');
 
 $books = [];
-$textPublications = [];
+$publicTextPublications = [];
+$scientificTextPublications = [];
 $erroredPublications = [];
 foreach ($posts as $post) {
     $ext = $post->data['extends'];
 
-    if ($ext['typeofpublication'] == 'book') {
-        $books[] = $post;
-    } else if ($ext['typeofpublication'] == 'textpublication') {
-        $textPublications[] = $post;
-    } else {
-        $erroredPublications[] = $post;
+    switch ($ext['typeofpublication']) {
+        case 'book':
+            $books[] = $post;
+            break;
+        case 'textpublication':
+            switch ($post->extends['publicofpublication']) {
+                case 'scientific':
+                    $scientificTextPublications[] = $post;
+                    break;
+                case 'public':
+                default:
+                    $publicTextPublications[] = $post;
+                    break;
+            }
+            break;
+        default:
+            $erroredPublications[] = $post;
+            break;
     }
 }
 
+//echo "<h1>Books : </h1><p>" . count($books) . "</p>";
+//echo "<h1>Publications publiques : </h1><p>" . count($publicTextPublications) . "</p>";
+//echo "<h1>Publications scientifiques : </h1><p>" . count($scientificTextPublications) . "</p>";
+//echo "<h1>Errors : </h1><p>" . count($erroredPublications) . "</p>";
+
+//Now we need to sort scientific/public text publications by date
+function compareFunctionTextPublication($publicationA, $publicationB)
+{
+    $dateA = $publicationA->extends['customdate'];
+    $dateB = $publicationB->extends['customdate'];
+
+
+    $dateTimeA = DateTime::createFromFormat('d/m/Y', $dateA);
+    $dateTimeB = DateTime::createFromFormat('d/m/Y', $dateB);
+
+    $timeA = $dateTimeA->getTimestamp();
+    $timeB = $dateTimeB->getTimestamp();
+
+    if ($timeA < $timeB) {
+        return 1;
+    } else if ($timeB < $timeA) {
+        return -1;
+    } else {
+        return 0;
+    }
+}
+
+usort($publicTextPublications, "compareFunctionTextPublication");
+usort($scientificTextPublications, "compareFunctionTextPublication");
+
+function getYearOfPublication($publication, $extendKey)
+{
+    $d = date_parse($publication->extends[$extendKey]);
+    return $d['year'];
+}
+
+//Then we would like to group by year
+
+function groupPublicationByYear($array, $extendKey)
+{
+    $tmp = array();
+    foreach ($array as $item) {
+        $year = getYearOfPublication($item, $extendKey);
+        $tmp[$year][] = $item;
+    }
+    return $tmp;
+}
+
+$publicTextPublications = groupPublicationByYear($publicTextPublications, 'customdate');
+$scientificTextPublications = groupPublicationByYear($scientificTextPublications, 'customdate');
+
+
 $numberOfBookPerRow = 3;
-
-//echo "<h1>Books : </h1><p>".count($books)."</p>";
-//echo "<h1>Texts : </h1><p>".count($textPublications)."</p>";
-//echo "<h1>Errors : </h1><p>".count($erroredPublications)."</p>";
-
 ?>
 
 <div class="bookContainer">
@@ -62,139 +122,56 @@ $numberOfBookPerRow = 3;
 </div>
 
 
+<?php
+function displayHTMLPublication($publication)
+{
+
+    echo '<a href="' . $publication['extends']['externallink'] . '"><div class="publication">' .
+        '<div class="date">' . $publication['extends']['customdate'] . '</div>' .
+        '<div class="text">' . $publication['description'] . '</div>' .
+        '</div></a>';
+}
+
+function displayHTMLPublicationCol($ar)
+{
+    //The first year to display should be the first key in the array as it is sorted
+    reset($ar);
+    $firstYear = key($ar);
+    $public = $ar[$firstYear][0]->data['extends']['publicofpublication'];
+
+    echo '<div class="publicationColTitle">Publication <br>' . $public . '</div>';
+    foreach ($ar[$firstYear] as $publication) {
+        displayHTMLPublication($publication->data);
+    }
+
+    //Next years should be displayed as dropdowns
+    foreach ($ar as $year => $publications) {
+        if ($year != $firstYear) {
+            echo '<div class="dropdown">'
+                . '<div class="dropdown-drop title">' . $year . '</div>'
+                . '<div class="dropdown-content">';
+            foreach ($publications as $publication) {
+                displayHTMLPublication($publication->data);
+            }
+            echo '</div></div>';
+        }
+    }
+
+}
+
+?>
+
+
 <div class="publicationContainer">
     <div class="publicationCol">
-        <div class="publicationColTitle">Publication <br>grand public</div>
-        <div class="publication">
-            <div class="date">13 mai 2015</div>
-            <div class="text">Des spermatozoïdes fabriqués  en laboratoire : c'est important  pour les couples
-                infertiles
-            </div>
-        </div>
-        <div class="publication">
-            <div class="date">21 novembre 2015</div>
-            <div class="text">" Si son nom est l'anagramme de celui du Viagra, c'est le fait du hasard. Si les
-                promoteurs de "la pillule de l'amour" ont retenu un nom proche du sien qui était au départ celui
-                d'un médicament destiné à aider les hommes à uriner, judicieusement inspiré de "Niagara" ... "
-            </div>
-        </div>
-        <div class="publication">
-            <div class="date">21 novembre 2015</div>
-            <div class="text">(...)Il y a eu le Viagra, le Cialis, et puis maintenant le Levitra, une nouvelle
-                pilule pour favoriser l'érection.
-            </div>
-        </div>
-        <div class="publication">
-            <div class="date">14 mai 2015</div>
-            <div class="text">L’invité Ronald VIRAG Il est reconnu aujourd’hui comme une sommité mondiale dans le
-                traitement des ..
-            </div>
-        </div>
-        <div class="publication">
-            <div class="date">18 avril 2015</div>
-            <div class="text">Le traitement de l'impuissance sexuelle entre sécurité sanitaire et contrainte
-                économique. Le Viagra est - il un médicament ord ...
-            </div>
-        </div>
-        <div class="dropdown">
-            <div class="dropdown-drop title">2014</div>
-            <div class="dropdown-content">
-                <div class="publication">
-                    <div class="date">18 avril 2015</div>
-                    <div class="text">Le traitement de l'impuissance sexuelle entre sécurité sanitaire et contrainte
-                        économique. Le Viagra est - il un médicament ord ...
-                    </div>
-                </div>
-                <div class="publication">
-                    <div class="date">13 mai 2015</div>
-                    <div class="text">Des spermatozoïdes fabriqués  en laboratoire : c'est important  pour les couples
-                        infertiles
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="dropdown">
-            <div class="dropdown-drop title">2013</div>
-            <div class="dropdown-content">
-                <div class="publication">
-                    <div class="date">21 novembre 2015</div>
-                    <div class="text">" Si son nom est l'anagramme de celui du Viagra, c'est le fait du hasard. Si les
-                        promoteurs de "la pillule de l'amour" ont retenu un nom proche du sien qui était au départ celui
-                        d'un médicament destiné à aider les hommes à uriner, judicieusement inspiré de "Niagara" ... "
-                    </div>
-                </div>
-                <div class="publication">
-                    <div class="date">18 avril 2015</div>
-                    <div class="text">Le traitement de l'impuissance sexuelle entre sécurité sanitaire et contrainte
-                        économique. Le Viagra est - il un médicament ord ...
-                    </div>
-                </div>
-                <div class="publication">
-                    <div class="date">13 mai 2015</div>
-                    <div class="text">Des spermatozoïdes fabriqués  en laboratoire : c'est important  pour les couples
-                        infertiles
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="dropdown">
-            <div class="dropdown-drop title">2012</div>
-            <div class="dropdown-content">
-                <div class="publication">
-                    <div class="date">13 mai 2015</div>
-                    <div class="text">Des spermatozoïdes fabriqués  en laboratoire : c'est important  pour les couples
-                        infertiles
-                    </div>
-                </div>
-                <div class="publication">
-                    <div class="date">13 mai 2015</div>
-                    <div class="text">Elliovir-Un nouveau complément alimentaire Elliovir conçu d'après les travaux du
-                        CETI
-                        est destiné à protéger l'endothélium vasculaire et le tissu érectile des méfaits des facteurs de
-                        risque vasculaire: diabète, hypertension artérielle, tabac, surpoids, excès de graisse.
-                    </div>
-                </div>
-            </div>
-        </div>
+        <?php
+        displayHTMLPublicationCol($publicTextPublications);
+        ?>
     </div>
     <div class="publicationCol">
-        <div class="publicationColTitle">Publication <br>scientifique</div>
-        <div class="publication">
-            <div class="date">13 mai 2015</div>
-            <div class="text">Elliovir-Un nouveau complément alimentaire Elliovir conçu d'après les travaux du CETI
-                est destiné à protéger l'endothélium vasculaire et le tissu érectile des méfaits des facteurs de
-                risque vasculaire: diabète, hypertension artérielle, tabac, surpoids, excès de graisse.
-            </div>
-        </div>
-        <div class="publication">
-            <div class="date">13 mai 2015</div>
-            <div class="text">Comments from Ronald Virag on intracavernous injection: 25 years later.
-                J Sex Med. 2005 May;2(3):289-90. No abstract available. PMID: 16422859 [PubMed - indexed for
-                MEDLINE]
-            </div>
-        </div>
-        <div class="publication">
-            <div class="date">13 mai 2015</div>
-            <div class="text">Flow-dependent dilatation of the cavernous artery. A potential test of penile NO
-                content
-                J Mal Vasc. 2002 Oct;27(4):214-7. French. PMID: 12457126 [PubMed - indexed for MEDLINE]
-            </div>
-        </div>
-        <div class="dropdown ">
-            <div class="dropdown-drop title">2014</div>
-            <div class="dropdown-content">
-            </div>
-        </div>
-        <div class="dropdown">
-            <div class="dropdown-drop title">2013</div>
-            <div class="dropdown-content">
-            </div>
-        </div>
-        <div class="dropdown ">
-            <div class="dropdown-drop title">2012</div>
-            <div class="dropdown-content">
-            </div>
-        </div>
+        <?php
+        displayHTMLPublicationCol($scientificTextPublications);
+        ?>
     </div>
 </div>
 <script>

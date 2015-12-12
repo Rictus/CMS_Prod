@@ -276,8 +276,8 @@ Route::get(array('dossier', 'dossier/(:any)'), function ($pageNumber = 1) {
                 $value = $e[$j]->value->text;
                 $newExtendObj[$key] = $value;
             } else {
-                echo "special case h43442";
-                die();
+//                echo "special case h43442";
+//                die();
             }
         }
         $posts[$i]->extends = $newExtendObj;
@@ -301,7 +301,6 @@ Route::get(array('publication', 'publication/(:any)'), function ($pageNumber = 1
     $page = Page::slug('publication');
     $category = Category::slug('publication');
     $per_page = Config::meta('posts_per_page');
-
     list($total, $posts) = Post::listing($category, $pageNumber, $per_page);
 
 //     get the last page
@@ -316,9 +315,26 @@ Route::get(array('publication', 'publication/(:any)'), function ($pageNumber = 1
     for ($i = 0; $i < count($posts); $i++) {
         $e = Extend::fields('post', $posts[$i]->id);
         $newExtendObj = array();
+
+        /*var_dump($posts[$i]);
+         echo "<br>";
+         echo "<br>";
+        var_dump($e);
+        echo "<br>";
+        echo "<br>";
+        echo "<br>";
+        echo "<br>";
+        echo "<br>";
+        echo "<br>";
+        echo "<br>";*/
         for ($j = 0; $j < count($e); $j++) {
             $key = $e[$j]->key;
-            $value = $e[$j]->value->text;
+
+            if (is_null($e[$j]->value) || !property_exists($e[$j]->value, 'text') ) {
+                $value = $e[$j]->value;
+            } else {
+                $value = $e[$j]->value->text;
+            }
             $newExtendObj[$key] = $value;
         }
         $posts[$i]->extends = $newExtendObj;

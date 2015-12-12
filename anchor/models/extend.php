@@ -68,12 +68,12 @@ class Extend extends Base
         return $fields;
     }
 
-    public static function html($item)
+    public static function html($item, $class='')
     {
         switch ($item->field) {
             case 'text':
                 $value = isset($item->value->text) ? $item->value->text : '';
-                $html = '<input id="extend_' . $item->key . '" name="extend[' . $item->key . ']" type="text" value="' . $value . '">';
+                $html = '<input class="'.$class.'" id="extend_' . $item->key . '" name="extend[' . $item->key . ']" type="text" value="' . $value . '">';
                 break;
 
             case 'html':

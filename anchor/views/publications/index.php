@@ -8,20 +8,25 @@ foreach ($posts->results as $post) {
         $books[] = $post;
     } else if ($post->typeofpublication == 'textpublication') {
         $textPublications[] = $post;
+        $post->customdate = DateTime::createFromFormat('d/m/Y', $post->customdate);
+        if ($post->customdate)
+            $post->customdate = $post->customdate->format('Y-m-d H:i:s');
+        else
+            $post->customdate = false;
+
+        $post->publicofpublication_text = $post->publicofpublication == 'public' ? 'Grand public' : 'Scientifique';
     } else {
         $erroredPublications[] = $post;
     }
 }
 
-//echo "<h1>Books : </h1><p>".var_dump($books)."</p>";
-//echo "<h1>Texts : </h1><p>".var_dump($textPublications)."</p>";
-//echo "<h1>Errors : </h1><p>".var_dump($erroredPublications)."</p>";
+//echo "<h1>Books : </h1><p>".count($books)."</p>";
+//echo "<h1>Texts : </h1><p>".count($textPublications)."</p>";
+//echo "<h1>Errors : </h1><p>".count($erroredPublications)."</p>";
 
 ?>
-
     <hgroup class="wrap">
-        <h1><?php echo __('publications.publications'); ?></h1>
-
+        <?php echo $messages; ?>
         <nav>
             <?php echo Html::link('admin/publications/addPublication', __('publications.create_publication'), array('class' => 'btn')); ?>
             <?php echo Html::link('admin/publications/addBook', __('publications.create_book'), array('class' => 'btn')); ?>
@@ -29,36 +34,56 @@ foreach ($posts->results as $post) {
     </hgroup>
 
 
-    <section class="wrap">
-        <?php echo $messages; ?>
-        <!--//TODO WORKING HERE-->
-        <!-- TODO Differencier livres et publciations texte -->
+    <hgroup class="wrap">
+        <h1>Vos publications texte</h1>
+        <section class="wrap">
+            <?php if ($posts->count): ?>
+                <ul class="main list">
+                    <?php foreach ($textPublications as $publication): ?>
+                        <li>
+                            <a href="<?php echo Uri::to('admin/publications/editPublication/' . $publication->id); ?>">
+                                <p><?php echo strip_tags($publication->description); ?></p>
+                                <p>Publication <?php echo $publication->publicofpublication_text;?></p>
+                                <p><b>Lien vers ce livre : </b><?php echo $post->externallink; ?></p>
+                            <span>
+                                <time><b>Date de création : </b><?php echo Date::format($publication->created); ?>
+                                </time>
+                            </span>
+                                <br>
+                            <span>
+                                <time><b>Date de publication officielle : </b><?php
+                                    echo $publication->customdate ? Date::format($publication->customdate) : ""; ?>
+                                </time>
+                                <em class="status <?php echo $publication->status; ?>"
+                                    title="<?php echo __('global.' . $publication->status); ?>">
+                                    <?php echo __('global.' . $publication->status); ?>
+                                </em>
+                            </span>
+                            </a>
+                        </li>
 
-        <?php if ($posts->count): ?>
-            <ul class="main list">
-                <?php foreach ($books as $post): ?>
-                    <!--                    Post Object ( [data] => Array (
-                    [id] => 57
-                    [title] => test type of publication
-                    [slug] => test-type-of-publication
-                    [description] => test
-                    [html] =>
-                    [css] =>
-                    [js] =>
-                    [created] => 2015-12-09 22:01:27
-                    [author] => 1
-                    [category] => 4
-                    [status] => published
-                    [comments] => 0
-                    [typeofpublication] => book ) )
-                    [bookimage] => book ) )
-                    [externallink] => book ) )-->
-                    <li>
-                        <a href="<?php echo Uri::to('admin/publications/editBook/' . $post->id); ?>">
-                            <strong><?php echo $post->title; ?></strong>
-                            <img width=auto height=100 src="/content/<?php echo $post->bookimage; ?>" alt="">
-<!--                            <a href="--><?php //echo $book->externallink; ?><!--">Lien vers ce livre</a>--> <!--TODO : Search for a work around to make this link clickable inside the big clickable area.-->
-                            <p><?php echo strip_tags($post->description); ?></p>
+                    <?php endforeach; ?>
+                </ul>
+            <?php endif; ?>
+            <aside class="paging"><?php echo $posts->links(); ?></aside>
+        </section>
+    </hgroup>
+
+
+    <hgroup class="wrap">
+        <h1>Vos livres</h1>
+        <section class="wrap">
+            <?php if ($posts->count): ?>
+                <ul class="main list">
+                    <?php foreach ($books as $post): ?>
+                        <li>
+                            <a href="<?php echo Uri::to('admin/publications/editBook/' . $post->id); ?>">
+                                <strong><?php echo $post->title; ?></strong>
+                                <img width=auto height=100 src="/content/<?php echo $post->bookimage; ?>" alt="">
+
+                                <p><b>Lien vers ce livre : </b><?php echo $post->externallink; ?></p>
+
+                                <p><?php echo strip_tags($post->description); ?></p>
                             <span>
                                 <time><?php echo Date::format($post->created); ?></time>
 
@@ -67,14 +92,14 @@ foreach ($posts->results as $post) {
                                     <?php echo __('global.' . $post->status); ?>
                                 </em>
                             </span>
-                        </a>
-                    </li>
-                <?php endforeach; ?>
-            </ul>
-        <?php endif; ?>
-        <aside class="paging"><?php echo $posts->links(); ?></aside>
+                            </a>
+                        </li>
+                    <?php endforeach; ?>
+                </ul>
+            <?php endif; ?>
+            <aside class="paging"><?php echo $posts->links(); ?></aside>
 
 
-    </section>
-
+        </section>
+    </hgroup>
 <?php echo $footer; ?>

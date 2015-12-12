@@ -1,7 +1,7 @@
 <?php echo $header; ?>
 <?php
 $bookImageField = false;
-$externalLinkField = false;
+$externallink = false;
 $typeofpublication = false;
 foreach ($fields as $field) {
     switch ($field->key) {
@@ -12,7 +12,7 @@ foreach ($fields as $field) {
             $bookImageField = $field;
             break;
         case 'externallink':
-            $externalLinkField = $field;
+            $externallink = $field;
             break;
         case 'typeofpublication':
             //Say if it's a book or a text publication. Normally book here
@@ -66,8 +66,8 @@ foreach ($fields as $field) {
                 }
 
                 echo Form::text("extend[" . $typeofpublication->key . "]", null, array(
-                    'placeholder' => $bookImageField->label,
-                    'id' => "extend_" . $bookImageField->key,
+                    'placeholder' => $typeofpublication->label,
+                    'id' => "extend_" . $typeofpublication->key,
                     'value' => 'book',
                     'class' => 'hide'
                 ));
@@ -95,11 +95,11 @@ foreach ($fields as $field) {
 
                 <p>
                     <?php
-                    if ($externalLinkField) {
-                        echo Form::text("extend[" . $externalLinkField->key . "]", null, array(
-                            'placeholder' => $externalLinkField->label,
+                    if ($externallink) {
+                        echo Form::text("extend[" . $externallink->key . "]", null, array(
+                            'placeholder' => $externallink->label,
                             'autocomplete' => 'off',
-                            'id' => 'extend_' . $externalLinkField->key
+                            'id' => 'extend_' . $externallink->key
                         ));
                     }
                     ?>
@@ -121,9 +121,14 @@ foreach ($fields as $field) {
             </div>
         </fieldset>
     </form>
-
-    <script src="<?php echo asset('anchor/views/assets/js/slug.js'); ?>"></script>
-    <script src="<?php echo asset('anchor/views/assets/js/dragdrop.js'); ?>"></script>
+<?php
+addScriptTag('anchor/views/assets/js/slug.js');
+addScriptTag('anchor/views/assets/js/dragdrop.js');
+addScriptTag('anchor/views/assets/js/upload-fields.js');
+addScriptTag('anchor/views/assets/js/text-resize.js');
+addScriptTag('anchor/views/assets/js/ckeditor/ckeditor.js');
+addScriptTag('anchor/views/assets/js/ckeditor_init.js');
+?>
     <script>
         initDragdrop(function (url, filename) {
             $('.file-image-preview').attr('src', url).attr('value', url); //adding image to img element to display it
@@ -131,15 +136,6 @@ foreach ($fields as $field) {
             console.log(filename); //Displaying filename
             $('.upload_filename').attr("value", filename); //Init value of input text that should store filename
         });
-    </script>
-    <script src="<?php echo asset('anchor/views/assets/js/upload-fields.js'); ?>"></script>
-    <script src="<?php echo asset('anchor/views/assets/js/text-resize.js'); ?>"></script>
-    <script src="<?php echo asset('anchor/views/assets/js/ckeditor/ckeditor.js'); ?>"></script>
-    <!--<script src="--><?php //echo asset('anchor/views/assets/js/editor.js'); ?><!--"></script>-->
-    <script src="<?php echo asset('anchor/views/assets/js/ckeditor_init.js'); ?>"></script>
-
-    <script>
-        //	$('textarea[name=html]').editor();
     </script>
 
 <?php echo $footer; ?>
