@@ -30,12 +30,6 @@ foreach ($posts as $post) {
     }
 }
 
-//echo "<h1>Books : </h1><p>" . count($books) . "</p>";
-//echo "<h1>Publications publiques : </h1><p>" . count($publicTextPublications) . "</p>";
-//echo "<h1>Publications scientifiques : </h1><p>" . count($scientificTextPublications) . "</p>";
-//echo "<h1>Errors : </h1><p>" . count($erroredPublications) . "</p>";
-
-//Now we need to sort scientific/public text publications by date
 function compareFunctionTextPublication($publicationA, $publicationB)
 {
     $dateA = $publicationA->extends['customdate'];
@@ -57,16 +51,11 @@ function compareFunctionTextPublication($publicationA, $publicationB)
     }
 }
 
-usort($publicTextPublications, "compareFunctionTextPublication");
-usort($scientificTextPublications, "compareFunctionTextPublication");
-
 function getYearOfPublication($publication, $extendKey)
 {
     $d = date_parse($publication->extends[$extendKey]);
     return $d['year'];
 }
-
-//Then we would like to group by year
 
 function groupPublicationByYear($array, $extendKey)
 {
@@ -78,51 +67,16 @@ function groupPublicationByYear($array, $extendKey)
     return $tmp;
 }
 
-$publicTextPublications = groupPublicationByYear($publicTextPublications, 'customdate');
-$scientificTextPublications = groupPublicationByYear($scientificTextPublications, 'customdate');
+function displayHTMLBook($book, $ext)
+{
+    echo '<div class="book">' .
+        '<a class="hidden-link" href="">' .
+        '<img src="/content/' . $ext['bookimage'] . '" alt="" class="bookImg">' .
+        '<div class="bookTitle">' . $book->data['title'] . '</div>' .
+        '</a>' .
+        '</div>';
+}
 
-
-$numberOfBookPerRow = 3;
-?>
-
-<div class="bookContainer">
-    <?php
-
-    function displayHTMLBook($book, $ext)
-    {
-        echo '<div class="book">' .
-            '<a class="hidden-link" href="">' .
-            '<img src="/content/' . $ext['bookimage'] . '" alt="" class="bookImg">' .
-            '<div class="bookTitle">' . $book->data['title'] . '</div>' .
-            '</a>' .
-            '</div>';
-    }
-
-    for ($row = 0; $row < floor(count($books) / $numberOfBookPerRow); $row++) {
-        echo '<div class="bookRow">';
-        for ($rowIndex = 0; $rowIndex < $numberOfBookPerRow; $rowIndex++) {
-            $bookIndex = $row * $numberOfBookPerRow + $rowIndex;
-            $ext = $posts[$bookIndex]->data['extends'];
-            displayHTMLBook($books[$bookIndex], $ext);
-        }
-        echo '</div>';
-    }
-    if (floor(count($books) / $numberOfBookPerRow) != ceil(count($books) / $numberOfBookPerRow)) {
-        //Some trailing books
-        echo '<div class="bookRow">';
-        $nbDoneRows = floor(count($books) / $numberOfBookPerRow);
-        for ($i = $nbDoneRows * $numberOfBookPerRow; $i < count($books); $i++) {
-            $ext = $posts[$i]->data['extends'];
-            displayHTMLBook($books[$i], $ext);
-        }
-        echo '</div>';
-    }
-
-    ?>
-</div>
-
-
-<?php
 function displayHTMLPublication($publication)
 {
 
@@ -159,8 +113,41 @@ function displayHTMLPublicationCol($ar)
 
 }
 
+usort($publicTextPublications, "compareFunctionTextPublication");
+usort($scientificTextPublications, "compareFunctionTextPublication");
+
+$publicTextPublications = groupPublicationByYear($publicTextPublications, 'customdate');
+$scientificTextPublications = groupPublicationByYear($scientificTextPublications, 'customdate');
+
+$numberOfBookPerRow = 3;
+
 ?>
 
+<div class="bookContainer">
+    <?php
+
+    for ($row = 0; $row < floor(count($books) / $numberOfBookPerRow); $row++) {
+        echo '<div class="bookRow">';
+        for ($rowIndex = 0; $rowIndex < $numberOfBookPerRow; $rowIndex++) {
+            $bookIndex = $row * $numberOfBookPerRow + $rowIndex;
+            $ext = $posts[$bookIndex]->data['extends'];
+            displayHTMLBook($books[$bookIndex], $ext);
+        }
+        echo '</div>';
+    }
+    if (floor(count($books) / $numberOfBookPerRow) != ceil(count($books) / $numberOfBookPerRow)) {
+        //Some trailing books
+        echo '<div class="bookRow">';
+        $nbDoneRows = floor(count($books) / $numberOfBookPerRow);
+        for ($i = $nbDoneRows * $numberOfBookPerRow; $i < count($books); $i++) {
+            $ext = $posts[$i]->data['extends'];
+            displayHTMLBook($books[$i], $ext);
+        }
+        echo '</div>';
+    }
+
+    ?>
+</div>
 
 <div class="publicationContainer">
     <div class="publicationCol">

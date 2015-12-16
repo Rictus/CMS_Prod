@@ -3,6 +3,7 @@ Thumbs.db
 .DS_Store
 *.esproj
 *.log
+
 *.gz
 .idea/
 .idea/*
@@ -11,3 +12,6 @@ Thumbs.db
 /node_modules
 # We all love Sublime Text and its awesome plugins, don't we?
 sftp-config.json
+
+# My file to test some php funcs in command line
+delete.php

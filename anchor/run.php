@@ -54,6 +54,7 @@ if (is_admin()) {
     require APP . 'routes/blog' . EXT;
     require APP . 'routes/users' . EXT;
     require APP . 'routes/variables' . EXT;
+    require APP . 'routes/accueil' . EXT;
 } else {
     require APP . 'routes/site' . EXT;
 }

@@ -36,7 +36,7 @@
                     //Old version of menu
                     $menu = array('posts', 'comments', 'pages', 'categories', 'users', 'extend');
                     //Current version
-                    $menu = array('posts', 'categories', 'users', 'dossiers', 'blog', 'publications');
+                    $menu = array('accueil', 'dossiers', 'blog', 'publications');
 
                     foreach ($menu as $url): ?>
                         <li <?php if (strpos(Uri::current(), $url) !== false) echo 'class="active"'; ?>>

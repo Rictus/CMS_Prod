@@ -124,7 +124,7 @@
         <div class="inner row">
             <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 publication">
                 <div class="picture"><img
-                        src="<?php echo theme_url("./img/A09CFF26-B8D5-49A5-9F16-DF5FE45EE14B@2x.png"); ?>" alt="">
+                        src="<?php echo theme_url("./img/erectionuserguide.png"); ?>" alt="">
                 </div>
                 <div class="title">ERECTION THE USER GUIDE</div>
                 <div class="description">Erection, mode d'emploi a l'ambition d'apporter à un maximum de lecteurs un
@@ -134,7 +134,7 @@
             </div>
             <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 publication">
                 <div class="picture"><img
-                        src="<?php echo theme_url("./img/E905F90B-6F77-4232-A3F0-9340937969BC@2x.png"); ?>" alt="">
+                        src="<?php echo theme_url("./img/toutceque.png"); ?>" alt="">
                 </div>
                 <div class="title">LE SEXE DE  L’HOMME</div>
                 <div class="description">« Tout ce que vous avez toujours voulu savoir sur le sexe (de l'homme) sans
@@ -145,7 +145,7 @@
             </div>
             <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 publication">
                 <div class="picture"><img
-                        src="<?php echo theme_url("./img/4B07E9F2-C0D8-4C72-896E-B17C30F6E219@2x.png"); ?>" alt="">
+                        src="<?php echo theme_url("./img/formation.png"); ?>" alt="">
                 </div>
                 <div class="title">LES INJECTIONS INTRACAVERNEUSES</div>
                 <div class="description">Ouvrage technique, destiné plutôt au monde médical, mais parfaitement
