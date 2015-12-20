@@ -120,40 +120,49 @@
 
     <div class="lastPublications">
         <div class="inner row">
-            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 publication">
-                <div class="picture"><img
-                        src="<?php echo theme_url("./img/erectionuserguide.png"); ?>" alt="">
-                </div>
-                <div class="title">ERECTION THE USER GUIDE</div>
-                <div class="description">Erection, mode d'emploi a l'ambition d'apporter à un maximum de lecteurs un
-                    maximum d'informations sur un organe qui est non seulement indispensable à une sexualité harmonieuse
-                    mais aussi à la construction de la masculinité.
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 publication">
-                <div class="picture"><img
-                        src="<?php echo theme_url("./img/toutceque.png"); ?>" alt="">
-                </div>
-                <div class="title">LE SEXE DE  L’HOMME</div>
-                <div class="description">« Tout ce que vous avez toujours voulu savoir sur le sexe (de l'homme) sans
-                    oser le demander... ", le docteur Virag vous l'explique dans cet ouvrage qui aborde tous les aspects
-                    de la question sans en omettre aucun, dans un langage accessible, précis et dénué de jugement
-                    moral »
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 publication">
-                <div class="picture"><img
-                        src="<?php echo theme_url("./img/formation.png"); ?>" alt="">
-                </div>
-                <div class="title">LES INJECTIONS INTRACAVERNEUSES</div>
-                <div class="description">Ouvrage technique, destiné plutôt au monde médical, mais parfaitement
-                    intelligible par un public intéressé par la question. En 106 pages, l'ensemble des questions posées
-                    par cette technique qui reste le traitement le plus efficace de la dysfonction érectile est abordé.
-                </div>
-            </div>
+            <?php
+            $books = Registry::get('books');
+            $nbBookToDisplay = 3;
+            $nbBookDisplayed = 0;
+            function displayBook($book)
+            {
+                echo '<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 publication" date="' . $book['created'] . '">
+                <div class="picture"><img src="content/' . $book['bookimage'] . '"></div>
+                <div class="title">' . $book['title'] . '</div>
+                <div class="description">' . $book['description'] . '</div>
+                </div>';
+            }
+
+            function compareDateBook($bookA, $bookB)
+            {
+
+                $dateA = $bookA->data['created'];
+                $dateB = $bookB->data['created'];
+
+                $dateTimeA = DateTime::createFromFormat('Y-m-d H:i:s', $dateA);
+                $dateTimeB = DateTime::createFromFormat('Y-m-d H:i:s', $dateB);
+
+                $timeA = $dateTimeA->getTimestamp();
+                $timeB = $dateTimeB->getTimestamp();
+
+                if ($timeA < $timeB) {
+                    return 1;
+                } else if ($timeB < $timeA) {
+                    return -1;
+                } else {
+                    return 0;
+                }//*/
+            }
+
+            usort($books, "compareDateBook");
+            while ($nbBookDisplayed < $nbBookToDisplay && $nbBookDisplayed < count($books)) {
+                displayBook($books[$nbBookDisplayed]->data);
+                $nbBookDisplayed++;
+            }
+            ?>
         </div>
         <div class="linkContainer">
-            <a href="#" class="link pre-chevron">Accéder aux livres</a>
+            <a href="/publication" class="link pre-chevron">Accéder aux livres</a>
         </div>
     </div>
 
