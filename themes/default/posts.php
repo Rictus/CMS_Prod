@@ -91,22 +91,20 @@
             Notre équipe
         </div>
         <div class="row">
-            <div class="peopleDesc col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                <div class="job">Chirurgien et Sexologue</div>
-                <div class="people">Dr RONALD VIRAG</div>
-            </div>
-            <div class="peopleDesc col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                <div class="job">Médecin vasculaire, echographie vasculaire</div>
-                <div class="people">Dr HÉLÈNE SUSSMAN</div>
-            </div>
-            <div class="peopleDesc col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                <div class="job">Neuro-psychiatre, electromyogramme</div>
-                <div class="people">Dr JEAN FLORESCO</div>
-            </div>
-            <div class="peopleDesc col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                <div class="job">Médecin vasculaire, échographie générale</div>
-                <div class="people">Dr CHRISTELLE RICHARD</div>
-            </div>
+            <?php
+            $team = Registry::get('team');
+            function displayTeamMember($teamMember)
+            {
+                echo '<div class="peopleDesc col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                <div class="job">' . $teamMember['teammemberjob'] . '</div>
+                <div class="people">' . $teamMember['teammembername'] . '</div>
+                </div>';
+            }
+
+            for ($i = 0; $i < count($team); $i++) {
+                displayTeamMember($team[$i]->data);
+            }
+            ?>
         </div>
     </div>
 

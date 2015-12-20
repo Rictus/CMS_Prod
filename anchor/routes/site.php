@@ -5,14 +5,12 @@
  */
 $home_page = Registry::get('home_page');
 $posts_page = Registry::get('posts_page');
-
 /**
  * The Home page
  */
 if ($home_page->id != $posts_page->id) {
     Route::get(array('/', $home_page->slug), function () use ($home_page) {
         Registry::set('page', $home_page);
-
         return new Template('page');
     });
 }
@@ -42,8 +40,17 @@ Route::get($routes, function ($offset = 1) use ($posts_page) {
         return Response::create(new Template('404'), 404);
     }
 
+    // get team
+    list($nbTeamMember, $team) = Post::listing(Category::slug('accueil'), $offset, $per_page = Config::meta('posts_per_page'));
+    for($i = 0; $i  < count($team); $i++) {
+        $memberId = $team[$i]->data['id'];
+        $team[$i]->data['teammembername'] = Extend::value(Extend::field('post', 'teammembername', $memberId));
+        $team[$i]->data['teammemberjob'] = Extend::value(Extend::field('post', 'teammemberjob', $memberId));
+    }
+
     $posts = new Items($posts);
 
+    Registry::set('team', $team);
     Registry::set('posts', $posts);
     Registry::set('total_posts', $total);
     Registry::set('page', $posts_page);
@@ -315,22 +322,10 @@ Route::get(array('publication', 'publication/(:any)'), function ($pageNumber = 1
     for ($i = 0; $i < count($posts); $i++) {
         $e = Extend::fields('post', $posts[$i]->id);
         $newExtendObj = array();
-
-        /*var_dump($posts[$i]);
-         echo "<br>";
-         echo "<br>";
-        var_dump($e);
-        echo "<br>";
-        echo "<br>";
-        echo "<br>";
-        echo "<br>";
-        echo "<br>";
-        echo "<br>";
-        echo "<br>";*/
         for ($j = 0; $j < count($e); $j++) {
             $key = $e[$j]->key;
 
-            if (is_null($e[$j]->value) || !property_exists($e[$j]->value, 'text') ) {
+            if (is_null($e[$j]->value) || !property_exists($e[$j]->value, 'text')) {
                 $value = $e[$j]->value;
             } else {
                 $value = $e[$j]->value->text;

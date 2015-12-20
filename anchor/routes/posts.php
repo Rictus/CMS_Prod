@@ -182,9 +182,6 @@ Route::collection(array('before' => 'auth'), function () {
         $input['status'] = 'published';
 
 
-        var_dump($input);
-        var_dump(Input::get(array('extend')));
-        die();
         // convert to ascii
         $input['slug'] = slug($input['slug']);
 
