@@ -9,11 +9,24 @@ Route::collection(array('before' => 'auth'), function () {
         $vars['token'] = Csrf::token();
         $vars['page'] = Registry::get('posts_page');
         $currentPageCategoryId = getCurrentPageCategoryId('accueil');
-        $vars['team'] = Post::where('category', '=', $currentPageCategoryId)->get();
-        for ($i = 0; $i < count($vars['team']); $i++) {
-            $memberId = $vars['team'][$i]->data["id"];
-            $vars['team'][$i]->data['teammembername'] = Extend::value(Extend::field('post', 'teammembername', $memberId));
-            $vars['team'][$i]->data['teammemberjob'] = Extend::value(Extend::field('post', 'teammemberjob', $memberId));
+        $vars['team'] = array();
+        $vars['accroche'] = false;
+        $postsAccueil = Post::where('category', '=', $currentPageCategoryId)->get();
+        for ($i = 0; $i < count($postsAccueil); $i++) {
+            $memberId = $postsAccueil[$i]->data["id"];
+            $teammembername_extend = Extend::value(Extend::field('post', 'teammembername', $memberId));
+            $teammemberjob_extend = Extend::value(Extend::field('post', 'teammemberjob', $memberId));
+            $catchphrase_extend = Extend::value(Extend::field('post', 'catchphrase', $memberId));
+            $catchimage_extend = Extend::value(Extend::field('post', 'catchimage', $memberId));
+            if (!is_null($teammembername_extend) && !is_null($teammemberjob_extend)) {
+                $postsAccueil[$i]->data['teammembername'] = $teammembername_extend;
+                $postsAccueil[$i]->data['teammemberjob'] = $teammemberjob_extend;
+                $vars['team'][] = $postsAccueil[$i];
+            } else if (!is_null($catchimage_extend) && !is_null($catchphrase_extend)) {
+                $postsAccueil[$i]->data['catchphrase'] = $catchphrase_extend;
+                $postsAccueil[$i]->data['catchimage'] = $catchimage_extend;
+                $vars['accroche'] = $postsAccueil[$i];
+            }
         }
         return View::create('accueil/index', $vars)//can add $vars a parameter to pass values to index page
         ->partial('header', 'partials/header')
@@ -213,5 +226,84 @@ Route::collection(array('before' => 'auth'), function () {
         return Response::redirect('admin/accueil');
     });
 
+
+    Route::get('admin/accueil/addCatch', function () {
+        $vars['messages'] = Notify::read();
+        $vars['token'] = Csrf::token();
+        $vars['page'] = Registry::get('posts_page');
+
+        // extended fields
+        $vars['fields'] = Extend::fields('post');
+
+        $vars['statuses'] = array(
+            'published' => __('global.published'),
+            'draft' => __('global.draft'),
+            'archived' => __('global.archived')
+        );
+
+        $vars['categories'] = Category::dropdown();
+
+        return View::create('accueil/addCatch', $vars)
+            ->partial('header', 'partials/header')
+            ->partial('footer', 'partials/footer');
+    });
+
+    Route::post('admin/accueil/addCatch', function () {
+        $currentPageCategoryId = getCurrentPageCategoryId('accueil');
+        $user = Auth::user();
+        $input = Input::get(array('title', 'slug', 'description', 'created',
+            'html', 'css', 'js', 'category', 'status', 'comments'));
+
+        /** Valeurs en dur **/
+        $input['comments'] = 0;
+        $input['status'] = 'published';
+        $input['title'] = "";
+        $input['description'] = "";
+        $input['css'] = "";
+        $input['html'] = "";
+        $input['js'] = "";
+        $input['slug'] = slug($input['slug']);
+        $input['comments'] = 0;
+        $input['author'] = $user->id;
+        $input['category'] = $currentPageCategoryId;
+
+        do {
+            //Check for duplication
+            $isDuplicate = Post::where('slug', '=', $input['slug'])->count() > 0;
+            if ($isDuplicate) {
+                $input['slug'] = slug(noise(10));
+            }
+        } while ($isDuplicate);
+
+
+        $validator = new Validator($input);
+
+        $validator->add('duplicate', function ($str) {
+            return Post::where('slug', '=', $str)->count() == 0;
+        });
+
+        $validator->check('slug')
+            ->not_regex('#^[0-9_-]+$#', __('posts.slug_invalid'));
+
+
+        if ($errors = $validator->errors()) {
+            Input::flash();
+
+            Notify::error($errors);
+
+            return Response::redirect('admin/posts/addCatch');
+        }
+
+        if (empty($input['created'])) {
+            $input['created'] = Date::mysql('now');
+        }
+        $post = Post::create($input);
+
+        Extend::process('post', $post->id);
+
+        Notify::success(__('accueil.created_catch'));
+
+        return Response::redirect('admin/accueil');
+    });
 
 });

@@ -4,6 +4,24 @@
     </hgroup>
 
     <hgroup class="wrap">
+        <h1>Votre accroche</h1>
+        <nav>
+            <?php echo Html::link('admin/accueil/addCatch', __('accueil.create_catch'), array('class' => 'btn')); ?>
+        </nav>
+    </hgroup>
+    <section class="wrap">
+        <ul class="main list">
+            <li>
+                <a href="<?php echo Uri::to('admin/accueil/editCatch/' . $accroche->id); ?>">
+                    <strong><?php echo $accroche->catchphrase; ?></strong>
+                    <img width=auto height=100 src="/content/<?php echo $accroche->catchimage; ?>" alt="">
+                </a>
+            </li>
+        </ul>
+    </section>
+
+
+    <hgroup class="wrap">
         <h1>Votre équipe</h1>
         <nav>
             <?php echo Html::link('admin/accueil/addTeamMember', __('accueil.create_teamMember'), array('class' => 'btn')); ?>
@@ -16,6 +34,7 @@
                 <li>
                     <a href="<?php echo Uri::to('admin/accueil/editTeamMember/' . $member->id); ?>">
                         <strong><?php echo $member->teammembername; ?></strong>
+
                         <p>
                             <?php echo $member->teammemberjob; ?>
                         </p>

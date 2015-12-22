@@ -41,11 +41,11 @@ Route::get($routes, function ($offset = 1) use ($posts_page) {
     }
 
     // get team
-    list($nbTeamMember, $team) = Post::listing(Category::slug('accueil'), $offset, $per_page = Config::meta('posts_per_page'));
-    for ($i = 0; $i < $nbTeamMember; $i++) {
-        $memberId = $team[$i]->data['id'];
-        $team[$i]->data['teammembername'] = Extend::value(Extend::field('post', 'teammembername', $memberId));
-        $team[$i]->data['teammemberjob'] = Extend::value(Extend::field('post', 'teammemberjob', $memberId));
+    list($nbPosts, $postsAccueil) = Post::listing(Category::slug('accueil'), $offset, $per_page = Config::meta('posts_per_page'));
+    for ($i = 0; $i < $nbPosts; $i++) {
+        $memberId = $postsAccueil[$i]->data['id'];
+        $postsAccueil[$i]->data['teammembername'] = Extend::value(Extend::field('post', 'teammembername', $memberId));
+        $postsAccueil[$i]->data['teammemberjob'] = Extend::value(Extend::field('post', 'teammemberjob', $memberId));
     }
 
     // get books
@@ -64,7 +64,7 @@ Route::get($routes, function ($offset = 1) use ($posts_page) {
     $posts = new Items($posts);
 
     Registry::set('books', $books);
-    Registry::set('team', $team);
+    Registry::set('team', $postsAccueil);
     Registry::set('posts', $posts);
     Registry::set('total_posts', $total);
     Registry::set('page', $posts_page);
