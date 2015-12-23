@@ -124,16 +124,14 @@ foreach ($fields as $field) {
         </fieldset>
     </form>
 
-    <!--    <script src="--><?php //echo asset('anchor/views/assets/js/dragdrop.js'); ?><!--"></script>-->
-    <!--    <script src="--><?php //echo asset('anchor/views/assets/js/upload-fields.js'); ?><!--"></script>-->
-    <script src="<?php echo asset('anchor/views/assets/js/slug.js'); ?>"></script>
-    <script src="<?php echo asset('anchor/views/assets/js/text-resize.js'); ?>"></script>
-    <script src="<?php echo asset('anchor/views/assets/js/ckeditor/ckeditor.js'); ?>"></script>
-    <!--<script src="--><?php //echo asset('anchor/views/assets/js/editor.js'); ?><!--"></script>-->
-    <script src="<?php echo asset('anchor/views/assets/js/ckeditor_init.js'); ?>"></script>
+<?php
+addScriptTag('anchor/views/assets/js/slug.js');
+addScriptTag('anchor/views/assets/js/text-resize.js');
+addScriptTag('anchor/views/assets/js/ckeditor/ckeditor.js');
+addScriptTag('anchor/views/assets/js/jquery-2.1.4.min.js');
+addScriptTag('anchor/views/assets/js/ckeditor_init.js');
+addScriptTag('anchor/views/assets/js/bootstrap.min.js');
+addScriptTag('anchor/views/assets/js/bootstrap-datepicker.min.js');
 
-    <script>
-        //	$('textarea[name=html]').editor();
-    </script>
-
-<?php echo $footer; ?>
+echo $footer;
+?>

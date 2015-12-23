@@ -158,7 +158,7 @@ Route::collection(array('before' => 'auth'), function () {
     /*
         Edit post
     */
-    Route::get('admin/publications/edit/(:num)', function ($id) {
+    Route::get('admin/blog/edit/(:num)', function ($id) {
         $vars['messages'] = Notify::read();
         $vars['token'] = Csrf::token();
         $vars['post'] = Post::find($id);
@@ -173,14 +173,14 @@ Route::collection(array('before' => 'auth'), function () {
             'archived' => __('global.archived')
         );
 
-        return View::create('publications/edit', $vars)
+        return View::create('blog/edit', $vars)
             ->partial('header', 'partials/header')
             ->partial('footer', 'partials/footer')
             ->partial('editor', 'partials/editor');
     });
 
-    Route::post('admin/publications/edit/(:num)', function ($id) {
-        $currentPageCategoryId = getCurrentPageCategoryId('publication');
+    Route::post('admin/blog/edit/(:num)', function ($id) {
+        $currentPageCategoryId = getCurrentPageCategoryId('blog');
         $input = Input::get(array('title', 'slug', 'description', 'created',
             'html', 'css', 'js', 'category', 'status', 'comments'));
 
@@ -249,7 +249,7 @@ Route::collection(array('before' => 'auth'), function () {
 
         Notify::success(__('posts.updated'));
 
-        return Response::redirect('admin/publications/edit/' . $id);
+        return Response::redirect('admin/blog/edit/' . $id);
     });
 
 

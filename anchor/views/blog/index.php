@@ -14,7 +14,7 @@
             <ul class="main list">
                 <?php foreach ($posts->results as $article): ?>
                     <li>
-                        <a href="<?php echo Uri::to('admin/posts/edit/' . $article->id); ?>">
+                        <a href="<?php echo Uri::to('admin/blog/edit/' . $article->id); ?>">
                             <strong><?php echo $article->title; ?></strong>
 				<span>
 					<time><?php echo Date::format($article->created); ?></time>
