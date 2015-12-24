@@ -25,6 +25,8 @@ if ($home_page->id == $posts_page->id) {
 }
 
 Route::get($routes, function ($offset = 1) use ($posts_page) {
+    $catch = array();
+    $team = array();
     if ($offset > 0) {
         // get public listings
         list($total, $posts) = Post::listing(null, $offset, $per_page = Config::meta('posts_per_page'));
@@ -40,12 +42,27 @@ Route::get($routes, function ($offset = 1) use ($posts_page) {
         return Response::create(new Template('404'), 404);
     }
 
-    // get team
-    list($nbPosts, $postsAccueil) = Post::listing(Category::slug('accueil'), $offset, $per_page = Config::meta('posts_per_page'));
-    for ($i = 0; $i < $nbPosts; $i++) {
-        $memberId = $postsAccueil[$i]->data['id'];
-        $postsAccueil[$i]->data['teammembername'] = Extend::value(Extend::field('post', 'teammembername', $memberId));
-        $postsAccueil[$i]->data['teammemberjob'] = Extend::value(Extend::field('post', 'teammemberjob', $memberId));
+
+    list($nbPosts, $postsAccueil) = Post::listing(Category::slug('accueil'), $offset, 1000);
+
+
+    for ($i = 0; $i < count($postsAccueil); $i++) {
+        $postId = $postsAccueil[$i]->data["id"];
+        $teammembername_extend = Extend::value(Extend::field('post', 'teammembername', $postId));
+        $teammemberjob_extend = Extend::value(Extend::field('post', 'teammemberjob', $postId));
+        $catchphrase_extend = Extend::value(Extend::field('post', 'catchphrase', $postId));
+        $catchimage_extend = Extend::value(Extend::field('post', 'catchimage', $postId));
+
+        //Get team
+        if (!is_null($teammembername_extend) && !is_null($teammemberjob_extend)) {
+            $postsAccueil[$i]->data['teammembername'] = $teammembername_extend;
+            $postsAccueil[$i]->data['teammemberjob'] = $teammemberjob_extend;
+            $team[] = $postsAccueil[$i];
+        } //Get catch
+        else if (!is_null($catchimage_extend) && !is_null($catchphrase_extend)) {
+            $catch['catchphrase'] = $catchphrase_extend;
+            $catch['catchimage'] = $catchimage_extend;
+        }
     }
 
     // get books
@@ -64,8 +81,9 @@ Route::get($routes, function ($offset = 1) use ($posts_page) {
     $posts = new Items($posts);
 
     Registry::set('books', $books);
-    Registry::set('team', $postsAccueil);
+    Registry::set('team', $team);
     Registry::set('posts', $posts);
+    Registry::set('catch', $catch);
     Registry::set('total_posts', $total);
     Registry::set('page', $posts_page);
     Registry::set('page_offset', $offset);

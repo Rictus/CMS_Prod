@@ -9,5 +9,6 @@ return array(
     'teamMemberDeleted' => 'Le membre a été supprimé',
     'teamMemberUpdated' => 'Le membre a été mis à jour',
     'create_catch' => 'Ajouter une accroche',
-    'created_catch' => 'L\'accroche a été créée'
+    'created_catch' => 'L\'accroche a été créée',
+    'catchUpdated' => 'L\'accroche a été mise à jour'
 );

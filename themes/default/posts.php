@@ -1,5 +1,7 @@
-<?php theme_include('header'); ?>
-<?php theme_include('header_image'); ?>
+<?php
+theme_include('header');
+theme_include('header_image');
+?>
     <div class="content">
     <div class="bigText wrap">
         <ul>

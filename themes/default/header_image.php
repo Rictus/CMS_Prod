@@ -1,10 +1,45 @@
+<?php
+$catch = Registry::get('catch');
+$catchImage = $catch['catchimage'];
+$catchPhrase = $catch['catchphrase'];
+$catchPhraseLength = strlen($catchPhrase);
+$middleIndex = (int)floor(strlen($catchPhrase) / 2);
+$leftIterator = $middleIndex;
+$rightIterator = $middleIndex;
+$foundedIndex = -1;
 
+//Search for the first space from the middle of the word to cut it
+while ($foundedIndex == -1 && ($leftIterator >= 0 || $rightIterator < $catchPhraseLength)) {
+    if ($leftIterator >= 0) {
+        if ($catchPhrase[$leftIterator] == ' ') {
+            $foundedIndex = $leftIterator;
+        } else {
+            $leftIterator--;
+        }
+    }
+    if ($rightIterator < $catchPhraseLength) {
+        if ($catchPhrase[$rightIterator] == ' ') {
+            $foundedIndex = $rightIterator;
+        } else {
+            $rightIterator++;
+        }
+    }
+}
+if ($foundedIndex != -1) {
+    $catchPhrase = "<div>" . substr($catchPhrase, 0, $foundedIndex + 1) . "</div><div class='bold'>" . substr($catchPhrase, $foundedIndex + 1) . "</div>";
+} else {
+    $catchPhrase = "<div>" . $catch . "</div>";
+}
+
+?>
 <div class="cont">
-    <img src="<?php echo theme_url("img/ImageAccueil.png"); ?>" alt="Prescrire du bonheur, Pr�server le capital sant�">
-
+    <?php
+    echo '<img src="/content/' . $catchImage . '" alt="Image d\'accroche">';
+    ?>
     <div class="topText">
-        <div>Prescrire du bonheur</div>
-        <div class="bold">Preserver le capital sante</div>
+        <?php
+        echo $catchPhrase;
+        ?>
     </div>
     <div class="buttons">
         <a class="button button_white pre-icon_call" href="#">Nous contacter</a>
