@@ -85,6 +85,12 @@ function article_time()
     }
 }
 
+
+function article_time_given_date($date)
+{
+    return Date::format($date, 'U');
+}
+
 function article_date()
 {
     if ($created = Registry::prop('article', 'created')) {

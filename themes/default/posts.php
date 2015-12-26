@@ -119,12 +119,20 @@ theme_include('header_image');
     </div>
 
     <div class="lastPost">
+        <?php
+
+        $lastBlogPost = Registry::get('lastBlogPost');
+        $lastBlogPost = $lastBlogPost->data;
+        $lastBlogPostDate = utf8_encode(strftime('%d %B %Y', article_time_given_date($lastBlogPost['created'])));
+        ?>
         <div class="inner">
-            <div class="date">13 mai 2015</div>
-            <div class="title">Des spermatozoïdes fabriqués  en laboratoire : c'est important  pour les couples
-                infertiles
-            </div>
-            <div class="picture"><img src="<?php echo theme_url("./img/Actu.png"); ?>" alt=""></div>
+            <div class="date"><?php echo $lastBlogPostDate; ?></div>
+            <div class="title"><?php echo $lastBlogPost['title']; ?></div>
+            <?php
+                echo $lastBlogPost['html']; //TODO : limit number of chars
+            ?>
+            <!--            <div class="picture"><img src="-->
+            <?php //echo theme_url("./img/Actu.png"); ?><!--" alt=""></div>-->
         </div>
     </div>
 

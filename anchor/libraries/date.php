@@ -13,7 +13,6 @@ class Date {
 
 		$date = new DateTime($date, new DateTimeZone('GMT'));
 		$date->setTimezone(new DateTimeZone(Config::app('timezone')));
-
 		return $date->format($format);
 	}
 

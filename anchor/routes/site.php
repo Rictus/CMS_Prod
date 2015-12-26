@@ -78,12 +78,17 @@ Route::get($routes, function ($offset = 1) use ($posts_page) {
         }
     }
 
+    // get last post from blog
+    list($nbBlogPost, $blogPosts) = Post::listing(Category::slug('blog'), 1, 1000);
+    $lastBlogPost = $blogPosts[0]; //Normally, the first one should be the most recent article cause ::listing search in db and sort result
+
     $posts = new Items($posts);
 
     Registry::set('books', $books);
     Registry::set('team', $team);
     Registry::set('posts', $posts);
     Registry::set('catch', $catch);
+    Registry::set('lastBlogPost', $lastBlogPost);
     Registry::set('total_posts', $total);
     Registry::set('page', $posts_page);
     Registry::set('page_offset', $offset);

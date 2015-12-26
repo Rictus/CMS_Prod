@@ -6,7 +6,7 @@
     <hgroup class="wrap">
         <h1>Votre accroche</h1>
         <nav>
-            <?php echo Html::link('admin/accueil/addCatch', __('accueil.create_catch'), array('class' => 'btn')); ?>
+<!--            --><?php //echo Html::link('admin/accueil/addCatch', __('accueil.create_catch'), array('class' => 'btn')); ?>
         </nav>
     </hgroup>
     <section class="wrap">
