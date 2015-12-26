@@ -149,7 +149,7 @@ function displayDossierSummary($summaryInArticlePage = true)
     //First displaying posts with no specified type of problem :
     for ($i = 0; $i < count($posts); $i++) {
         $curPost = $posts[$i]->data;
-        if (!$curPost['typeofproblem'] ||$curPost['typeofproblem']=='indifferent') {
+        if (!$curPost['typeofproblem'] || $curPost['typeofproblem'] == 'indifferent') {
             displayDossierSummary_PostLink($summaryInArticlePage, $curPost);
         }
     }

@@ -137,12 +137,33 @@ Route::get('(:num)', function ($id) use ($posts_page) {
     return Response::redirect($posts_page->slug . '/' . $post->data['slug']);
 });
 
+
 /**
  * View article
  */
 Route::get($posts_page->slug . '/(:any)', function ($slug) use ($posts_page) {
     if (!$post = Post::slug($slug)) {
         return Response::create(new Template('404'), 404);
+    }
+
+    $dossierCategory = Category::slug('dossier');
+
+    if ($post->data['category'] == $dossierCategory->data["id"]) {
+        list($nbPosts, $posts) = Post::listing($dossierCategory, 1, 10000);
+        //Get all extends for each post
+        for ($i = 0; $i < count($posts); $i++) {
+            $e = Extend::fields('post', $posts[$i]->id);
+            $newExtendObj = array();
+            for ($j = 0; $j < count($e); $j++) {
+                $key = $e[$j]->key;
+                if (property_exists($e[$j]->value, 'text')) {
+                    $value = $e[$j]->value->text;
+                    $newExtendObj[$key] = $value;
+                }
+            }
+            $posts[$i]->extends = $newExtendObj;
+        }
+        Registry::set('posts', $posts);
     }
 
     Registry::set('page', $posts_page);
