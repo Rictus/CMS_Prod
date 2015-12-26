@@ -11,7 +11,7 @@
 
                 <div class="tel">TÉL. <a class="inline-link hidden-link" href="tel:0156542727 ">01 56 54 27 27 </a>
                 </div>
-                <div class="mail">MAIL <a class="inline-link hidden-link" href="mailto: ">ceti.duras@wanadoo.fr</a>
+                <div class="mail">MAIL <a class="inline-link hidden-link" href="mailto:ceti.duras@wanadoo.fr">ceti.duras@wanadoo.fr</a>
                 </div>
 
 

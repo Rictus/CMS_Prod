@@ -92,22 +92,30 @@ theme_include('header_image');
         <div class="title">
             Notre équipe
         </div>
-        <div class="row">
-            <?php
-            $team = Registry::get('team');
-            function displayTeamMember($teamMember)
-            {
-                echo '<div class="peopleDesc col-lg-3 col-md-3 col-sm-6 col-xs-12">
+        <?php
+        function displayTeamMember($teamMember)
+        {
+            echo '<div class="peopleDesc">
                 <div class="job">' . $teamMember['teammemberjob'] . '</div>
                 <div class="people">' . $teamMember['teammembername'] . '</div>
                 </div>';
-            }
+        }
 
-            for ($i = 0; $i < count($team); $i++) {
-                displayTeamMember($team[$i]->data);
+
+        $team = Registry::get('team');
+        $nbItemsPerRow = 4;
+        $totalNbRow = ceil(count($team) / $nbItemsPerRow);
+        for ($rowNumber = 0; $rowNumber < $totalNbRow; $rowNumber++) {
+            echo '<div class="teamInnerContainer">';
+            for ($i = 0; $i < $nbItemsPerRow; $i++) {
+                $indexMember = $i + $nbItemsPerRow * $rowNumber;
+                if ($indexMember < count($team)) {
+                    displayTeamMember($team[$indexMember]->data);
+                }
             }
-            ?>
-        </div>
+            echo '</div>';
+        }
+        ?>
     </div>
 
     <div class="lastPost">
