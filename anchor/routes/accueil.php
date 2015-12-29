@@ -451,4 +451,28 @@ Route::collection(array('before' => 'auth'), function () {
         return Response::redirect('admin/accueil');
     });
 
+    /**
+     * Person infos
+     */
+    Route::get('admin/accueil/editInfo/(:any)', function ($key) {
+        $vars['messages'] = Notify::read();
+        $vars['token'] = Csrf::token();
+
+        $vars['variableInfo'] = Query::table(Base::table('meta'))->where('key', '=', $key)->fetch();
+
+        return View::create('accueil/editInfo', $vars)
+            ->partial('header', 'partials/header')
+            ->partial('footer', 'partials/footer');
+    });
+
+    Route::post('admin/accueil/editInfo/(:any)', function ($key) {
+        $input = Input::get(array('value'));
+
+        Query::table(Base::table('meta'))->where('key', '=', $key)->update($input);
+
+        Notify::success(__('accueil.updated_info'));
+
+        return Response::redirect('admin/accueil');
+    });
+
 });

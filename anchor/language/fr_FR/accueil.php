@@ -14,5 +14,5 @@ return array(
     'create_bio' => 'Ajouter une biographie',
     'created_bio' => 'Biographie ajoutée',
     'updated_bio' => 'La biographie a été mise à jour',
-
+    'updated_info' => 'Cette information a été mise à jour'
 );

@@ -22,18 +22,31 @@
         </ul>
     </section>
 
-<?php
-//$biopage = Registry::get('biopage');
-//$bioimage = Registry::get('bioimage');
-//$biofirstpart = Registry::get('biofirstpart');
-//$biosecondpart = Registry::get('biosecondpart');
-//$biothirdpart = Registry::get('biothirdpart');
+    <hgroup class="wrap">
+        <h1>Vos informations</h1>
+        <nav>
 
-?>
+        </nav>
+    </hgroup>
+    <section class="wrap">
+        <ul class="main list">
+            <?php
+            $customs = ['custom_address1', 'custom_address2', 'custom_mail', 'custom_telnumber'];
+            foreach ($customs as $custom) {
+                echo "<li>" .
+                    "<a href='" . Uri::to('admin/accueil/editInfo/'.$custom) . "'>" .
+                    "<strong>" . Config::meta($custom) . "</strong>" .
+                    "</a>" .
+                    "</li>";
+            }
+            ?>
+        </ul>
+    </section>
+
     <hgroup class="wrap">
         <h1>Votre biographie</h1>
         <nav>
-            <?php echo Html::link('admin/accueil/addBio', __('accueil.create_bio'), array('class' => 'btn')); ?>
+            <!--            --><?php //echo Html::link('admin/accueil/addBio', __('accueil.create_bio'), array('class' => 'btn')); ?>
         </nav>
     </hgroup>
     <section class="wrap">
@@ -44,6 +57,7 @@
                     <strong><?php echo $biofirstpart; ?></strong>
 
                     <p><?php echo $biosecondpart; ?></p>
+
                     <p><?php echo $biothirdpart; ?></p>
                 </a>
             </li>
