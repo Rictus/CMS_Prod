@@ -4,58 +4,19 @@ theme_include('header_image');
 ?>
     <div class="content">
     <div class="bigText wrap">
-        <ul>
-            Evaluer pour :
-            <li>- mieux traiter les dysfonctionnments</li>
-            <li>- prevenir les mefaits des facteurs de risque vasculaire</li>
-            <li>- corriger les mefaits du vieillissements</li>
-        </ul>
+        <?php echo site_meta('introfirstpart'); ?>
     </div>
     <div class="">
         <div class="listOfPostsContainer">
             <div class="listOfPosts">
-                <div class="colTitle">Nos compétences :</div>
-                <ul>
-                    <div class="listTitle">DYSFONCTION SEXUELLES</div>
-                    <li>- Désir, érection, éjaculation</li>
-                    <li>- Problèmes de couple</li>
-                    <li>- Maladie de Lapeyronie</li>
-                    <li>- Anomalie morphologiques</li>
-                </ul>
-
-                <ul>
-                    <div class="listTitle">MALADIE VASCULAIRE</div>
-                    <li>- Varices, variscosités</li>
-                    <li>- Lymphatiques</li>
-                    <li>- Artérites, Anévrysmes</li>
-                    <li>- Phlébites, Ulcères</li>
-                </ul>
-                <ul>
-                    <div class="listTitle">MÉDECINE RÉGÉNÉRATIVE</div>
-                    <li>- Détection du risque vasculaire</li>
-                    <li>- Thérapie cellulaire autologue</li>
-                </ul>
+                <?php echo site_meta('introsecondpart'); ?>
             </div>
             <div class="listOfPosts">
-                <div class="colTitle">Bilans personnalisés adaptés à chacun :</div>
-                <ul>
-                    <div class="listTitle">Pour les dysfonctions</div>
-                    <li>- Questionnaire spécifique</li>
-                    <li>- Test pharmacologique avec échographie</li>
-                    <li>- Bilan psychologique MMPI</li>
-                    <li>- Étude biologique</li>
-                    <li>- Cavernoscanner</li>
-                </ul>
-                <ul>
-                    <div class="listTitle">Dépistage cardio vasculaire et métabolique</div>
-                    <li>- Oligoscan et étude biologique</li>
-                    <li>- Mesure de l’intima media</li>
-                    <li>- Endopath</li>
-                </ul>
-
+                <?php echo site_meta('introthirdpart'); ?>
             </div>
         </div>
     </div>
+
 <?php
 $bioimage = Registry::get('bioimage');
 $biofirstpart = Registry::get('biofirstpart');
@@ -176,6 +137,13 @@ $biothirdpart = Registry::get('biothirdpart');
             <a href="/publication" class="link pre-chevron">Accéder aux livres</a>
         </div>
     </div>
+    <script>
+        $(".keepwhitespaces").each(function () {
+            var html = $(this).html();
+            var pattern = html.match(/\s*\n[\t\s]*/);
+            $(this).html(html.replace(new RegExp(pattern, "g"), '\n'));
+        });
+    </script>
 
 <?php theme_include('mapContact'); ?>
 <?php theme_include('footer'); ?>

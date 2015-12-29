@@ -10,10 +10,9 @@
 @proximaNovaBold : 'ProximaNova-Bold', Arial, sans-serif;
 @odinBold: 'Odin-Bold', Arial, sans-serif;
 ul, ul li {
-  display: block;
   padding: 0;
   margin: 0;
-  list-style-type: none;
+  //list-style-type: none;
 }
 
 table, tr, td, th {
@@ -257,8 +256,14 @@ nav {
 .bigText {
   margin: 57px auto 45px auto;
   background-color: @classicSectionBackground;
+  .bigTitleTextRules;
   ul, li {
     .bigTitleTextRules;
+    list-style: none!important;
+  }
+  p {
+    padding: 0;
+    margin: 0 auto;
   }
 }
 
@@ -280,7 +285,7 @@ nav {
 }
 
 .listOfPosts {
-  margin: 0 29px 0 29px;
+  margin: 0 25px;
   .columnTextRules;
   ul {
     margin: 10px 0;

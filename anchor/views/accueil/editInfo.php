@@ -19,7 +19,18 @@ if (!$variableInfo) {
         <fieldset class="main">
             <div class="wrap">
                 <?php
-                echo Form::text('value', $variableInfo->value, array());
+                switch ($variableInfo->key) {
+                    case 'custom_introfirstpart':
+                    case 'custom_introsecondpart':
+                    case 'custom_introthirdpart':
+                        echo Form::textarea('value', $variableInfo->value, array(
+                            'class' => 'ckeditorgo'
+                        ));
+                        break;
+                    default:
+                        echo Form::text('value', $variableInfo->value, array());
+                        break;
+                }
                 ?>
                 <aside class="buttons">
                     <?php echo Form::button(__('global.save'), array(
@@ -29,9 +40,10 @@ if (!$variableInfo) {
                 </aside>
             </div>
         </fieldset>
-
     </form>
 <?php
 addScriptTag('anchor/views/assets/js/text-resize.js');
+addScriptTag('anchor/views/assets/js/ckeditor/ckeditor.js');
+addScriptTag('anchor/views/assets/js/ckeditor_init.js');
 ?>
 <?php echo $footer; ?>
