@@ -78,6 +78,13 @@ Route::get($routes, function ($offset = 1) use ($posts_page) {
         }
     }
 
+    //get biographie infos
+    $biopage = Page::slug('biographie');
+    Registry::set('bioimage', Extend::value(Extend::field('page', 'bioimage', $biopage->id)));
+    Registry::set('biofirstpart', Extend::value(Extend::field('page', 'biofirstpart', $biopage->id)));
+    Registry::set('biosecondpart', Extend::value(Extend::field('page', 'biosecondpart', $biopage->id)));
+    Registry::set('biothirdpart', Extend::value(Extend::field('page', 'biothirdpart', $biopage->id)));
+
     // get last post from blog
     list($nbBlogPost, $blogPosts) = Post::listing(Category::slug('blog'), 1, 1000);
     $lastBlogPost = $blogPosts[0]; //Normally, the first one should be the most recent article cause ::listing search in db and sort result

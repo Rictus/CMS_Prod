@@ -10,5 +10,9 @@ return array(
     'teamMemberUpdated' => 'Le membre a été mis à jour',
     'create_catch' => 'Ajouter une accroche',
     'created_catch' => 'L\'accroche a été créée',
-    'catchUpdated' => 'L\'accroche a été mise à jour'
+    'catchUpdated' => 'L\'accroche a été mise à jour',
+    'create_bio' => 'Ajouter une biographie',
+    'created_bio' => 'Biographie ajoutée',
+    'updated_bio' => 'La biographie a été mise à jour',
+
 );

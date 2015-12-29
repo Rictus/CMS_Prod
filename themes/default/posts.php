@@ -56,33 +56,26 @@ theme_include('header_image');
             </div>
         </div>
     </div>
+<?php
+$bioimage = Registry::get('bioimage');
+$biofirstpart = Registry::get('biofirstpart');
+$biosecondpart = Registry::get('biosecondpart');
+$biothirdpart = Registry::get('biothirdpart');
+
+?>
     <div class="bio row">
         <div class="bioImgCol col-lg-5 col-md-5 col-sm-6 col-xs-12">
             <div class="bioPicture">
-                <img src="<?php echo theme_url("./img/Portrait.png") ?>" alt="Photo de Ronald Virag">
+                <img src="/content/<?php echo $bioimage; ?>" alt="Photo de Ronald Virag">
             </div>
         </div>
         <div class="bioTextCol col-lg-7 col-md-7 col-sm-6 col-xs-12">
             <div class="mainBio">
-                Le Docteur Virag, né le 7 décembre 1938, médecin et chirurgien en sexologie à Paris dans le huitième
-                arrondissement, est un spécialiste des troubles sexuels au Centre d'Explorations et Traitements de
-                l'Impuissance (difficultés, dysfonctions, éjaculation prématurée...) et de la prévention des
-                maladies du cœur et des vaisseaux.
+                <?php echo $biofirstpart; ?>
             </div>
             <div class="row">
-                <div class="bioContent col-lg-6 col-md-6 col-sm-9 col-xs-10">
-                    Le Docteur Virag est fort d'une expérience de plus de trente ans en recherches et expériences
-                    cliniques.Il est membre de l'Académie Nationale de Chirurgie, ancien interne des Hôpitaux de Paris,
-                    ancien chef de clinique à la Faculté de Paris, docteur en médecine, spécialisé en chirurgie,
-                    compétent en angiologie et sexologie vous reçoit à Paris en consultation, discrète, individuelle et
-                    de couple
-                </div>
-                <div class="bioContent col-lg-6 col-md-6 col-sm-9 col-xs-10">
-                    Bilan par doppler, échographie, électromyogramme, cavernoscanner. <br> Il utilise une approche
-                    médicalisée fondée sur des techniques et des traitement innovants. Le Docteur Virag a publié plus de
-                    soixante-dix publications dans des grandes revues scientifiques et est l'auteur de plusieurs livres
-                    dont le dernier « Erection mode d'emploi ».
-                </div>
+                <div class="bioContent col-lg-6 col-md-6 col-sm-9 col-xs-10"><?php echo $biosecondpart; ?></div>
+                <div class="bioContent col-lg-6 col-md-6 col-sm-9 col-xs-10"><?php echo $biothirdpart; ?></div>
             </div>
             <a class="link pre-chevron" href="#">En savoir plus</a>
         </div>
@@ -129,7 +122,7 @@ theme_include('header_image');
             <div class="date"><?php echo $lastBlogPostDate; ?></div>
             <div class="title"><?php echo $lastBlogPost['title']; ?></div>
             <?php
-                echo $lastBlogPost['html']; //TODO : limit number of chars
+            echo $lastBlogPost['html']; //TODO : limit number of chars
             ?>
             <!--            <div class="picture"><img src="-->
             <?php //echo theme_url("./img/Actu.png"); ?><!--" alt=""></div>-->

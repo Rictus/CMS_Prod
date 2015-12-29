@@ -7,10 +7,12 @@ Route::collection(array('before' => 'auth'), function () {
      * Main page
      */
     Route::get('admin/accueil', function () {
+        $currentPageCategoryId = getCurrentPageCategoryId('accueil');
+        $biopage = Page::slug('biographie');
         $vars['messages'] = Notify::read();
         $vars['token'] = Csrf::token();
         $vars['page'] = Registry::get('posts_page');
-        $currentPageCategoryId = getCurrentPageCategoryId('accueil');
+        $vars['biopage'] = $biopage;
         $vars['team'] = array();
         $vars['accroche'] = false;
         $postsAccueil = Post::where('category', '=', $currentPageCategoryId)->get();
@@ -30,8 +32,14 @@ Route::collection(array('before' => 'auth'), function () {
                 $vars['accroche'] = $postsAccueil[$i];
             }
         }
-        return View::create('accueil/index', $vars)//can add $vars a parameter to pass values to index page
-        ->partial('header', 'partials/header')
+
+        $vars['bioimage'] = Extend::value(Extend::field('page', 'bioimage', $biopage->id));
+        $vars['biofirstpart'] = Extend::value(Extend::field('page', 'biofirstpart', $biopage->id));
+        $vars['biosecondpart'] = Extend::value(Extend::field('page', 'biosecondpart', $biopage->id));
+        $vars['biothirdpart'] = Extend::value(Extend::field('page', 'biothirdpart', $biopage->id));
+
+        return View::create('accueil/index', $vars)
+            ->partial('header', 'partials/header')
             ->partial('footer', 'partials/footer');
     });
 
@@ -58,6 +66,7 @@ Route::collection(array('before' => 'auth'), function () {
             ->partial('header', 'partials/header')
             ->partial('footer', 'partials/footer');
     });
+
 
     Route::post('admin/accueil/addTeamMember', function () {
         $currentPageCategoryId = getCurrentPageCategoryId('accueil');
@@ -397,6 +406,49 @@ Route::collection(array('before' => 'auth'), function () {
         Notify::success(__('accueil.catchUpdated'));
 
         return Response::redirect('admin/accueil/editCatch/' . $id);
+    });
+
+
+    /**
+     * Bio
+     */
+    Route::get(array('admin/accueil/addBio', 'admin/accueil/editBio'), function () {
+        $vars['messages'] = Notify::read();
+        $vars['token'] = Csrf::token();
+        $vars['page'] = Registry::get('posts_page');
+        $biopage = Page::slug('biographie');
+        $vars['biopage'] = $biopage;
+
+        // extended fields
+        $vars['fields'] = Extend::fields('post');
+        $vars['page_fields'] = array();
+        $vars['page_fields']['bioimage'] = Extend::field('page', 'bioimage', $biopage->id);
+        $vars['page_fields']['biofirstpart'] = Extend::field('page', 'biofirstpart', $biopage->id);
+        $vars['page_fields']['biosecondpart'] = Extend::field('page', 'biosecondpart', $biopage->id);
+        $vars['page_fields']['biothirdpart'] = Extend::field('page', 'biothirdpart', $biopage->id);
+
+        $vars['statuses'] = array(
+            'published' => __('global.published'),
+            'draft' => __('global.draft'),
+            'archived' => __('global.archived')
+        );
+
+        $vars['categories'] = Category::dropdown();
+
+        return View::create('accueil/editBio', $vars)
+            ->partial('header', 'partials/header')
+            ->partial('footer', 'partials/footer');
+    });
+
+
+    Route::post(array('admin/accueil/addBio', 'admin/accueil/editBio'), function () {
+        $page = Page::slug('biographie');
+
+        Extend::process('page', $page->id);
+
+        Notify::success(__('accueil.updated_bio'));
+
+        return Response::redirect('admin/accueil');
     });
 
 });
