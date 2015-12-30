@@ -1,3 +1,16 @@
+<?php
+header("X-XSS-Protection: 0");
+header("X-XSS-Protection: 0");
+header("X-XSS-Protection: 0");
+header("X-XSS-Protection: 0");
+header("X-XSS-Protection: 0");
+header("X-XSS-Protection: 0");
+header("X-XSS-Protection: 0");
+header("X-XSS-Protection: 0");
+header("X-XSS-Protection: 0");
+header("X-XSS-Protection: 0");
+header("X-XSS-Protection: 0");
+?>
 <!doctype html>
 <html lang="fr">
 <head>
