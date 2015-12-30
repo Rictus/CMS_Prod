@@ -215,10 +215,10 @@ Route::post('admin/upload', function () {
     $uploader = new Uploader(PATH . 'content', array('png', 'jpg', 'bmp', 'gif'));
     $file = $_FILES['file'];
     $filepath = $uploader->upload($file);
+    $newfilename = basename($filepath);
 
-    //        $uri = Config::app('url', '/') . '/content/' . basename($filepath);
-    $uri = '/content/' . basename($filepath);
-    $output = array('uploaded' => 1, 'url' => $uri, 'fileName' => $file['name']);
+    $uri = '/content/' . $newfilename;
+    $output = array('uploaded' => 1, 'url' => $uri, 'fileName' => $newfilename);
 
     return Response::json($output);
 });
