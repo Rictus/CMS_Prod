@@ -22,7 +22,7 @@ function slug($str, $separator = '-')
     $str = normalize($str);
 
     // replace non letter or digits by separator
-    $str = preg_replace('#^[^A-z0-9]+$#', $separator, $str);
+    $str = preg_replace('/[^a-zA-Z0-9]+/', $separator, html_entity_decode($str, ENT_QUOTES));
 
     return trim(strtolower($str), $separator);
 }

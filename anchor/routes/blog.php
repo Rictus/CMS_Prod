@@ -152,9 +152,6 @@ Route::collection(array('before' => 'auth'), function () {
     });
 
 
-
-
-
     /*
         Edit post
     */
@@ -208,12 +205,8 @@ Route::collection(array('before' => 'auth'), function () {
         if (is_null($input['js']) || empty($input['js'])) {
             $input['js'] = " ";
         }
-        // if there is no slug, create one from title
-        if (empty($input['slug'])) {
-            $input['slug'] = slug($input['title']);
-        }
-        // convert to ascii
-        $input['slug'] = slug($input['slug']);
+
+        $input['slug'] = slug($input['title']);
         do {
             //Check for duplication
             $isDuplicate = Post::where('slug', '=', $input['slug'])->where('id', '<>', $id)->count() > 0;
@@ -251,8 +244,6 @@ Route::collection(array('before' => 'auth'), function () {
 
         return Response::redirect('admin/blog/edit/' . $id);
     });
-
-
 
 
 });

@@ -76,18 +76,21 @@ $biothirdpart = Registry::get('biothirdpart');
         <?php
 
         $lastBlogPost = Registry::get('lastBlogPost');
+//        var_dump($lastBlogPost);
         $lastBlogPost = $lastBlogPost->data;
         $lastBlogPostDate = utf8_encode(strftime('%d %B %Y', article_time_given_date($lastBlogPost['created'])));
         ?>
-        <div class="inner">
-            <div class="date"><?php echo $lastBlogPostDate; ?></div>
-            <div class="title"><?php echo $lastBlogPost['title']; ?></div>
-            <?php
-            echo $lastBlogPost['html']; //TODO : limit number of chars
-            ?>
-            <!--            <div class="picture"><img src="-->
-            <?php //echo theme_url("./img/Actu.png"); ?><!--" alt=""></div>-->
-        </div>
+        <a href="/posts/<?php echo $lastBlogPost['slug']; ?>" class="hidden-link">
+            <div class="inner">
+                <div class="date"><?php echo $lastBlogPostDate; ?></div>
+                <div class="title"><?php echo $lastBlogPost['title']; ?></div>
+                <?php
+                echo $lastBlogPost['html']; //TODO : limit number of chars
+                ?>
+                <!--            <div class="picture"><img src="-->
+                <?php //echo theme_url("./img/Actu.png"); ?><!--" alt=""></div>-->
+            </div>
+        </a>
     </div>
 
     <div class="lastPublications">
