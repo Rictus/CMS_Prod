@@ -8,7 +8,7 @@ theme_include('header');
             <h1 class=""><?php echo removeTypeofproblem(article_title()); ?></h1>
 
             <?php
-            echo "<time class='date' datetime=" . date(DATE_W3C, article_time()) . ">" . date('d F o', article_time()) . "</time>";
+            echo "<time class='date' datetime=" . date(DATE_W3C, article_time()) . ">" . utf8_encode(strftime('%d %B %Y',article_time())) . "</time>";
             ?>
 
             <article>

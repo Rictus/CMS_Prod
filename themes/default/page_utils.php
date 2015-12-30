@@ -99,13 +99,14 @@ function appendClickablePreviewArticles($id, $title, $date, $author, $content, $
     $contentText = limitHTMLText($content, 350);
     $contentText = closetags(removeLastWord($contentText) . " …");
     $contentText = removeStyleAttribute($contentText);
+    $printableDate = utf8_encode(strftime('%d %B %Y', article_time_given_date($date)));
 
     echo '<a class="hiddenLink articleLink" href="' . $link . '">';
     echo '<div class="articleContainer preview col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 col-xs-12 col-sm-offset-0">
         <section class="content wrap" id="article-' . $id . '">';
 
 
-    echo '<time class="date" datetime="' . date(DATE_W3C, $date) . '">' . date('d F o', $date) . '</time>';
+    echo '<time class="date" datetime="' . date(DATE_W3C, strtotime($date)) . '">' . $printableDate . '</time>';
     echo '<h1 class="">' . $title . '</h1>';
     echo '<article >' . $contentText . '</article>';
     echo "</section>";
@@ -191,8 +192,7 @@ function displayBlogPostsPreview()
     for ($i = 0; $i < count($posts); $i++) {
         $curPost = $posts[$i]->data;
         $link = "/posts/" . $curPost['slug'];
-        $date = strtotime($curPost['created']);
-        appendClickablePreviewArticles($curPost['id'], $curPost['title'], $date, $curPost['author'], $curPost['html'], $link, true);
+        appendClickablePreviewArticles($curPost['id'], $curPost['title'], $curPost['created'], $curPost['author'], $curPost['html'], $link, true);
     }
 
     echo "<div class='paginationContainer col-lg-4 col-lg-offset-4 col-md-4 col-md-offset-4 col-sm-4 col-sm-offset-4 col-xs-4 col-xs-offset-4'><div class='pagination'>";
