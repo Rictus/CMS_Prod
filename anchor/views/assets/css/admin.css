@@ -871,7 +871,7 @@ input[type='range'] {
 }
 
 input:not([type=checkbox]):not([type=radio]), textarea, select {
-    background: #F9FAFB !important;
+    background: #F9FAFB;
     margin-bottom: 5px;
 }
 

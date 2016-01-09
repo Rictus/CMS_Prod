@@ -175,10 +175,9 @@ textarea[name=css], textarea[name=js] {
     background-image: url('../img/tick.gif');
 }
 
-.split input, .split select {
+.split input, .split select{
     min-width: 300px;
 }
-
 .split textarea {
     width: 500px;
     min-height: 120px;
@@ -285,6 +284,7 @@ textarea[name=css], textarea[name=js] {
 .split + .buttons button:first-child {
     margin: 20px 15px 20px 160px;
 }
+
 .file-image-preview {
     display: block;
     clear: both;
@@ -292,10 +292,19 @@ textarea[name=css], textarea[name=js] {
     width: auto;
     height: 300px;
 }
+
 .file-image-preview[src=""] {
     height: 0;
 }
+
 .leftSideImg {
     float: left;
     margin-right: 20px;
+}
+
+select {
+    background-image: url('../img/Chevron-down.png');
+    background-position: 97% center;
+    background-repeat: no-repeat;
+    background-size: 5%;
 }

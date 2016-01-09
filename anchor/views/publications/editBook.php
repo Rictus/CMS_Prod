@@ -44,7 +44,7 @@ foreach ($fields as $field): ?>
                 echo '<div class="upload_explain">Glissez une image ici pour remplacer l\'image de votre livre.</div>' .
                     '<div id="upload-file-progress"><progress value="0"></progress></div>';
                 echo "<img class='file-image-preview' src='/content/" . $bookimage->value->text . "'>";
-                echo Form::text("extend[" . $bookimage->key . "]", null, array(
+                echo Form::text("extend[" . $bookimage->key . "]", $bookimage->value->text, array(
                     'placeholder' => $bookimage->label,
                     'autocomplete' => 'off',
                     'id' => 'extend_' . $bookimage->key,

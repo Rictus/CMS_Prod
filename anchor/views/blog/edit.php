@@ -35,13 +35,9 @@ foreach ($fields as $field) {
             </div>
             <div class="wrap">
                 <p>
-                    <?php echo Form::select('status', $statuses, Input::previous('status', $post->status), array('class' => 'hidden')); ?>
-                </p>
-
-                <p>
-                    <label><?php echo __('posts.status');  ?>:</label>
-                    <?php echo Form::select('status', $statuses, Input::previous('status'));  ?>
-                    <em><?php echo __('posts.status_explain');  ?></em>
+                    <label><?php echo __('posts.status'); ?>:</label>
+                    <?php echo Form::select('status', $statuses, Input::previous('status', $post->status), array('class' => '')); ?>
+                    <em><?php echo __('posts.status_explain'); ?></em>
                 </p>
 
 
