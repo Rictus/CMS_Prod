@@ -10,14 +10,14 @@
         </fieldset>
 
         <fieldset class="main">
-            <div class="wrap">
+            <div class="wrap split">
 
                 <?php
 
                 $articleTitle = Input::previous('title');
 
                 echo Form::text('title', $articleTitle, array(
-                    'placeholder' => __('dossiers.title'),
+                    'label' => __('dossiers.title'),
                     'autocomplete' => 'off',
                     'autofocus' => 'true'
                 )); ?>
@@ -27,51 +27,17 @@
                 )); ?>
 
             </div>
-        </fieldset>
-
-        <fieldset class="meta split">
-            <div class="wrap">
+            <div class="wrap split">
                 <p class="hidden">
-                    <label><?php echo __('dossiers.slug'); ?></label>
-                    <?php echo Form::text('slug', Input::previous('slug')); ?>
-                    <em><?php echo __('dossiers.slug_explain'); ?></em>
+                    <?php echo Form::text('slug', Input::previous('slug'), array('class' => 'hidden')); ?>
                 </p>
 
-                <!--  <p>
-                    <label for="description"><?php /*echo __('dossiers.description'); */ ?>:</label>
-                    <?php /*echo Form::textarea('description', Input::previous('description')); */ ?>
-                    <em><?php /*echo __('dossiers.description_explain'); */ ?></em>
-                </p>
--->
                 <p>
                     <label><?php echo __('posts.status'); ?>:</label>
                     <?php echo Form::select('status', $statuses, Input::previous('status')); ?>
                     <em><?php echo __('posts.status_explain'); ?></em>
                 </p>
 
-                <!--   <p>
-                    <label><?php /*echo __('dossiers.category'); */ ?>:</label>
-                    <?php /*echo Form::select('category', $categories, Input::previous('category')); */ ?>
-                    <em><?php /*echo __('dossiers.category_explain'); */ ?></em>
-                </p>-->
-
-                <!-- <p>
-                    <label><?php /*echo __('dossiers.allow_comments'); */ ?>:</label>
-                    <?php /*echo Form::checkbox('comments', 1, Input::previous('comments', 0) == 1); */ ?>
-                    <em><?php /*echo __('dossiers.allow_comments_explain'); */ ?></em>
-                </p>
-
-                <p>
-                    <label><?php /*echo __('dossiers.custom_css'); */ ?>:</label>
-                    <?php /*echo Form::textarea('css', Input::previous('css')); */ ?>
-                    <em><?php /*echo __('dossiers.custom_css_explain'); */ ?></em>
-                </p>
-
-                <p>
-                    <label for="js"><?php /*echo __('dossiers.custom_js', 'Custom JS'); */ ?>:</label>
-                    <?php /*echo Form::textarea('js', Input::previous('js')); */ ?>
-                    <em><?php /*echo __('dossiers.custom_js_explain'); */ ?></em>
-                </p>-->
                 <?php foreach ($fields as $field): ?>
                     <p>
                         <?php if ($field->key == 'typeofproblem'): ?>
@@ -85,10 +51,6 @@
                             </select>
                         <?php else: ?>
 
-                            <!--We do not show other extend fields-->
-                            <!-- <label for="extend_<?php /*echo $field->key; */ ?>">
-                            <?php /*echo $field->label; */ ?>:
-                            </label>--><?php /*echo Extend::html($field); */ ?>
                         <?php endif; ?>
                     </p>
                 <?php endforeach; ?>

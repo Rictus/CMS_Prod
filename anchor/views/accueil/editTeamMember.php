@@ -22,24 +22,24 @@ foreach ($fields as $field) {
                 <?php echo $messages; ?>
             </div>
         </fieldset>
-
         <fieldset class="main">
-            <?php
-            if ($teamMemberName) {
-                echo Form::text('extend[' . $teamMemberName->key . ']', $teamMemberName->value->text, array(
-                    'placeholder' => $teamMemberName->label,
-                    'id' => "extend_" . $teamMemberName->key
-                ));
-            }
-            if ($teamMemberJob) {
-                echo Form::text('extend[' . $teamMemberJob->key . ']', $teamMemberJob->value->text, array(
-                    'placeholder' => $teamMemberJob->label,
-                    'id' => "extend_" . $teamMemberJob->key
-                ));
-            }
-            ?>
+            <div class="wrap split">
+                <?php
+                if ($teamMemberName) {
+                    echo Form::text('extend[' . $teamMemberName->key . ']', $teamMemberName->value->text, array(
+                        'label' => $teamMemberName->label,
+                        'id' => "extend_" . $teamMemberName->key
+                    ));
+                }
+                if ($teamMemberJob) {
+                    echo Form::text('extend[' . $teamMemberJob->key . ']', $teamMemberJob->value->text, array(
+                        'label' => $teamMemberJob->label,
+                        'id' => "extend_" . $teamMemberJob->key
+                    ));
+                }
+                ?>
+            </div>
         </fieldset>
-
         <fieldset class="meta split">
             <div class="wrap">
 

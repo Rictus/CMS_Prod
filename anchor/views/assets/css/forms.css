@@ -130,15 +130,17 @@ select + .arrow {
     display: inline-block;
     float: left;
     height: 39px;
-    padding: 0 18px;
+    padding: 0 18px 0 0;
+    /*margin-right: 20px;*/
 
-    text-align: center;
+    text-align: left;
     line-height: 39px;
 
     -webkit-user-select: none;
 
     border-radius: 5px 0 0 5px;
     min-width: 160px;
+    width: 240px;
 }
 
 .split label + input, .split label + textarea {
@@ -286,6 +288,14 @@ textarea[name=css], textarea[name=js] {
 .file-image-preview {
     display: block;
     clear: both;
-    margin: auto;
-    width: 100px;
+    margin: 10px 0;
+    width: auto;
+    height: 300px;
+}
+.file-image-preview[src=""] {
+    height: 0;
+}
+.leftSideImg {
+    float: left;
+    margin-right: 20px;
 }

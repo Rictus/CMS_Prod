@@ -27,22 +27,17 @@ foreach ($fields as $field): ?>
             </div>
         </fieldset>
 
-        <fieldset class="main">
+        <fieldset class="main split">
             <div class="wrap">
                 <?php echo Form::text('title', Input::previous('title', $book->title), array(
-                    'placeholder' => __('posts.title'),
+                    'label' => __('posts.title'),
                     'autocomplete' => 'off',
                     'autofocus' => 'true'
                 )); ?>
             </div>
-        </fieldset>
-
-        <fieldset class="meta split">
             <div class="wrap">
                 <p class="hidden">
-                    <label><?php echo __('posts.slug'); ?>:</label>
-                    <?php echo Form::text('slug', Input::previous('slug', $book->slug)); ?>
-                    <em><?php echo __('posts.slug_explain'); ?></em>
+                    <?php echo Form::text('slug', Input::previous('slug', $book->slug), array('class' => 'hidden')); ?>
                 </p>
                 <?php
 
@@ -63,8 +58,10 @@ foreach ($fields as $field): ?>
                 ));
                 ?>
                 <p>
-                    <label for="description"><?php echo __('posts.description'); ?>:</label>
-                    <?php echo Form::textarea('description', Input::previous('description', $book->description)); ?>
+                    <?php echo Form::textarea('description', Input::previous('description', $book->description), array(
+                        'label' => 'Description du livre',
+                        'autofocus' => 'false'
+                    )); ?>
                     <em><?php echo __('posts.description_explain'); ?></em>
                 </p>
                 <?php echo "<p><label for='extend_" . $externallink->key . "'>" . $externallink->label . "</label>" . Extend::html($externallink) . "</p>"; ?>

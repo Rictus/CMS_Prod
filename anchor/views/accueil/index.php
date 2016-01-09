@@ -73,12 +73,10 @@
         <ul class="main list">
             <li>
                 <a href="<?php echo Uri::to('admin/accueil/editBio'); ?>">
-                    <img width=auto height=100 src="/content/<?php echo $bioimage; ?>" alt="">
+                    <img width=auto height=100 class="leftSideImg" src="/content/<?php echo $bioimage; ?>" alt="">
                     <strong><?php echo explode(".", $biofirstpart)[0];?></strong>
-
-<!--                    <p>--><?php //echo explode(".", $biosecondpart)[0];?><!--</p>-->
-
-<!--                    <p>--><?php //echo explode(".", $biothirdpart)[0];?><!--</p>-->
+                    <strong><?php echo explode(".", $biosecondpart)[0];?></strong>
+                    <strong><?php echo explode(".", $biothirdpart)[0];?></strong>
                 </a>
             </li>
         </ul>

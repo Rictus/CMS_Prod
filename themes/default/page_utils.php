@@ -94,9 +94,9 @@ function limitHTMLText($htmlText, $limit = 350)
     return closetags($str);
 }
 
-function appendClickablePreviewArticles($id, $title, $date, $author, $content, $link, $addSeparatorLine = false)
+function appendClickablePreviewArticles($id, $title, $date, $author, $content, $link, $addSeparatorLine = false, $sizeLimit = 350)
 {
-    $contentText = limitHTMLText($content, 350);
+    $contentText = limitHTMLText($content, $sizeLimit);
     $contentText = closetags(removeLastWord($contentText) . " …");
     $contentText = removeStyleAttribute($contentText);
     $printableDate = utf8_encode(strftime('%d %B %Y', article_time_given_date($date)));

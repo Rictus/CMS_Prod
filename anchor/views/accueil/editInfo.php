@@ -17,7 +17,7 @@ if (!$variableInfo) {
         </fieldset>
 
         <fieldset class="main">
-            <div class="wrap">
+            <div class="wrap split">
                 <?php
                 switch ($variableInfo->key) {
                     case 'custom_introfirstpart':
@@ -27,8 +27,32 @@ if (!$variableInfo) {
                             'class' => 'ckeditorgo'
                         ));
                         break;
+                    case 'custom_address1':
+                        $label = "Adresse partie 1";
+                        echo Form::text('value', $variableInfo->value, array(
+                            'label' => $label
+                        ));
+                        break;
+                    case 'custom_address2':
+                        $label = "Adresse partie 2";
+                        echo Form::text('value', $variableInfo->value, array(
+                            'label' => $label
+                        ));
+                        break;
+                    case 'custom_mail':
+                        $label = "Adresse email de contact";
+                        echo Form::text('value', $variableInfo->value, array(
+                            'label' => $label
+                        ));
+                        break;
+                    case 'custom_telnumber':
+                        $label = "Numéro de téléphone";
+                        echo Form::text('value', $variableInfo->value, array(
+                            'label' => $label
+                        ));
+                        break;
                     default:
-                        echo Form::text('value', $variableInfo->value, array());
+//                        var_dump($variableInfo);
                         break;
                 }
                 ?>

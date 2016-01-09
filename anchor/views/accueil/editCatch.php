@@ -28,8 +28,9 @@ foreach ($fields as $field) {
                 <?php
                 if ($catchPhrase) {
                     echo Form::text('extend[' . $catchPhrase->key . ']', $catchPhrase->value->text, array(
-                        'placeholder' => $catchPhrase->label,
-                        'id' => "extend_" . $catchPhrase->key
+//                        'placeholder' => $catchPhrase->label,
+                        'id' => "extend_" . $catchPhrase->key,
+                        'label' => Html::entities($catchPhrase->label)
                     ));
                 }
                 if ($catchImage) {

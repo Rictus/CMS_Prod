@@ -38,7 +38,7 @@ foreach ($posts->results as $post) {
         <h1>Vos livres</h1>
         <section class="wrap">
             <?php if ($posts->count): ?>
-                <ul class="main list">
+                <ul class="main list booksList">
                     <?php foreach ($books as $post): ?>
                         <li>
                             <a href="<?php echo Uri::to('admin/publications/editBook/' . $post->id); ?>">

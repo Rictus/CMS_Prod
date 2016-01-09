@@ -10,11 +10,11 @@
             </div>
         </fieldset>
 
-        <fieldset class="main">
+        <fieldset class="main split">
             <div class="wrap">
 
                 <?php echo Form::text('title', Input::previous('title'), array(
-                    'placeholder' => __('posts.title'),
+                    'label' => __('posts.title'),
                     'autocomplete' => 'off',
                     'autofocus' => 'true'
                 )); ?>
@@ -25,13 +25,9 @@
 
                 <?php echo $editor; ?>
             </div>
-        </fieldset>
-        <fieldset class="meta split">
             <div class="wrap">
                 <p class="hidden">
-                    <label><?php echo __('posts.slug'); ?></label>
-                    <?php echo Form::text('slug', Input::previous('slug')); ?>
-                    <em><?php echo __('posts.slug_explain'); ?></em>
+                    <?php echo Form::text('slug', Input::previous('slug'), array('class' => 'hidden')); ?>
                 </p>
 
                 <p>

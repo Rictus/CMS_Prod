@@ -28,7 +28,7 @@ return array(
 
     'description' => 'Description ',
     'description_explain' => '',
-    'description_placeholder' => 'Description du livre',
+    'description_placeholder' => 'Description de la publication',
 
     'status' => 'Statut ',
     'status_explain' => '',

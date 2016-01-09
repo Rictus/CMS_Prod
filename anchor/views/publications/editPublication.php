@@ -35,14 +35,14 @@ foreach ($fields as $field): ?>
         <fieldset class="meta split">
             <div class="wrap">
                 <p class="hidden">
-                    <label><?php echo __('posts.slug'); ?>:</label>
-                    <?php echo Form::text('slug', Input::previous('slug', $publication->slug)); ?>
-                    <em><?php echo __('posts.slug_explain'); ?></em>
+                    <?php echo Form::text('slug', Input::previous('slug', $publication->slug), array('class' => 'hidden')); ?>
                 </p>
 
                 <p>
-                    <label for="description"><?php echo __('posts.description'); ?>:</label>
-                    <?php echo Form::textarea('description', Input::previous('description', $publication->description)); ?>
+                    <?php echo Form::textarea('description', Input::previous('description', $publication->description), array(
+                        'label' => __('publications.description_placeholder'),
+                        'autofocus' => 'false'
+                    )); ?>
                     <em><?php echo __('posts.description_explain'); ?></em>
                 </p>
 
@@ -62,12 +62,12 @@ foreach ($fields as $field): ?>
                 </p>
 
 
-
                 <p>
                     <?php
                     if ($customdate) {
                         echo Form::text("extend[" . $customdate->key . "]", $customdate->value->text, array(
-                            'class' => 'date'
+                            'class' => 'date',
+                            'label' => 'Date de publication'
                         ));
                     }
 
@@ -76,7 +76,7 @@ foreach ($fields as $field): ?>
                         'placeholder' => $typeofpublication->label,
                         'id' => "extend_" . $typeofpublication->key,
                         'value' => 'textpublication',
-                        'class' => 'hide'
+                        'class' => 'hidden'
                     ));
 
 

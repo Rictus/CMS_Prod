@@ -36,19 +36,17 @@ foreach ($fields as $field) {
         </fieldset>
 
 
-        <fieldset class="main">
+        <fieldset class="main split">
             <div class="wrap">
 
                 <?php echo Form::text('title', Input::previous('title'), array(
-                    'placeholder' => __('publications.title'),
+                    'label' => __('publications.title'),
                     'autocomplete' => 'off',
                     'autofocus' => 'true'
                 )); ?>
 
 
             </div>
-        </fieldset>
-        <fieldset class="meta split">
             <div class="wrap">
 
                 <?php
@@ -57,10 +55,10 @@ foreach ($fields as $field) {
                         'placeholder' => $bookImageField->label,
                         'autocomplete' => 'off',
                         'id' => 'extend_' . $bookImageField->key,
-                        'class' => 'upload_filename hide'
+                        'class' => 'upload_filename hidden'
                     ));
 
-                    echo "<p><img src='' alt='' class='file-image-preview'></p>";
+                    echo "<p><img src='' alt='' class='file-image-preview file-image-preview-unloaded'></p>";
                     echo '<div class="upload_explain">Glissez une image ici pour définir l\'image de votre livre.</div>' .
                         '<div id="upload-file-progress"><progress value="0"></progress></div>';
                 }
@@ -76,28 +74,23 @@ foreach ($fields as $field) {
 
 
             </div>
-        </fieldset>
-        <fieldset class="meta split">
             <div class="wrap">
                 <p class="hidden">
-                    <label><?php echo __('publications.slug'); ?></label>
-                    <?php echo Form::text('slug', Input::previous('slug')); ?>
-                    <em><?php echo __('publications.slug_explain'); ?></em>
+                    <?php echo Form::text('slug', Input::previous('slug'), array('class' => 'hidden')); ?>
                 </p>
 
                 <p>
                     <?php echo Form::textarea('description', Input::previous('description'), array(
-                        'placeholder' => __('publications.description_placeholder'),
+                        'label' => 'Description du livre',
                         'autofocus' => 'false'
                     )); ?>
-                    <em><?php echo __('publications.description_explain'); ?></em>
                 </p>
 
                 <p>
                     <?php
                     if ($externallink) {
                         echo Form::text("extend[" . $externallink->key . "]", null, array(
-                            'placeholder' => $externallink->label,
+                            'label' => $externallink->label,
                             'autocomplete' => 'off',
                             'id' => 'extend_' . $externallink->key
                         ));

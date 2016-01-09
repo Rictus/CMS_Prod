@@ -22,11 +22,11 @@ header("X-XSS-Protection: 0");
     addStylesheetTag('anchor/views/assets/css/reset.css');
     addStylesheetTag('anchor/views/assets/css/login.css');
     addStylesheetTag('anchor/views/assets/css/notifications.css');
-    addStylesheetTag('anchor/views/assets/css/forms.css');
     addStylesheetTag('anchor/views/assets/css/bootstrap-datepicker.min.css');
     addStylesheetTag('anchor/views/assets/css/bootstrap.min.css');
     addStylesheetTag('anchor/views/assets/css/small.css', '(max-width: 980px), (max-device-width: 480px)');
     addStylesheetTag('anchor/views/assets/css/admin.css');
+    addStylesheetTag('anchor/views/assets/css/forms.css');
     ?>
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
     <meta name="viewport" content="width=600">

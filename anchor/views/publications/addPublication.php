@@ -28,7 +28,16 @@ foreach ($fields as $field) {
     <form method="post" action="<?php echo Uri::to('admin/publications/addPublication'); ?>"
           enctype="multipart/form-data"
           novalidate>
+        <?php
+        echo Form::text("extend[" . $typeofpublication->key . "]", null, array(
+            'placeholder' => $typeofpublication->label,
+            'id' => "extend_" . $typeofpublication->key,
+            'value' => 'textpublication',
+            'class' => 'hidden',
+            'type' => 'hidden'
+        ));
 
+        ?>
         <input name="token" type="hidden" value="<?php echo $token; ?>">
 
         <fieldset class="header">
@@ -39,29 +48,13 @@ foreach ($fields as $field) {
 
         <fieldset class="meta split">
             <div class="wrap">
-
-                <?php
-                echo Form::text("extend[" . $typeofpublication->key . "]", null, array(
-                    'placeholder' => $typeofpublication->label,
-                    'id' => "extend_" . $typeofpublication->key,
-                    'value' => 'textpublication',
-                    'class' => 'hide'
-                ));
-
-                ?>
-            </div>
-        </fieldset>
-        <fieldset class="meta split">
-            <div class="wrap">
                 <p class="hidden">
-                    <label><?php echo __('publications.slug'); ?></label>
-                    <?php echo Form::text('slug', Input::previous('slug')); ?>
-                    <em><?php echo __('publications.slug_explain'); ?></em>
+                    <?php echo Form::text('slug', Input::previous('slug'), array('class' => 'hidden')); ?>
                 </p>
 
                 <p>
                     <?php echo Form::textarea('description', Input::previous('description'), array(
-                        'placeholder' => __('publications.description_placeholder'),
+                        'label' => __('publications.description_placeholder'),
                         'autofocus' => 'false'
                     )); ?>
                     <em><?php echo __('publications.description_explain'); ?></em>
@@ -93,7 +86,7 @@ foreach ($fields as $field) {
                     <?php
                     if ($externallink) {
                         echo Form::text("extend[" . $externallink->key . "]", null, array(
-                            'placeholder' => $externallink->label,
+                            'label' => $externallink->label,
                             'autocomplete' => 'off',
                             'id' => 'extend_' . $externallink->key
                         ));

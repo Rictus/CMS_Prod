@@ -876,7 +876,8 @@ input:not([type=checkbox]):not([type=radio]), textarea, select {
 }
 
 input:not([type=checkbox]):not([type=radio]) {
-    width: 100%;
+    /*width: 100%;*/
+    min-width: 500px;
 }
 
 td {
@@ -884,12 +885,14 @@ td {
 }
 
 .hidden, #hidden, .hide, #hide {
-    visibility: hidden;
-    height: 0;
-    width: 0;
-    font-size: 0;
-    color: white;
-    display: none;
+    visibility: hidden!important;
+    height: 0!important;
+    width: 0!important;
+    font-size: 0!important;
+    color: white!important;
+    display: none!important;
+    margin: 0!important;
+    padding: 0!important;
 }
 
 .videodetector {
@@ -905,4 +908,9 @@ td {
     left: 0;
     width: 100%;
     height: 100%;
+}
+
+.booksList li {
+    float: left;
+    width: 50%;
 }

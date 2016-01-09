@@ -72,30 +72,42 @@ theme_include('header_image');
             ?>
         </div>
 
-
         <?php
-
         $lastBlogPost = Registry::get('lastBlogPost');
-        //        var_dump($lastBlogPost);
+
+
+        function appendPreviewArticles($article, $sizeLimit = 350)
+        {
+
+            $id = $article["id"];
+            $title = $article["title"];
+            $date = $article["created"];
+            $date= utf8_encode(strftime('%d %B %Y', article_time_given_date($article['created'])));
+            $author = $article["author"];
+            $content = $article["html"];
+            $link = $article["slug"];
+            $contentText = limitHTMLText($content, $sizeLimit);
+            $contentText = closetags(removeLastWord($contentText) . " …");
+            $contentText = removeStyleAttribute($contentText);
+
+
+            echo '<a href="/posts/' . $link . '" class="hidden-link article-link">
+                    <div class="inner">
+                        <div class="date">' . $date . '</div>
+                        <div class="title">' . $title . '</div>
+                        ' . $contentText . '
+                    </div>
+                </a>';
+        }
+
         if ($lastBlogPost != false):
             $lastBlogPost = $lastBlogPost->data;
-            $lastBlogPostDate = utf8_encode(strftime('%d %B %Y', article_time_given_date($lastBlogPost['created'])));
 
-            ?>
-            <div class="lastPost">
-                <a href="/posts/<?php echo $lastBlogPost['slug']; ?>" class="hidden-link article-link">
-                    <div class="inner">
-                        <div class="date"><?php echo $lastBlogPostDate; ?></div>
-                        <div class="title"><?php echo $lastBlogPost['title']; ?></div>
-                        <?php
-                        echo $lastBlogPost['html']; //TODO : limit number of chars
-                        ?>
-                    </div>
-                </a>
-
-            </div>
-            <?php
+            echo ' <div class="lastPost">';
+            appendPreviewArticles($lastBlogPost, 100);
+            echo '</div>';
         endif;
+
         ?>
     </div>
 

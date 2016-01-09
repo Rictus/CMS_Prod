@@ -20,10 +20,10 @@ foreach ($fields as $field) {
             </div>
         </fieldset>
 
-        <fieldset class="main">
+        <fieldset class="main split">
             <div class="wrap">
                 <?php echo Form::text('title', Input::previous('title', $post->title), array(
-                    'placeholder' => __('posts.title'),
+                    'label' => __('posts.title'),
                     'autocomplete' => 'off',
                     'autofocus' => 'true'
                 )); ?>
@@ -32,16 +32,16 @@ foreach ($fields as $field) {
                     'class' => 'ckeditorgo'
                 )); ?>
 
-                <?php echo $editor; ?>
             </div>
-        </fieldset>
-
-        <fieldset class="meta split">
             <div class="wrap">
                 <p>
-                    <label for="status"><?php echo __('posts.status'); ?>:</label>
-                    <?php echo Form::select('status', $statuses, Input::previous('status', $post->status)); ?>
-                    <em><?php echo __('posts.status_explain'); ?></em>
+                    <?php echo Form::select('status', $statuses, Input::previous('status', $post->status), array('class' => 'hidden')); ?>
+                </p>
+
+                <p>
+                    <label><?php echo __('posts.status');  ?>:</label>
+                    <?php echo Form::select('status', $statuses, Input::previous('status'));  ?>
+                    <em><?php echo __('posts.status_explain');  ?></em>
                 </p>
 
 
