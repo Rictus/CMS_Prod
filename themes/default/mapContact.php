@@ -23,7 +23,7 @@ $telNumberNoWhiteSpace = str_replace(' ', '', $telNumber);
             </div>
             <div class="mail">MAIL <a class="inline-link hidden-link"
                                       href=<?php echo "'mailto:" . $mail . "'>" . $mail . "</a></div>"; ?>
-                                      <a class="button button_grey pre-icon_calendar" href="#">Prendre rendez-vous</a>
+                                      <a class="button button_grey pre-icon_calendar" href="http://www.docteur-virag-sexologie.fr/appointment">Prendre rendez-vous</a>
             </div>
         </div>
     </div>

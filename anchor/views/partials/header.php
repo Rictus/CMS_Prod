@@ -20,13 +20,13 @@ header("X-XSS-Protection: 0");
 
     addScriptTag('anchor/views/assets/js/zepto.js');
     addStylesheetTag('anchor/views/assets/css/reset.css');
-    addStylesheetTag('anchor/views/assets/css/admin.css');
     addStylesheetTag('anchor/views/assets/css/login.css');
     addStylesheetTag('anchor/views/assets/css/notifications.css');
     addStylesheetTag('anchor/views/assets/css/forms.css');
     addStylesheetTag('anchor/views/assets/css/bootstrap-datepicker.min.css');
     addStylesheetTag('anchor/views/assets/css/bootstrap.min.css');
     addStylesheetTag('anchor/views/assets/css/small.css', '(max-width: 980px), (max-device-width: 480px)');
+    addStylesheetTag('anchor/views/assets/css/admin.css');
     ?>
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
     <meta name="viewport" content="width=600">
@@ -38,11 +38,11 @@ header("X-XSS-Protection: 0");
         <?php if (Auth::user()): ?>
             <nav>
                 <ul>
-                    <li class="logo">
-                        <a href="<?php echo Uri::to('admin/posts'); ?>">
-                            <img src="<?php asset('anchor/views/assets/img/CETI.png') ?>"
+                    <!--<li class="logo">
+                        <a href="<?php /*echo Uri::to('admin/posts'); */?>">
+                            <img src="<?php /*asset('anchor/views/assets/img/CETI.png') */?>"
                                  alt="Logo du site de Ronald Virag">
-                        </a>
+                        </a>-->
                     </li>
 
                     <?php
@@ -68,9 +68,9 @@ header("X-XSS-Protection: 0");
             ?>
 
         <?php else: ?>
-            <aside class="logo">
-                <a href="<?php echo Uri::to('admin/users/login'); ?>">Anchor CMS</a>
-            </aside>
+            <!--<aside class="">
+                <a href="<?php /*echo Uri::to('admin/users/login'); */?>"><h1>Se Connecter</h1></a>
+            </aside>-->
         <?php endif; ?>
     </div>
 </header>

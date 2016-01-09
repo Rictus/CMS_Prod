@@ -8,7 +8,7 @@ Route::action('auth', function () {
 });
 
 Route::action('guest', function () {
-    if (Auth::user()) return Response::redirect('admin/posts');
+    if (Auth::user()) return Response::redirect('admin/accueil');
 });
 
 Route::action('csrf', function () {
@@ -26,7 +26,7 @@ Route::action('csrf', function () {
  */
 Route::get('admin', function () {
     if (Auth::guest()) return Response::redirect('admin/login');
-    return Response::redirect('admin/posts');
+    return Response::redirect('admin/accueil');
 });
 
 /*
@@ -58,7 +58,7 @@ Route::post('admin/login', array('before' => 'csrf', 'main' => function () {
             return Response::redirect('admin/upgrade');
         }
     */
-    return Response::redirect('admin/posts');
+    return Response::redirect('admin/accueil');
 }));
 
 /*

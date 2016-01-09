@@ -1,8 +1,6 @@
 <?php echo $header; ?>
     <hgroup class="wrap">
-
         <?php echo $messages; ?>
-        <h1><?php echo __('accueil.accueil'); ?></h1>
     </hgroup>
     <section class="wrap">
         <hgroup class="wrap">
@@ -76,11 +74,11 @@
             <li>
                 <a href="<?php echo Uri::to('admin/accueil/editBio'); ?>">
                     <img width=auto height=100 src="/content/<?php echo $bioimage; ?>" alt="">
-                    <strong><?php echo $biofirstpart; ?></strong>
+                    <strong><?php echo explode(".", $biofirstpart)[0];?></strong>
 
-                    <p><?php echo $biosecondpart; ?></p>
+<!--                    <p>--><?php //echo explode(".", $biosecondpart)[0];?><!--</p>-->
 
-                    <p><?php echo $biothirdpart; ?></p>
+<!--                    <p>--><?php //echo explode(".", $biothirdpart)[0];?><!--</p>-->
                 </a>
             </li>
         </ul>

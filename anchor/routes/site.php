@@ -87,7 +87,10 @@ Route::get($routes, function ($offset = 1) use ($posts_page) {
 
     // get last post from blog
     list($nbBlogPost, $blogPosts) = Post::listing(Category::slug('blog'), 1, 1000);
-    $lastBlogPost = $blogPosts[0]; //Normally, the first one should be the most recent article cause ::listing search in db and sort result
+    if($nbBlogPost>0)
+        $lastBlogPost = $blogPosts[0]; //Normally, the first one should be the most recent article cause ::listing search in db and sort result
+    else
+        $lastBlogPost = false;
 
     $posts = new Items($posts);
 

@@ -12,7 +12,7 @@
 	Admin panel-wide styles
 */
 body {
-    background: white;
+    background: #ECEDEF;
     color: black;
     font: 15px/25px "proxima-nova", "Helvetica Neue", "Open Sans", "DejaVu Sans", "Arial", sans-serif;
 }
@@ -23,7 +23,7 @@ b, strong {
 
 a {
     color: #486899;
-    text-decoration: none;
+    text-decoration: none !important;
 }
 
 fieldset, a, img {
@@ -123,7 +123,7 @@ hgroup {
 hgroup h1 {
     float: left;
     font-size: 29px;
-    line-height: 120px;
+    line-height: 30px;
     font-weight: 300;
     color: #99a3b1;
 }
@@ -141,13 +141,13 @@ hgroup nav {
     background: rgba(129, 145, 171, .2);
     color: #848f9f;
 
-    font-size: 10px;
-    line-height: 14px;
+    font-size: 13px;
+    line-height: 18px;
     font-style: normal;
     font-weight: bold;
     text-transform: uppercase;
 
-    padding: 3px 6px;
+    padding: 5px 9px;
     border-radius: 3px;
 
     position: absolute;
@@ -263,23 +263,23 @@ hgroup nav {
 .list {
     list-style: none;
     width: 100%;
-
-    border-top: 1px solid #dadfe5;
 }
 
 .list li a {
     display: block;
-    padding:20px 20px 0px 20px;
+    padding: 20px 80px 20px 20px;
     color: #7d8693;
+
+    background: white;
+    border-radius: 5px;
 
     position: relative;
     overflow: hidden;
-
-    border-bottom: 1px solid #dadfe5;
 }
 
+
 .list li a:hover {
-    background: #e7eaee;
+    background-color: rgba(70, 80, 101, 0.1);
 }
 
 .list li strong {
@@ -315,7 +315,7 @@ hgroup nav {
 
 .list li p {
     display: block;
-    margin-bottom: 10px;
+    margin-bottom: 0;
 }
 
 .list li .status {
@@ -874,6 +874,7 @@ input:not([type=checkbox]):not([type=radio]), textarea, select {
     background: #F9FAFB !important;
     margin-bottom: 5px;
 }
+
 input:not([type=checkbox]):not([type=radio]) {
     width: 100%;
 }
@@ -892,16 +893,16 @@ td {
 }
 
 .videodetector {
-    position      : relative;
-    width         : 100%;
-    height        : 0;
+    position: relative;
+    width: 100%;
+    height: 0;
     padding-bottom: 60%;
 }
 
 .videodetector iframe {
     position: absolute;
-    top     : 0;
-    left    : 0;
-    width   : 100%;
-    height  : 100%;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
 }

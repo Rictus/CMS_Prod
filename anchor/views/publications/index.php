@@ -35,6 +35,40 @@ foreach ($posts->results as $post) {
 
 
     <hgroup class="wrap">
+        <h1>Vos livres</h1>
+        <section class="wrap">
+            <?php if ($posts->count): ?>
+                <ul class="main list">
+                    <?php foreach ($books as $post): ?>
+                        <li>
+                            <a href="<?php echo Uri::to('admin/publications/editBook/' . $post->id); ?>">
+                                <strong><?php echo $post->title; ?></strong>
+                                <img width=auto height=100 src="/content/<?php echo $post->bookimage; ?>" alt="">
+
+                                <p><b>Lien vers ce livre : </b><?php echo $post->externallink; ?></p>
+
+                                <p><?php echo strip_tags($post->description); ?></p>
+                            <span>
+                                <time><?php echo Date::format($post->created); ?></time>
+
+                                <em class="status <?php echo $post->status; ?>"
+                                    title="<?php echo __('global.' . $post->status); ?>">
+                                    <?php echo __('global.' . $post->status); ?>
+                                </em>
+                            </span>
+                            </a>
+                        </li>
+                    <?php endforeach; ?>
+                </ul>
+            <?php endif; ?>
+            <aside class="paging"><?php echo $posts->links(); ?></aside>
+
+
+        </section>
+    </hgroup>
+
+
+    <hgroup class="wrap">
         <h1>Vos publications texte</h1>
         <section class="wrap">
             <?php if ($posts->count): ?>
@@ -66,40 +100,6 @@ foreach ($posts->results as $post) {
                 </ul>
             <?php endif; ?>
             <aside class="paging"><?php echo $posts->links(); ?></aside>
-        </section>
-    </hgroup>
-
-
-    <hgroup class="wrap">
-        <h1>Vos livres</h1>
-        <section class="wrap">
-            <?php if ($posts->count): ?>
-                <ul class="main list">
-                    <?php foreach ($books as $post): ?>
-                        <li>
-                            <a href="<?php echo Uri::to('admin/publications/editBook/' . $post->id); ?>">
-                                <strong><?php echo $post->title; ?></strong>
-                                <img width=auto height=100 src="/content/<?php echo $post->bookimage; ?>" alt="">
-
-                                <p><b>Lien vers ce livre : </b><?php echo $post->externallink; ?></p>
-
-                                <p><?php echo strip_tags($post->description); ?></p>
-                            <span>
-                                <time><?php echo Date::format($post->created); ?></time>
-
-                                <em class="status <?php echo $post->status; ?>"
-                                    title="<?php echo __('global.' . $post->status); ?>">
-                                    <?php echo __('global.' . $post->status); ?>
-                                </em>
-                            </span>
-                            </a>
-                        </li>
-                    <?php endforeach; ?>
-                </ul>
-            <?php endif; ?>
-            <aside class="paging"><?php echo $posts->links(); ?></aside>
-
-
         </section>
     </hgroup>
 <?php echo $footer; ?>

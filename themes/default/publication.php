@@ -92,7 +92,14 @@ function displayHTMLPublicationCol($ar)
     reset($ar);
     $firstYear = key($ar);
     $public = $ar[$firstYear][0]->data['extends']['publicofpublication'];
-
+    switch ($public) {
+        case 'public':
+            $public = "grand public";
+            break;
+        case 'scientific':
+            $public = "scientifique";
+            break;
+    }
     echo '<div class="publicationColTitle">Publication <br>' . $public . '</div>';
     foreach ($ar[$firstYear] as $publication) {
         displayHTMLPublication($publication->data);

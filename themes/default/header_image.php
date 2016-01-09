@@ -42,7 +42,7 @@ if ($foundedIndex != -1) {
         ?>
     </div>
     <div class="buttons">
-        <a class="button button_white pre-icon_call" href="#">Nous contacter</a>
+        <a class="button button_white pre-icon_call" href="http://www.docteur-virag-sexologie.fr/appointment">Nous contacter</a>
         <a class="button button_white" href="#">Testez-vous</a>
     </div>
 </div>

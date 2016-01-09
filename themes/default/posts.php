@@ -38,7 +38,7 @@ theme_include('header_image');
                     <div class="bioContent col-lg-6 col-md-6 col-sm-9 col-xs-10"><?php echo $biosecondpart; ?></div>
                     <div class="bioContent col-lg-6 col-md-6 col-sm-9 col-xs-10"><?php echo $biothirdpart; ?></div>
                 </div>
-                <a class="link pre-chevron" href="#">En savoir plus</a>
+                <a class="link pre-chevron" href="https://fr.wikipedia.org/wiki/Ronald_Virag">En savoir plus</a>
             </div>
         </div>
 
@@ -72,74 +72,80 @@ theme_include('header_image');
             ?>
         </div>
 
-        <div class="lastPost">
-            <?php
 
-            $lastBlogPost = Registry::get('lastBlogPost');
-            //        var_dump($lastBlogPost);
+        <?php
+
+        $lastBlogPost = Registry::get('lastBlogPost');
+        //        var_dump($lastBlogPost);
+        if ($lastBlogPost != false):
             $lastBlogPost = $lastBlogPost->data;
             $lastBlogPostDate = utf8_encode(strftime('%d %B %Y', article_time_given_date($lastBlogPost['created'])));
+
             ?>
-            <a href="/posts/<?php echo $lastBlogPost['slug']; ?>" class="hidden-link article-link">
-                <div class="inner">
-                    <div class="date"><?php echo $lastBlogPostDate; ?></div>
-                    <div class="title"><?php echo $lastBlogPost['title']; ?></div>
-                    <?php
-                    echo $lastBlogPost['html']; //TODO : limit number of chars
-                    ?>
-                </div>
-            </a>
-        </div>
+            <div class="lastPost">
+                <a href="/posts/<?php echo $lastBlogPost['slug']; ?>" class="hidden-link article-link">
+                    <div class="inner">
+                        <div class="date"><?php echo $lastBlogPostDate; ?></div>
+                        <div class="title"><?php echo $lastBlogPost['title']; ?></div>
+                        <?php
+                        echo $lastBlogPost['html']; //TODO : limit number of chars
+                        ?>
+                    </div>
+                </a>
+
+            </div>
+            <?php
+        endif;
+        ?>
     </div>
 
 
-    <div class="lastPublications">
-        <div class="inner row">
-            <?php
-            $books = Registry::get('books');
-            $nbBookToDisplay = 3;
-            $nbBookDisplayed = 0;
-            function displayBook($book)
-            {
-                echo '<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 publication" date="' . $book['created'] . '">
+<?php
+$books = Registry::get('books');
+$nbBookToDisplay = 3;
+$nbBookDisplayed = 0;
+function displayBook($book)
+{
+    echo '<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 publication" date="' . $book['created'] . '">
                 <div class="picture"><img src="content/' . $book['bookimage'] . '"></div>
                 <div class="title">' . $book['title'] . '</div>
                 <div class="description">' . $book['description'] . '</div>
                 </div>';
-            }
+}
 
-            function compareDateBook($bookA, $bookB)
-            {
+function compareDateBook($bookA, $bookB)
+{
 
-                $dateA = $bookA->data['created'];
-                $dateB = $bookB->data['created'];
+    $dateA = $bookA->data['created'];
+    $dateB = $bookB->data['created'];
 
-                $dateTimeA = DateTime::createFromFormat('Y-m-d H:i:s', $dateA);
-                $dateTimeB = DateTime::createFromFormat('Y-m-d H:i:s', $dateB);
+    $dateTimeA = DateTime::createFromFormat('Y-m-d H:i:s', $dateA);
+    $dateTimeB = DateTime::createFromFormat('Y-m-d H:i:s', $dateB);
 
-                $timeA = $dateTimeA->getTimestamp();
-                $timeB = $dateTimeB->getTimestamp();
+    $timeA = $dateTimeA->getTimestamp();
+    $timeB = $dateTimeB->getTimestamp();
 
-                if ($timeA < $timeB) {
-                    return 1;
-                } else if ($timeB < $timeA) {
-                    return -1;
-                } else {
-                    return 0;
-                }//*/
-            }
+    if ($timeA < $timeB) {
+        return 1;
+    } else if ($timeB < $timeA) {
+        return -1;
+    } else {
+        return 0;
+    }//*/
+}
 
-            usort($books, "compareDateBook");
-            while ($nbBookDisplayed < $nbBookToDisplay && $nbBookDisplayed < count($books)) {
-                displayBook($books[$nbBookDisplayed]->data);
-                $nbBookDisplayed++;
-            }
-            ?>
-        </div>
-        <div class="linkContainer">
-            <a href="/publication" class="link pre-chevron">Accéder aux livres</a>
-        </div>
-    </div>
+if (count($books) > 0) {
+    usort($books, "compareDateBook");
+    echo '<div class="lastPublications">';
+    echo '<div class="inner row">';
+    while ($nbBookDisplayed < $nbBookToDisplay && $nbBookDisplayed < count($books)) {
+        displayBook($books[$nbBookDisplayed]->data);
+        $nbBookDisplayed++;
+    }
+
+    echo '</div><div class="linkContainer"><a href="/publication" class="link pre-chevron">Accéder aux livres</a></div></div>';
+}
+?>
 
 
     <script>
