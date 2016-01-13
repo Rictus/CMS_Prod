@@ -76,13 +76,59 @@ function removeLastWord($str)
     return implode(" ", $splittedStr);
 }
 
+function limitHTMLText2($htmlText, $limit = 350)
+{
+    $str = substr($htmlText, 0, $limit); //$limit first chars of $htmlText, tags included
+    $strWithoutHTMLTags = strip_tags($str); //Removing tags, calculating length
+//    $strWithoutHTMLTags = preg_replace('/\s+/', '', $strWithoutHTMLTags); //Removing all white spaces
+    /*if (strlen($strWithoutHTMLTags) == 0) {
+        return $htmlText;
+    } else {*/
+    $i = strlen($strWithoutHTMLTags);
+    while (strlen($strWithoutHTMLTags) < $limit && $i < strlen($htmlText) && strlen($strWithoutHTMLTags) > 0) { //If length not enough and if there is still some text to add : adding chars
+        $str .= $htmlText[$i];
+        $strWithoutHTMLTags = strip_tags($str); //Removing tags for calculating length without including html tags
+//            $strWithoutHTMLTags = preg_replace('/\s+/', '', $strWithoutHTMLTags);
+        $i++;
+        //}*/
+    }
+    return closetags($str);
+
+}
+
+
+function strip_single_tag($str, $tag)
+{
+
+    $str = preg_replace('/<' . $tag . '[^>]*>/i', '', $str);
+
+    $str = preg_replace('/<\/' . $tag . '>/i', '', $str);
+
+    return $str;
+}
+
 /**
  * Limit a given htmltext to a given number of characters without removing html tags
  * @param $htmlText
  * @param int $limit
  */
-function limitHTMLText($htmlText, $limit = 350)
+function limitHTMLText($htmlText, $limit = 350, $removeLinkElements = true)
 {
+    //First removing videos, it can cause problems.
+    $iframesMatched = [];
+    $regex = '(<iframe .*\/iframe>)';
+    preg_match($regex, $htmlText, $iframesMatched); // We're going to save the first to put it as an article header
+    $htmlText = preg_replace($regex, '', $htmlText);
+    $htmlText = preg_replace('(videodetector)', '', $htmlText);
+    if (count($iframesMatched) > 0) {
+        $iframesMatched = $iframesMatched[0];
+    } else {
+        $iframesMatched = "";
+    }
+
+    if ($removeLinkElements)
+        $htmlText = strip_single_tag($htmlText, "a");
+
     $str = substr($htmlText, 0, $limit); //$limit first chars of $htmlText, tags included
     $strWithoutHTMLTags = strip_tags($str); //Removing tags, calculating length
     $i = strlen($str);
@@ -91,13 +137,16 @@ function limitHTMLText($htmlText, $limit = 350)
         $strWithoutHTMLTags = strip_tags($str); //Removing tags for calculating length of the text only
         $i++;
     }
-    return closetags($str);
+    $str .= "...";
+    $str = closetags($str);
+    $str = "<div class='videodetector'>" . $iframesMatched . "</div>" . $str;
+    return $str;
 }
 
 function appendClickablePreviewArticles($id, $title, $date, $author, $content, $link, $addSeparatorLine = false, $sizeLimit = 350)
 {
-    $contentText = limitHTMLText($content, $sizeLimit);
-    $contentText = closetags(removeLastWord($contentText) . " …");
+    $contentText = limitHTMLText($content, $sizeLimit, true);
+//    $contentText = closetags(removeLastWord($contentText) . " …");
     $contentText = removeStyleAttribute($contentText);
     $printableDate = utf8_encode(strftime('%d %B %Y', article_time_given_date($date)));
 

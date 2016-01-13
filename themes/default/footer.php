@@ -41,3 +41,12 @@
         <?php endif; ?>
     </ul>
 </footer>
+
+<script>
+    $(".videodetector").each(function (index, element) {
+        if ($("iframe", element).length == 0)
+        {
+            $(element).removeClass("videodetector");
+        }
+    });
+</script>
