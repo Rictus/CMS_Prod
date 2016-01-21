@@ -69,6 +69,8 @@ function groupPublicationByYear($array, $extendKey)
 
 function displayHTMLBook($book, $ext)
 {
+    echo "<br>\n";
+    echo "<br>\n";
     echo '<div class="book">' .
         '<a class="hidden-link" href="">' .
         '<img src="/content/' . $ext['bookimage'] . '" alt="" class="bookImg">' .
@@ -101,7 +103,10 @@ function displayHTMLPublicationCol($ar)
             break;
     }
     echo '<div class="publicationColTitle">Publication <br>' . $public . '</div>';
-    foreach ($ar[$firstYear] as $publication) {
+    //foreach ($ar[$firstYear] as $publication) {//Start from last as it is the older
+    for ($artIT = count($ar[$firstYear]) - 1; $artIT >= 0; $artIT--) {
+        $publication = $ar[$firstYear][$artIT];
+
         displayHTMLPublication($publication->data);
     }
 
@@ -137,8 +142,11 @@ $numberOfBookPerRow = 3;
         echo '<div class="bookRow">';
         for ($rowIndex = 0; $rowIndex < $numberOfBookPerRow; $rowIndex++) {
             $bookIndex = $row * $numberOfBookPerRow + $rowIndex;
-            $ext = $posts[$bookIndex]->data['extends'];
+            $ext = $books[$bookIndex]->data['extends'];
             displayHTMLBook($books[$bookIndex], $ext);
+            echo "<br>";
+            echo "<br>";
+            echo "<br>";
         }
         echo '</div>';
     }

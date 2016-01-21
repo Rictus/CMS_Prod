@@ -57,7 +57,7 @@ theme_include('page_utils');
 
             <div class="headline">Sous la direction du Docteur Ronald Virag
                 <div class="underHeadline">
-                    Membre de l’académie Nationale de Chirurgie
+                    Membre de l’Académie Nationale de Chirurgie
                 </div>
             </div>
 

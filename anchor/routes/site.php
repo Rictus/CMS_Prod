@@ -323,9 +323,6 @@ Route::post('search', function () {
  * Dossier page
  */
 
-/**
- * Publication Page
- */
 Route::get(array('dossier', 'dossier/(:any)'), function ($pageNumber = 1) {
     $page = Page::slug('dossier');
     $category = Category::slug('dossier');

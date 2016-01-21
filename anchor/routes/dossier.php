@@ -16,7 +16,7 @@ Route::collection(array('before' => 'auth'), function () {
         $currentPageCategoryId = getCurrentPageCategoryId('dossier');
         $perpage = Config::meta('posts_per_page');
         $total = Post::where('category', '=', $currentPageCategoryId)->count();
-        $posts = Post::where('category', '=', $currentPageCategoryId)->sort('created', 'desc')->take($perpage)->skip(($page - 1) * $perpage)->get();
+        $posts = Post::where('category', '=', $currentPageCategoryId)->sort('created', 'asc')->take($perpage)->skip(($page - 1) * $perpage)->get();
         $url = Uri::to('admin/dossiers');
 
         $pagination = new Paginator($posts, $total, $page, $perpage, $url);

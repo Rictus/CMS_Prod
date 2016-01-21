@@ -15,7 +15,7 @@ Route::collection(array('before' => 'auth'), function () {
         $vars['biopage'] = $biopage;
         $vars['team'] = array();
         $vars['accroche'] = false;
-        $postsAccueil = Post::where('category', '=', $currentPageCategoryId)->get();
+        $postsAccueil = Post::where('category', '=', $currentPageCategoryId)->sort('created','asc')->get();
         for ($i = 0; $i < count($postsAccueil); $i++) {
             $memberId = $postsAccueil[$i]->data["id"];
             $teammembername_extend = Extend::value(Extend::field('post', 'teammembername', $memberId));

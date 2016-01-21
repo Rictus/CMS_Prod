@@ -238,7 +238,8 @@ function displayBlogPostsPreview()
     $max_page = Registry::get('maxPageNumber');
     $pageNumber = Registry::get('currentPageNumber');
 
-    for ($i = 0; $i < count($posts); $i++) {
+    //for ($i = 0; $i < count($posts); $i++) {
+    for ($i = count($posts) - 1; $i >= 0; $i--) {
         $curPost = $posts[$i]->data;
         $link = "/posts/" . $curPost['slug'];
         appendClickablePreviewArticles($curPost['id'], $curPost['title'], $curPost['created'], $curPost['author'], $curPost['html'], $link, true);

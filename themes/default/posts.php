@@ -61,7 +61,7 @@ theme_include('header_image');
             $totalNbRow = ceil(count($team) / $nbItemsPerRow);
             for ($rowNumber = 0; $rowNumber < $totalNbRow; $rowNumber++) {
                 echo '<div class="teamInnerContainer">';
-                for ($i = 0; $i < $nbItemsPerRow; $i++) {
+                for ($i = $nbItemsPerRow - 1; $i >= 0; $i--) {
                     $indexMember = $i + $nbItemsPerRow * $rowNumber;
                     if ($indexMember < count($team)) {
                         displayTeamMember($team[$indexMember]->data);
@@ -82,7 +82,7 @@ theme_include('header_image');
             $id = $article["id"];
             $title = $article["title"];
             $date = $article["created"];
-            $date= utf8_encode(strftime('%d %B %Y', article_time_given_date($article['created'])));
+            $date = utf8_encode(strftime('%d %B %Y', article_time_given_date($article['created'])));
             $author = $article["author"];
             $content = $article["html"];
             $link = $article["slug"];
