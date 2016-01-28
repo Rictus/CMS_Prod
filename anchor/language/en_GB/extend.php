@@ -2,66 +2,66 @@
 
 return array(
 
-	'extend' => 'Extend',
+	'extend' => 'Extensions',
 
-	'fields' => 'Custom Fields',
-	'fields_desc' => 'Create additional fields',
+	'fields' => 'Champs personnalisés',
+	'fields_desc' => 'Créer des champs additionnels',
 
-	'variables' => 'Site Variables',
-	'variables_desc' => 'Create additional metadata',
+	'variables' => 'Variables du site',
+	'variables_desc' => 'Créer des métadonnées additionnelles',
 
-	'create_field' => 'Create a new field',
-	'editing_custom_field' => 'Editing field &ldquo;%s&rdquo;',
-	'nofields_desc' => 'No fields yet',
+	'create_field' => 'Créer un champ',
+	'editing_custom_field' => 'Edition du champ &ldquo;%s&rdquo;',
+	'nofields_desc' => 'Aucun champ pour l\'instant',
 
-	'create_variable' => 'Create a new variable',
-	'editing_variable' => 'Editing variable &ldquo;%s&rdquo;',
-	'novars_desc' => 'No variables yet',
+	'create_variable' => 'Créer une variable',
+	'editing_variable' => 'Edition de la variable &ldquo;%s&rdquo;',
+	'novars_desc' => 'Aucune variable pour l\'instant',
 
 	// form fields
 	'type' => 'Type',
-	'type_explain' => 'The type of content you want to add this field to.',
+	'type_explain' => 'Le type de contenu destiné à ce nouveau champ.',
 
-	'field' => 'Field',
-	'field_explain' => 'Html input type',
+	'field' => 'Champ ',
+	'field_explain' => 'Type de champ Html',
 
-	'key' => 'Unique Key',
-	'key_explain' => 'The unique key for your field',
-	'key_missing' => 'Please enter a unique key',
-	'key_exists' => 'Key is already in use',
+	'key' => 'Clé unique ',
+	'key_explain' => 'L\'identifiant unique de ce champ',
+	'key_missing' => 'Veuillez renseigner une clé unique',
+	'key_exists' => 'Cette clé est déjà utilisée',
 
-	'label' => 'Label',
-	'label_explain' => 'Human readable name for your field',
-	'label_missing' => 'Please enter a label',
+	'label' => 'Intitulé ',
+	'label_explain' => 'L\'intitulé lisible de ce champ',
+	'label_missing' => 'Veuillez renseigner un intitulé',
 
-	'attribute_type' => 'File types',
-	'attribute_type_explain' => 'Comma separated list of accepted file types, empty to accept all.',
+	'attribute_type' => 'Type de fichier ',
+	'attribute_type_explain' => 'Liste séparée par une virgule de types de fichiers autorisés, laisser vide empty to accept all.',
 
 	// images
-	'attributes_size_width' => 'Image max width',
-	'attributes_size_width_explain' => 'Images will be resized if they are bigger than the max size',
+	'attributes_size_width' => 'Image (largeur maxi.) ',
+	'attributes_size_width_explain' => 'Les images seront retaillées si elles sont plus grandes que la largeur maxi.',
 
-	'attributes_size_height' => 'Image max height',
-	'attributes_size_height_explain' => 'Images will be resized if they are bigger than the max size',
+	'attributes_size_height' => 'Image (hauteur maxi.) ',
+	'attributes_size_height_explain' => 'Les images seront retaillées si elles sont plus grandes que la hauteur maxi.',
 
 	// custom vars
-	'name' => 'Name',
-	'name_explain' => 'A unique name',
-	'name_missing' => 'Please enter a unique name',
-	'name_exists' => 'Name is already in use',
+	'name' => 'Nom ',
+	'name_explain' => 'Un nom unique',
+	'name_missing' => 'Veuillez renseigner un nom unique',
+	'name_exists' => 'Nom déjà utilisé',
 
-	'value' => 'Value',
-	'value_explain' => 'The data you want to store (up to 64kb)',
-	'value_code_snipet' => 'Snippet to insert into your template:<br>
+	'value' => 'Valeur ',
+	'value_explain' => 'La donnée a stocker (jusqu\'à 64kb)',
+	'value_code_snipet' => 'Fragment de code à insérer dans votre template :<br>
 		<code>' . e('<?php echo site_meta(\'%s\'); ?>') . '</code>',
 
 	// messages
-	'variable_created' => 'Your variable was created',
-	'variable_updated' => 'Your variable was updated',
-	'variable_deleted' => 'Your variable was deleted',
+	'variable_created' => 'La variable a été créée',
+	'variable_updated' => 'La variable a été mise à jour',
+	'variable_deleted' => 'La variable a été supprimée',
 
-	'field_created' => 'Your field was created',
-	'field_updated' => 'Your field was updated',
-	'field_deleted' => 'Your field was deleted'
+	'field_created' => 'Le champ a été créé',
+	'field_updated' => 'Le champ a été mis à jour',
+	'field_deleted' => 'Le champ a été supprimé'
 
 );

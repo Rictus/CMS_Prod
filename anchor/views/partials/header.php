@@ -1,15 +1,5 @@
 <?php
 header("X-XSS-Protection: 0");
-header("X-XSS-Protection: 0");
-header("X-XSS-Protection: 0");
-header("X-XSS-Protection: 0");
-header("X-XSS-Protection: 0");
-header("X-XSS-Protection: 0");
-header("X-XSS-Protection: 0");
-header("X-XSS-Protection: 0");
-header("X-XSS-Protection: 0");
-header("X-XSS-Protection: 0");
-header("X-XSS-Protection: 0");
 ?>
 <!doctype html>
 <html lang="fr">
@@ -35,41 +25,35 @@ header("X-XSS-Protection: 0");
 
 <header class="top">
     <div class="wrap">
-        <?php if (Auth::user()): ?>
-            <nav>
-                <ul>
-                    <!--<li class="logo">
-                        <a href="<?php /*echo Uri::to('admin/posts'); */?>">
-                            <img src="<?php /*asset('anchor/views/assets/img/CETI.png') */?>"
-                                 alt="Logo du site de Ronald Virag">
-                        </a>-->
-                    </li>
+        <?php if (Auth::user()):
+            //Old version of menu
+            $menu = array('posts', 'comments', 'pages', 'categories', 'users', 'extend');
+            //Current version
+            $menu = array('accueil', 'dossiers', 'blog', 'publications');
 
-                    <?php
-                    //Old version of menu
-                    $menu = array('posts', 'comments', 'pages', 'categories', 'users', 'extend');
-                    //Current version
-                    $menu = array('accueil', 'dossiers', 'blog', 'publications');
+            $nav = "<nav><ul>";
 
-                    foreach ($menu as $url): ?>
-                        <li <?php if (strpos(Uri::current(), $url) !== false) echo 'class="active"'; ?>>
-                            <a href="<?php echo Uri::to('admin/' . $url); ?>">
-                                <?php echo ucfirst(__($url . '.' . $url)); ?>
-                            </a>
-                        </li>
-                    <?php endforeach; ?>
-                </ul>
-            </nav>
+            foreach ($menu as $url) {
+                $li = "<li " . (strpos(Uri::current(), $url) !== false ? "class=active" : "") . ">";
+                $li .= "<a href='" . Uri::to('admin/' . $url) . "'>" . ucfirst(__($url . '.' . $url)) . "</a>";
+                $li .= "</li>";
+                $nav .= $li;
+            }
 
+            $nav .= "</ul></nav>";
+
+            echo $nav;
+            ?>
             <?php
             echo Html::link('admin/logout', __('global.logout'), array('class' => 'btn'));
             $home = Registry::get('home_page');
+//            echo Html::link('admin/en/', __('global.choose_language'), array('class' => 'btn'));
             echo Html::link($home->slug, __('global.visit_your_site'), array('class' => 'btn', 'target' => '_blank'));
             ?>
 
         <?php else: ?>
             <!--<aside class="">
-                <a href="<?php /*echo Uri::to('admin/users/login'); */?>"><h1>Se Connecter</h1></a>
+                <a href="<?php /*echo Uri::to('admin/users/login'); */ ?>"><h1>Se Connecter</h1></a>
             </aside>-->
         <?php endif; ?>
     </div>

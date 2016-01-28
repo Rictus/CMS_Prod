@@ -2,10 +2,6 @@
 
 
 
-function removeTypeofproblem($title)
-{
-    return preg_replace("(^\{.*?\})", "", $title); //Removing existing {} and texte inside it. Only at the beginning
-}
 
 Route::collection(array('before' => 'auth'), function () {
 

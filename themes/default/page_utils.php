@@ -165,15 +165,10 @@ function appendClickablePreviewArticles($id, $title, $date, $author, $content, $
     echo "</a>";
 }
 
-function removeTypeofproblem($title)
-{
-    return preg_replace("(^\{.*?\})", "", $title); //Removing existing {} and texte inside it. Only at the beginning
-}
-
 
 function displayDossierSummary_PostLink($summaryInArticlePage = true, $post)
 {
-    $postTitle = removeTypeofproblem($post['title']);
+    $postTitle = $post['title'];
     $postSlug = $post['slug'];
     if ($summaryInArticlePage)
         echo '<a class="summary-link" href=' . $postSlug . '>' . $postTitle . '</a> ';

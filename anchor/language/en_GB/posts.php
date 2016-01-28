@@ -2,46 +2,46 @@
 
 return array(
 
-	'posts' => 'Posts',
+	'posts' => 'Articles',
 
-	'create_post' => 'Create a new post',
-	'noposts_desc' => 'You don’t have any posts!',
+	'create_post' => 'Créer un article',
+	'noposts_desc' => 'Aucun article pour l\'instant !',
 
 	// form fields
-	'title' => 'Post title',
+	'title' => 'Titre ',
 	'title_explain' => '',
-	'title_missing' => 'Please enter a title',
+	'title_missing' => 'Veuillez renseigner un titre',
 
-	'content' => 'Post Content',
-	'content_explain' => 'Just write.',
+	'content' => 'Corps ',
+	'content_explain' => 'Ecrivez, tout simplement.',
 
-	'slug' => 'Slug',
-	'slug_explain' => 'Slug uri to identify your post, should only contain ascii characters',
-	'slug_missing' => 'Please enter a slug uri, slugs can only contain ascii characters',
-	'slug_duplicate' => 'Slug already exists',
-	'slug_invalid' => 'Slug must contain letters',
+	'slug' => 'Alias ',
+	'slug_explain' => 'Partie d\'URL propre à l\'article, doit contenir des caractères ascii uniquement.',
+	'slug_missing' => 'Veuillez renseigner un Alias, doit contenir des caractères ascii uniquement',
+	'slug_duplicate' => 'Cet Alias existe déjà',
+	'slug_invalid' => 'L\'Alias doit contenir des lettres uniquement',
 
-	'description' => 'Description',
+	'description' => 'Description ',
 	'description_explain' => '',
 
-	'status' => 'Status',
+	'status' => 'Statut ',
 	'status_explain' => '',
 
-	'category' => 'Category',
+	'category' => 'Catégorie ',
 	'category_explain' => '',
 
-	'allow_comments' => 'Allow Comments',
+	'allow_comments' => 'Autoriser les commentaires',
 	'allow_comments_explain' => '',
 
-	'custom_css' => 'Custom CSS',
+	'custom_css' => 'CSS personnalisés',
 	'custom_css_explain' => '',
 
-	'custom_js' => 'Custom JS',
+	'custom_js' => 'Script personnalisé',
 	'custom_js_explain' => '',
 
 	// messages
-	'updated' => 'Your article has been updated',
-	'created' => 'Your new article was created',
-	'deleted' => 'Your article have been deleted'
+	'updated' => 'L\'article a été mis à jour',
+	'created' => 'L\'article a été créé',
+	'deleted' => 'L\'article a été supprimé'
 
 );

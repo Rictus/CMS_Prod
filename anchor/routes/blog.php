@@ -12,7 +12,10 @@ Route::collection(array('before' => 'auth'), function () {
         $posts = Post::where('category', '=', $currentPageCategoryId)->sort('created', 'asc')->take($perpage)->skip(($page - 1) * $perpage)->get();
         $url = Uri::to('admin/blog');
 
-        //Doing something
+        //Adding extend fields for each posts
+        for ($i = 0; $i < count($posts); $i++) {
+            $posts[$i]->targetlanguage = Extend::value(Extend::field('post', 'targetlanguage', $posts[$i]->id));
+        }
 
         $pagination = new Paginator($posts, $total, $page, $perpage, $url);
 
@@ -37,7 +40,6 @@ Route::collection(array('before' => 'auth'), function () {
         // extended fields
         $vars['fields'] = Extend::fields('post');
 
-
         $vars['statuses'] = array(
             'published' => __('global.published'),
             'draft' => __('global.draft'),
@@ -57,7 +59,6 @@ Route::collection(array('before' => 'auth'), function () {
             'html', 'css', 'js', 'status', 'comments'));
 
         $extends = Input::get(array('extend'));
-
         /** Valeurs en dur **/
         $input['comments'] = 0;
         $input['category'] = $currentPageCategoryId;

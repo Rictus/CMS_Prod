@@ -1,8 +1,9 @@
 <?php echo $header;
-
 foreach ($fields as $field) {
     switch ($field->key) {
-
+        case 'targetlanguage':
+            $targetLanguage = $field;
+            break;
         default:
             break;
     }
@@ -34,6 +35,14 @@ foreach ($fields as $field) {
 
             </div>
             <div class="wrap">
+                <p>
+                    <label><?php echo $targetLanguage->label; ?></label>
+                    <?php
+                    echo Form::select('extend[' . $targetLanguage->key . ']', array('fr' => 'Français', 'en' => 'Anglais'), $targetLanguage->value->text == 'fr' ||$targetLanguage->value->text == 'en' ? $targetLanguage->value->text : 'fr', array('class' => ''));
+                    ?>
+
+                </p>
+
                 <p>
                     <label><?php echo __('posts.status'); ?>:</label>
                     <?php echo Form::select('status', $statuses, Input::previous('status', $post->status), array('class' => '')); ?>

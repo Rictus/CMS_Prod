@@ -2,27 +2,27 @@
 
 return array(
 
-	'category' => 'Category',
-	'categories' => 'Categories',
+	'category' => 'Catégorie',
+	'categories' => 'Catégories',
 
-	'create_category' => 'Create a new category',
-	'edit_category' => 'Editing &ldquo;%s&rdquo;',
+	'create_category' => 'Créer une catégorie',
+	'edit_category' => 'Edition de &ldquo;%s&rdquo;',
 
 	// form fields
-	'title' => 'Title',
-	'title_explain' => 'Your category title.',
-	'title_missing' => 'Please enter a title',
+	'title' => 'Titre ',
+	'title_explain' => 'Le titre de votre catégorie.',
+	'title_missing' => 'Veuillez renseigner un titre',
 
-	'slug' => 'Slug',
-	'slug_explain' => 'The slug for your category.',
+	'slug' => 'Alias ',
+	'slug_explain' => 'Partie d\'URL propre à cette catégorie, doit contenir des caractères ascii uniquement.',
 
-	'description' => 'Description',
-	'description_explain' => 'What your category is about.',
+	'description' => 'Description ',
+	'description_explain' => 'Le sujet de cette catégorie.',
 
 	// messages
-	'created' => 'Your new category has been added.',
-	'updated' => 'Your category has been updated.',
-	'deleted' => 'Your category has been deleted.',
-	'delete_error' => 'You must have at least one category.',
+	'created' => 'La catégorie vient d\'être ajoutée.',
+	'updated' => 'La catégorie vient d\'être mise à jour.',
+	'deleted' => 'La catégorie a été supprimée.',
+	'delete_error' => 'Vous devez avoir au moins une catégorie.',
 
 );

@@ -2,44 +2,44 @@
 
 return array(
 
-	'metadata' => 'Site Metadata',
-	'metadata_desc' => 'Manage your site data',
+	'metadata' => 'Métadonnées du site',
+	'metadata_desc' => 'Gérer les données du site',
 
-	'comment_settings' => 'Comments',
-	'theme_settings' => 'Apperance',
+	'comment_settings' => 'Commentaires',
+	'theme_settings' => 'Apperence',
 
 	// form fields
-	'sitename' => 'Site name',
+	'sitename' => 'Nom du site ',
 	'sitename_explain' => '',
 	'sitename_missing' => 'Your site needs a name!',
 
-	'sitedescription' => 'Site description',
+	'sitedescription' => 'Description du site ',
 	'sitedescription_explain' => '',
 	'sitedescription_missing' => 'Your site needs a description!',
 
-	'homepage' => 'Home Page',
+	'homepage' => 'Page d\'accueil ',
 	'homepage_explain' => '',
 
-	'postspage' => 'Posts Page',
+	'postspage' => 'Page des articles ',
 	'postspage_explain' => '',
 
-	'posts_per_page' => 'Posts per page',
+	'posts_per_page' => 'Articles par page ',
 	'posts_per_page_explain' => '',
 
-	'auto_publish_comments' => 'Auto-allow comments',
+	'auto_publish_comments' => 'Accepter les commentaires ',
 	'auto_publish_comments_explain' => '',
 
-	'comment_notifications' => 'Email notification for new comments',
+	'comment_notifications' => 'Notifier les commentaires par e-mail ',
 	'comment_notifications_explain' => '',
 
-	'comment_moderation_keys' => 'Spam keywords',
-	'comment_moderation_keys_explain' => 'Comma separated list of keywords to blacklist against.
-		Comments will automatically be set as spam.',
+	'comment_moderation_keys' => 'Spam (mots interdits) ',
+	'comment_moderation_keys_explain' => 'Liste séparée par une virgule de mots-clé identifiables comme étant du spam.
+		Les commentaires seront automatiquement notifiés comme du spam.',
 
-	'current_theme' => 'Current theme',
+	'current_theme' => 'Thème actuel ',
 	'current_theme_explain' => '',
 
 	// messages
-	'updated' => 'Metadata updated',
+	'updated' => 'Metadonnées mises à jour',
 
 );

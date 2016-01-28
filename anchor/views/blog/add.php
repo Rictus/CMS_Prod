@@ -1,5 +1,14 @@
-<?php echo $header; ?>
-
+<?php echo $header;
+foreach ($fields as $field) {
+    switch ($field->key) {
+        case 'targetlanguage':
+            $targetLanguage = $field;
+            break;
+        default:
+            break;
+    }
+}
+?>
     <form method="post" action="<?php echo Uri::to('admin/blog/add'); ?>" enctype="multipart/form-data" novalidate>
 
         <input name="token" type="hidden" value="<?php echo $token; ?>">
@@ -26,10 +35,12 @@
                 <?php echo $editor; ?>
             </div>
             <div class="wrap">
-                <p class="hidden">
-                    <?php echo Form::text('slug', Input::previous('slug'), array('class' => 'hidden')); ?>
+                <p>
+                    <label><?php echo $targetLanguage->label; ?></label>
+                    <?php
+                        echo Form::select('extend[' . $targetLanguage->key.']', array('fr' => 'Français', 'en' => 'Anglais'), 'fr', array('class' => ''));
+                    ?>
                 </p>
-
                 <p>
                     <label><?php echo __('posts.status');  ?>:</label>
                     <?php echo Form::select('status', $statuses, Input::previous('status'));  ?>

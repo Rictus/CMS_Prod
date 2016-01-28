@@ -12,10 +12,11 @@
 
         <?php if ($posts->count): ?>
             <ul class="main list">
-                <?php foreach ($posts->results as $article): ?>
+                <?php foreach ($posts->results as $article):?>
                     <li>
                         <a href="<?php echo Uri::to('admin/blog/edit/' . $article->id); ?>">
                             <strong><?php echo $article->title; ?></strong>
+                            <strong><?php echo $article->targetlanguage == "fr" ? "Français": "Anglais"; ?></strong>
 				<span>
 					<time><?php echo Date::format($article->created); ?></time>
 

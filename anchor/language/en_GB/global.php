@@ -8,70 +8,72 @@
  */
 return array(
 
-	// words
-	'save' => 'Save',
-	'delete' => 'Delete',
-	'update' => 'Update',
-	'edit' => 'Edit',
-	'editing' => 'Editing',
-	'create' => 'Create',
-	'created' => 'Created',
-	'submit' => 'Submit',
-	'close' => 'Close',
-	'status' => 'Status',
-	'manage' => 'Manage',
-	'reset' => 'Reset',
-	'all' => 'All',
+    // words
+    'save' => 'Sauvegarder',
+    'delete' => 'Supprimer',
+    'update' => 'Mettre à jour',
+    'edit' => 'Editer',
+    'editing' => 'Edition',
+    'create' => 'Créer',
+    'created' => 'Créé',
+    'submit' => 'Envoyer',
+    'close' => 'Fermer',
+    'status' => 'Status',
+    'manage' => 'Gérer',
+    'reset' => 'Réinitialiser',
+    'all' => 'Tous',
 
-	// pagination
-	'next' => 'Next',
-	'previous' => 'Previous',
-	'first' => 'First',
-	'last' => 'Last',
+    // pagination
+    'next' => 'Suivant',
+    'previous' => 'Avant',
+    'first' => 'Premier',
+    'last' => 'Dernier',
 
-	// statuses
-	'draft' => 'Draft',
-	'archived' => 'Archived',
-	'published' => 'Published',
-	'pending' => 'Pending',
-	'approved' => 'Approved',
-	'spam' => 'Spam',
+    // statuses
+    'draft' => 'Brouillon',
+    'archived' => 'Archivé',
+    'published' => 'Publié',
+    'pending' => 'En attente',
+    'approved' => 'Approuvé',
+    'spam' => 'Spam',
 
-	'inactive' => 'Inactive',
-	'active' => 'Active',
+    'inactive' => 'Inactif',
+    'active' => 'Actif',
 
-	// roles
-	'administrator' => 'Admin',
-	'editor' => 'Editor',
-	'user' => 'User',
+    // roles
+    'administrator' => 'Admin',
+    'editor' => 'Editeur',
+    'user' => 'Utilisateur',
 
-	'log_in' => 'Log in',
-	'login' => 'Login',
-	'log_out' => 'Log out',
-	'logout' => 'Logout',
+    'log_in' => 'Connecté',
+    'login' => 'Se connecter',
+    'log_out' => 'Se déconnecter',
+    'logout' => 'Déconnexion',
 
-	// pharses
-	'visit_your_site' => 'Visit your site',
-	'powered_by_anchor' => 'Powered by Anchor, version %s',
-	'make_blogging_beautiful' => 'Make blogging beautiful.',
+    // pharses
+    'visit_your_site' => 'Voir',
+    'powered_by_anchor' => 'Propulsé par Anchor, version %s',
+    'make_blogging_beautiful' => 'Make blogging beautiful.',
 
-	// intro
-	'welcome_to_anchor' => 'Welcome to Anchor',
-	'welcome_to_anchor_lets_go' => 'Welcome to Anchor. Let’s go.',
-	'run_the_installer' => 'Run the installer',
+    // intro
+    'welcome_to_anchor' => 'Bienvenue dans Anchor',
+    'welcome_to_anchor_lets_go' => 'Bienvenue dans Anchor. C\'est parti !',
+    'run_the_installer' => 'Lancer l\'installation',
 
-	// upgrade
-	'upgrade' => 'Upgrade',
-	'good_news' => 'Great News!',
-	'new_version_available' => 'There\'s a new version of anchor available.',
-	'download_now' => 'Download Now',
-	'upgrade_later' => 'Upgrade later',
+    // upgrade
+    'upgrade' => 'Mettre à niveau',
+    'good_news' => 'Bonne nouvelle !',
+    'new_version_available' => 'Il existe une nouvelle version de anchor disponible.',
+    'download_now' => 'Télécharger maintenant',
+    'upgrade_later' => 'Mettre à miveau plus tard',
 
-	// debug profiler
-	'profile' => 'Profile',
-	'profile_memory_usage' => 'Total memory usage',
+    // debug profiler
+    'profile' => 'Profil',
+    'profile_memory_usage' => 'Utilisation totale de la mémoire',
 
-	// messages
-	'confirm_delete' => 'Are you sure you want to delete? This can’t be undone!'
+    // messages
+    'confirm_delete' => 'Êtes-vous sûr(e) de vouloir supprimer ? Aucune restauration possible !',
+
+    'choose_language' => 'Passer en français'
 
 );

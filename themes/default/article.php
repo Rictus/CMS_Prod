@@ -5,7 +5,7 @@ theme_include('header');
         class="articleContainer col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 col-xs-12 col-sm-offset-0">
         <section class="content wrap" id="article-<?php echo article_id(); ?>">
 
-            <h1 class=""><?php echo removeTypeofproblem(article_title()); ?></h1>
+            <h1 class=""><?php echo article_title(); ?></h1>
 
             <?php
             echo "<time class='date' datetime=" . date(DATE_W3C, article_time()) . ">" . utf8_encode(strftime('%d %B %Y',article_time())) . "</time>";

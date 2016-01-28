@@ -1,12 +1,32 @@
 <?php
-setlocale(LC_ALL, 'fr_FR');
+
+
+$known_langs = array('fr', 'en');
+$user_pref_langs = explode(',', $_SERVER['HTTP_ACCEPT_LANGUAGE']);
+
+foreach ($user_pref_langs as $idx => $lang) {
+    $lang = substr($lang, 0, 2);
+    if (in_array($lang, $known_langs)) {
+        break;
+    }
+}
+switch ($lang) {
+    case 'en':
+        setlocale(LC_ALL, 'en_UK');
+        break;
+    case 'fr':
+    default:
+        $lang = 'fr';
+        setlocale(LC_ALL, 'fr_FR');
+        break;
+}
 theme_include('page_utils');
 ?>
 <!doctype html>
-<html lang="fr">
+<html lang="<?php echo $lang; ?>">
 <head>
     <meta charset="UTF-8">
-    <title><?php echo removeTypeofproblem(page_title('Page can’t be found')); ?> - <?php echo site_name(); ?></title>
+    <title><?php echo page_title('Page can’t be found'); ?> - <?php echo site_name(); ?></title>
 
     <meta name="description" content="<?php echo site_description(); ?>">
 
