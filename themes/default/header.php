@@ -20,6 +20,7 @@ switch ($lang) {
         setlocale(LC_ALL, 'fr_FR');
         break;
 }
+$GLOBALS['lang'] = $lang;
 theme_include('page_utils');
 ?>
 <!doctype html>

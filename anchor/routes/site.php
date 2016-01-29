@@ -87,7 +87,7 @@ Route::get($routes, function ($offset = 1) use ($posts_page) {
 
     // get last post from blog
     list($nbBlogPost, $blogPosts) = Post::listing(Category::slug('blog'), 1, 1000);
-    if($nbBlogPost>0)
+    if ($nbBlogPost > 0)
         $lastBlogPost = $blogPosts[0]; //Normally, the first one should be the most recent article cause ::listing search in db and sort result
     else
         $lastBlogPost = false;
@@ -424,6 +424,13 @@ Route::get(array('blog', 'blog/(:any)'), function ($pageNumber = 1) {
 
 //     get the last page
     $max_page = ($total > $per_page) ? ceil($total / $per_page) : 1;
+
+
+    for ($i = 0; $i < count($posts); $i++) {
+        $postId = $posts[$i]->data["id"];
+        $posts[$i]->data['lang'] = Extend::value(Extend::field('post', 'targetlanguage', $postId));
+    }
+
 
     // stop users browsing to non existing ranges
     if (($pageNumber > $max_page) or ($pageNumber < 1)) {

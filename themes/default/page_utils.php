@@ -224,8 +224,14 @@ function displayDossierSummary($summaryInArticlePage = true)
 
 }
 
+function getLanguage()
+{
+    return isset($GLOBALS['lang']) ? $GLOBALS['lang'] : 'fr';
+}
+
 function displayBlogPostsPreview()
 {
+    $lang = getLanguage();
     $posts = Registry::get('posts');
     $page = Registry::get('page');
     $category = Registry::get('category');
@@ -233,11 +239,11 @@ function displayBlogPostsPreview()
     $max_page = Registry::get('maxPageNumber');
     $pageNumber = Registry::get('currentPageNumber');
 
-    //for ($i = 0; $i < count($posts); $i++) {
     for ($i = count($posts) - 1; $i >= 0; $i--) {
         $curPost = $posts[$i]->data;
         $link = "/posts/" . $curPost['slug'];
-        appendClickablePreviewArticles($curPost['id'], $curPost['title'], $curPost['created'], $curPost['author'], $curPost['html'], $link, true);
+        if($curPost['lang'] == $lang)
+            appendClickablePreviewArticles($curPost['id'], $curPost['title'], $curPost['created'], $curPost['author'], $curPost['html'], $link, true);
     }
 
     echo "<div class='paginationContainer col-lg-4 col-lg-offset-4 col-md-4 col-md-offset-4 col-sm-4 col-sm-offset-4 col-xs-4 col-xs-offset-4'><div class='pagination'>";

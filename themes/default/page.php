@@ -1,6 +1,5 @@
 <?php
 theme_include('header');
-
 switch (page_slug()) {
     case 'blog':
         echo page_content();
