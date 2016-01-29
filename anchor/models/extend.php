@@ -68,12 +68,12 @@ class Extend extends Base
         return $fields;
     }
 
-    public static function html($item, $class='')
+    public static function html($item, $class = '')
     {
         switch ($item->field) {
             case 'text':
                 $value = isset($item->value->text) ? $item->value->text : '';
-                $html = '<input class="'.$class.'" id="extend_' . $item->key . '" name="extend[' . $item->key . ']" type="text" value="' . $value . '">';
+                $html = '<input class="' . $class . '" id="extend_' . $item->key . '" name="extend[' . $item->key . ']" type="text" value="' . $value . '">';
                 break;
 
             case 'html':
@@ -211,7 +211,9 @@ class Extend extends Base
     public static function process_text($extend)
     {
         $text = Input::get('extend.' . $extend->key);
-
+        if ($extend->key == 'customdate' && !preg_match('/^\d{2}\/\d{2}\/\d{4}$/', $text)) {
+            $text = date("d/m/Y");
+        }
         return Json::encode(compact('text'));
     }
 

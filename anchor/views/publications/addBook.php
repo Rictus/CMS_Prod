@@ -3,6 +3,7 @@
 $bookImageField = false;
 $externallink = false;
 $typeofpublication = false;
+$targetLanguage = false;
 foreach ($fields as $field) {
     switch ($field->key) {
         case 'bookimage':
@@ -17,6 +18,9 @@ foreach ($fields as $field) {
         case 'typeofpublication':
             //Say if it's a book or a text publication. Normally book here
             $typeofpublication = $field;
+            break;
+        case 'targetlanguage':
+            $targetLanguage = $field;
             break;
         default;
             //We do not get other extends
@@ -97,7 +101,9 @@ foreach ($fields as $field) {
                     }
                     ?>
                 </p>
-
+                <?php
+                echo addTargetLanguageSelect($targetLanguage);
+                ?>
                 <p>
                     <label><?php echo __('publications.status'); ?>:</label>
                     <?php echo Form::select('status', $statuses, Input::previous('status')); ?>

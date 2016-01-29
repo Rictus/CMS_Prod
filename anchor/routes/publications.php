@@ -472,6 +472,7 @@ Route::collection(array('before' => 'auth'), function () {
             $input['comments'] = 0;
         }
 
+
         Post::update($id, $input);
 
         Extend::process('post', $id);

@@ -4,6 +4,7 @@ $typeofpublication = false;
 $externallink = false;
 $customdate = false;
 $publicofpublication = false;
+$targetLanguage = false;
 foreach ($fields as $field) {
     switch ($field->key) {
         case 'externallink':
@@ -18,6 +19,9 @@ foreach ($fields as $field) {
             break;
         case 'publicofpublication':
             $publicofpublication = $field;
+            break;
+        case 'targetlanguage':
+            $targetLanguage = $field;
             break;
         default;
             //We do not get other extends
@@ -93,7 +97,9 @@ foreach ($fields as $field) {
                     }
                     ?>
                 </p>
-
+                <?php
+                echo addTargetLanguageSelect($targetLanguage);
+                ?>
                 <p>
                     <label><?php echo __('publications.status'); ?>:</label>
                     <?php echo Form::select('status', $statuses, Input::previous('status')); ?>

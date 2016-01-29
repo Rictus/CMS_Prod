@@ -2,6 +2,7 @@
 $bookimage = false;
 $externallink = false;
 $typeofpublication = false;
+$targetLanguage = false;
 foreach ($fields as $field): ?>
     <?php switch ($field->key) {
         case 'bookimage':
@@ -12,6 +13,9 @@ foreach ($fields as $field): ?>
             break;
         case 'typeofpublication':
             $typeofpublication = $field;
+            break;
+        case 'targetlanguage':
+            $targetLanguage = $field;
             break;
     }
     ?>
@@ -65,6 +69,9 @@ foreach ($fields as $field): ?>
                     <em><?php echo __('posts.description_explain'); ?></em>
                 </p>
                 <?php echo "<p><label for='extend_" . $externallink->key . "'>" . $externallink->label . "</label>" . Extend::html($externallink) . "</p>"; ?>
+                <?php
+                echo addTargetLanguageSelect($targetLanguage);
+                ?>
                 <p>
                     <label for="status"><?php echo __('posts.status'); ?>:</label>
                     <?php echo Form::select('status', $statuses, Input::previous('status', $book->status)); ?>

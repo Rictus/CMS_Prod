@@ -6,27 +6,29 @@ $books = [];
 $publicTextPublications = [];
 $scientificTextPublications = [];
 $erroredPublications = [];
+$lang = getLanguage();
 foreach ($posts as $post) {
     $ext = $post->data['extends'];
-
-    switch ($ext['typeofpublication']) {
-        case 'book':
-            $books[] = $post;
-            break;
-        case 'textpublication':
-            switch ($post->extends['publicofpublication']) {
-                case 'scientific':
-                    $scientificTextPublications[] = $post;
-                    break;
-                case 'public':
-                default:
-                    $publicTextPublications[] = $post;
-                    break;
-            }
-            break;
-        default:
-            $erroredPublications[] = $post;
-            break;
+    if ($ext['targetlanguage'] == $lang) {
+        switch ($ext['typeofpublication']) {
+            case 'book':
+                $books[] = $post;
+                break;
+            case 'textpublication':
+                switch ($post->extends['publicofpublication']) {
+                    case 'scientific':
+                        $scientificTextPublications[] = $post;
+                        break;
+                    case 'public':
+                    default:
+                        $publicTextPublications[] = $post;
+                        break;
+                }
+                break;
+            default:
+                $erroredPublications[] = $post;
+                break;
+        }
     }
 }
 
@@ -72,7 +74,7 @@ function displayHTMLBook($book, $ext)
     echo "<br>\n";
     echo "<br>\n";
     echo '<div class="book">' .
-        '<a class="hidden-link" href="">' .
+        '<a class="hidden-link" href="'.$ext['externallink'].'">' .
         '<img src="/content/' . $ext['bookimage'] . '" alt="" class="bookImg">' .
         '<div class="bookTitle">' . $book->data['title'] . '</div>' .
         '</a>' .
@@ -93,6 +95,9 @@ function displayHTMLPublicationCol($ar)
     //The first year to display should be the first key in the array as it is sorted
     reset($ar);
     $firstYear = key($ar);
+    if(!isset($ar[$firstYear]) || !isset($ar[$firstYear][0])) {
+        return ;
+    }
     $public = $ar[$firstYear][0]->data['extends']['publicofpublication'];
     switch ($public) {
         case 'public':
@@ -144,9 +149,6 @@ $numberOfBookPerRow = 3;
             $bookIndex = $row * $numberOfBookPerRow + $rowIndex;
             $ext = $books[$bookIndex]->data['extends'];
             displayHTMLBook($books[$bookIndex], $ext);
-            echo "<br>";
-            echo "<br>";
-            echo "<br>";
         }
         echo '</div>';
     }
@@ -155,7 +157,7 @@ $numberOfBookPerRow = 3;
         echo '<div class="bookRow">';
         $nbDoneRows = floor(count($books) / $numberOfBookPerRow);
         for ($i = $nbDoneRows * $numberOfBookPerRow; $i < count($books); $i++) {
-            $ext = $posts[$i]->data['extends'];
+            $ext = $books[$i]->data['extends'];
             displayHTMLBook($books[$i], $ext);
         }
         echo '</div>';
