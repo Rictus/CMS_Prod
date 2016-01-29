@@ -23,6 +23,22 @@ function asset($uri)
     return rtrim(Config::app('url'), '/') . '/' . $uri;
 }
 
+/**
+ * @param $targetLanguage
+ * @return string
+ *
+ */
+function addTargetLanguageSelect($targetLanguage)
+{
+    $selectedValue = isset($targetLanguage->value) &&
+                     isset($targetLanguage->value->text) &&
+                    ($targetLanguage->value->text == 'fr' || $targetLanguage->value->text == 'en') ? $targetLanguage->value->text : 'fr';
+    $p = "<p>";
+    $p .= "<label>" . $targetLanguage->label . "</label>";
+    $p .= Form::select('extend[' . $targetLanguage->key . ']', array('fr' => 'Français', 'en' => 'Anglais'), $selectedValue, array('class' => ''));
+    $p .= "</p>";
+    return $p;
+}
 
 function addScriptTag($assetLink)
 {
@@ -31,13 +47,12 @@ function addScriptTag($assetLink)
 
 /**
  * @param $assetLink
- * @param bool|false $media    Like : (max-width: 980px), (max-device-width: 480px)
+ * @param bool|false $media Like : (max-width: 980px), (max-device-width: 480px)
  */
 function addStylesheetTag($assetLink, $media = false)
 {
-    echo '<link rel="stylesheet" href="' . asset($assetLink) . '" media="'.$media.'">';
+    echo '<link rel="stylesheet" href="' . asset($assetLink) . '" media="' . $media . '">';
 }
-
 
 
 /**

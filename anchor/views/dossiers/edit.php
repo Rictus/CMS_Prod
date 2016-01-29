@@ -5,10 +5,14 @@ foreach ($fields as $field) {
         case 'typeofproblem':
             $typeofproblem = $field;
             break;
-        default: /*We do not show other extend fields*/
+        case 'targetlanguage':
+            $targetLanguage = $field;
+            break;
+        default:
             break;
     }
 }
+
 ?>
     <form method="post" action="<?php echo Uri::to('admin/dossiers/edit/' . $article->id); ?>"
           enctype="multipart/form-data" novalidate>
@@ -42,6 +46,10 @@ foreach ($fields as $field) {
                 <p class="hidden">
                     <?php echo Form::text('slug', Input::previous('slug', $article->slug), array('class' => 'hidden')); ?>
                 </p>
+
+                <?php
+                echo addTargetLanguageSelect($targetLanguage);
+                ?>
 
                 <p>
                     <label for="status"><?php echo __('posts.status'); ?>:</label>

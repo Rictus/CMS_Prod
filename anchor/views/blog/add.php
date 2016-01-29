@@ -35,16 +35,13 @@ foreach ($fields as $field) {
                 <?php echo $editor; ?>
             </div>
             <div class="wrap">
+                <?php
+                echo addTargetLanguageSelect($targetLanguage);
+                ?>
                 <p>
-                    <label><?php echo $targetLanguage->label; ?></label>
-                    <?php
-                        echo Form::select('extend[' . $targetLanguage->key.']', array('fr' => 'Français', 'en' => 'Anglais'), 'fr', array('class' => ''));
-                    ?>
-                </p>
-                <p>
-                    <label><?php echo __('posts.status');  ?>:</label>
-                    <?php echo Form::select('status', $statuses, Input::previous('status'));  ?>
-                    <em><?php echo __('posts.status_explain');  ?></em>
+                    <label><?php echo __('posts.status'); ?>:</label>
+                    <?php echo Form::select('status', $statuses, Input::previous('status')); ?>
+                    <em><?php echo __('posts.status_explain'); ?></em>
                 </p>
 
                 <aside class="buttons">

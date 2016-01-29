@@ -16,7 +16,10 @@ Route::collection(array('before' => 'auth'), function () {
         $url = Uri::to('admin/dossiers');
 
         $pagination = new Paginator($posts, $total, $page, $perpage, $url);
-
+        //Adding extend fields for each posts
+        for ($i = 0; $i < count($posts); $i++) {
+            $posts[$i]->targetlanguage = Extend::value(Extend::field('post', 'targetlanguage', $posts[$i]->id));
+        }
         $vars['messages'] = Notify::read();
         $vars['posts'] = $pagination;
         $vars['categories'] = Category::sort('title')->get();

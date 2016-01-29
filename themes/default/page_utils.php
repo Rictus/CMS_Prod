@@ -178,6 +178,7 @@ function displayDossierSummary_PostLink($summaryInArticlePage = true, $post)
 
 function displayDossierSummary($summaryInArticlePage = true)
 {
+    $lang = getLanguage();
     $posts = Registry::get('posts');
     for ($i = 0; $i < count($posts); $i++) {
         $posts[$i]->data['typeofproblem'] = $posts[$i]->data['extends']['typeofproblem'];
@@ -194,16 +195,20 @@ function displayDossierSummary($summaryInArticlePage = true)
     //First displaying posts with no specified type of problem :
     for ($i = 0; $i < count($posts); $i++) {
         $curPost = $posts[$i]->data;
-        if (!$curPost['typeofproblem'] || $curPost['typeofproblem'] == 'indifferent') {
-            displayDossierSummary_PostLink($summaryInArticlePage, $curPost);
+        if ($curPost['extends']['targetlanguage'] == $lang) {
+            if (!$curPost['typeofproblem'] || $curPost['typeofproblem'] == 'indifferent') {
+                displayDossierSummary_PostLink($summaryInArticlePage, $curPost);
+            }
         }
     }
 //Then displaying typeofproblem=female
     echo "<div class='summary-col-title'>Problème féminin</div>";
     for ($i = 0; $i < count($posts); $i++) {
         $curPost = $posts[$i]->data;
-        if ($curPost['typeofproblem'] == 'feminin') {
-            displayDossierSummary_PostLink($summaryInArticlePage, $curPost);
+        if ($curPost['extends']['targetlanguage'] == $lang) {
+            if ($curPost['typeofproblem'] == 'feminin') {
+                displayDossierSummary_PostLink($summaryInArticlePage, $curPost);
+            }
         }
     }
     echo "</div>";//col
@@ -215,8 +220,10 @@ function displayDossierSummary($summaryInArticlePage = true)
     //Then displaying typeofproblem=male
     for ($i = 0; $i < count($posts); $i++) {
         $curPost = $posts[$i]->data;
-        if ($curPost['typeofproblem'] == 'masculin') {
-            displayDossierSummary_PostLink($summaryInArticlePage, $curPost);
+        if ($curPost['extends']['targetlanguage'] == $lang) {
+            if ($curPost['typeofproblem'] == 'masculin') {
+                displayDossierSummary_PostLink($summaryInArticlePage, $curPost);
+            }
         }
     }
     echo "</div>"; //col
@@ -242,7 +249,7 @@ function displayBlogPostsPreview()
     for ($i = count($posts) - 1; $i >= 0; $i--) {
         $curPost = $posts[$i]->data;
         $link = "/posts/" . $curPost['slug'];
-        if($curPost['lang'] == $lang)
+        if ($curPost['lang'] == $lang)
             appendClickablePreviewArticles($curPost['id'], $curPost['title'], $curPost['created'], $curPost['author'], $curPost['html'], $link, true);
     }
 

@@ -35,13 +35,9 @@ foreach ($fields as $field) {
 
             </div>
             <div class="wrap">
-                <p>
-                    <label><?php echo $targetLanguage->label; ?></label>
-                    <?php
-                    echo Form::select('extend[' . $targetLanguage->key . ']', array('fr' => 'Français', 'en' => 'Anglais'), $targetLanguage->value->text == 'fr' ||$targetLanguage->value->text == 'en' ? $targetLanguage->value->text : 'fr', array('class' => ''));
-                    ?>
-
-                </p>
+               <?php
+               echo addTargetLanguageSelect($targetLanguage);
+               ?>
 
                 <p>
                     <label><?php echo __('posts.status'); ?>:</label>
