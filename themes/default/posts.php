@@ -151,8 +151,12 @@ if (count($books) > 0) {
     echo '<div class="lastPublications">';
     echo '<div class="inner row">';
     while ($nbBookDisplayed < $nbBookToDisplay && $nbBookDisplayed < count($books)) {
-        displayBook($books[$nbBookDisplayed]->data);
-        $nbBookDisplayed++;
+        if ($books[$nbBookDisplayed]->data['targetlanguage'] == $GLOBALS['lang']) {
+            displayBook($books[$nbBookDisplayed]->data);
+            $nbBookDisplayed++;
+        } else {
+             array_splice($books, $nbBookDisplayed,1);
+        }
     }
 
     echo '</div><div class="linkContainer"><a href="/publication" class="link pre-chevron">Accéder aux livres</a></div></div>';

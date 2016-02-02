@@ -106,7 +106,7 @@ class Form
         return static::input('file', $name, '', $attributes);
     }
 
-    public static function textarea($name, $value = '', $attributes = array())
+    public static function textarea($name, $value = '', $attributes = array(), $addInParagraph = true)
     {
         $attributes['name'] = $name;
 
@@ -120,8 +120,12 @@ class Form
         if (array_key_exists('label', $attributes))
             $html[] = Html::element('label', $attributes['label'], array('for' => $attributes['name']));
         $html[] = Html::element('textarea', $value, $attributes);
-        $cont = Html::element('p', implode('', $html));
-        return  $cont;
+        if ($addInParagraph) {
+            $cont = Html::element('p', implode('', $html));
+            return $cont;
+        } else {
+            return implode('', $html);
+        }
     }
 
     public static function select($name, $options = array(), $selected = null, $attributes = array())

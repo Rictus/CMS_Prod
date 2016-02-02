@@ -74,7 +74,7 @@ function displayHTMLBook($book, $ext)
     echo "<br>\n";
     echo "<br>\n";
     echo '<div class="book">' .
-        '<a class="hidden-link" href="'.$ext['externallink'].'">' .
+        '<a class="hidden-link" href="' . $ext['externallink'] . '">' .
         '<img src="/content/' . $ext['bookimage'] . '" alt="" class="bookImg">' .
         '<div class="bookTitle">' . $book->data['title'] . '</div>' .
         '</a>' .
@@ -95,19 +95,32 @@ function displayHTMLPublicationCol($ar)
     //The first year to display should be the first key in the array as it is sorted
     reset($ar);
     $firstYear = key($ar);
-    if(!isset($ar[$firstYear]) || !isset($ar[$firstYear][0])) {
-        return ;
+    if (!isset($ar[$firstYear]) || !isset($ar[$firstYear][0])) {
+        return;
     }
     $public = $ar[$firstYear][0]->data['extends']['publicofpublication'];
-    switch ($public) {
-        case 'public':
-            $public = "grand public";
-            break;
-        case 'scientific':
-            $public = "scientifique";
-            break;
+    if ($GLOBALS['lang'] == 'en') {
+        switch ($public) {
+            case 'public':
+                $public = "General public";
+                break;
+            case 'scientific':
+                $public = "Scientific";
+                break;
+        }
+        $public .= "<br>publication";
+    } else {
+        $public = "Publication <br>";
+        switch ($public) {
+            case 'public':
+                $public .= "grand public";
+                break;
+            case 'scientific':
+                $public .= "scientifique";
+                break;
+        }
     }
-    echo '<div class="publicationColTitle">Publication <br>' . $public . '</div>';
+    echo '<div class="publicationColTitle">' . $public . '</div>';
     //foreach ($ar[$firstYear] as $publication) {//Start from last as it is the older
     for ($artIT = count($ar[$firstYear]) - 1; $artIT >= 0; $artIT--) {
         $publication = $ar[$firstYear][$artIT];

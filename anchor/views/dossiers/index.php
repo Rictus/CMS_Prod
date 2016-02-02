@@ -12,18 +12,19 @@
     <section class="wrap">
         <?php echo $messages; ?>
 
-        <!--
-	//Don't need this nav, this page is only for "dossiers"
-	<nav class="sidebar">
-		<?php /*echo Html::link('admin/dossiers', __('global.all'), array(
-			'class' => isset($category) ? '' : 'active'
-		)); */ ?>
-	    <?php /*foreach($categories as $cat): */ ?>
-		<?php /*echo Html::link('admin/dossiers/category/' . $cat->slug, $cat->title, array(
-			'class' => (isset($category) and $category->id == $cat->id) ? 'active' : ''
-		)); */ ?>
-	    <?php /*endforeach; */ ?>
-	</nav>-->
+
+        <nav class="sidebar">
+            <?php
+            $lang = 'fr';
+            echo Html::link('admin/dossiers', __('global.all'));
+            echo Html::link('admin/fr/dossiers/', 'Français', array(
+                'class' => $lang == 'fr' ? 'active' : ''
+            ));
+            echo Html::link('admin/en/dossiers/', 'Anglais', array(
+                'class' => $lang == 'en' ? 'active' : ''
+            ));
+            ?>
+        </nav>
 
         <?php if ($posts->count): ?>
             <ul class="main list">

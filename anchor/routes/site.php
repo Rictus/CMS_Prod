@@ -74,6 +74,7 @@ Route::get($routes, function ($offset = 1) use ($posts_page) {
         if ($typeOfPublication == "book") {
             $publications[$i]->data['bookimage'] = Extend::value(Extend::field('post', 'bookimage', $publiId));
             $publications[$i]->data['externallink'] = Extend::value(Extend::field('post', 'externallink', $publiId));
+            $publications[$i]->data['targetlanguage'] = Extend::value(Extend::field('post', 'targetlanguage', $publiId));
             $books[] = $publications[$i];
         }
     }

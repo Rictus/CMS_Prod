@@ -58,7 +58,7 @@ foreach ($page_fields as $key => $field) {
                         'id' => "extend_" . $biosecondpart->key,
                         'cols' => 25,
                         'style' => 'display: inline-block;width:50%;'
-                    ));
+                    ), false);
                 }
                 if ($biothirdpart) {
                     echo Form::textarea('extend[' . $biothirdpart->key . ']', $biothirdpart->value->text, array(
@@ -66,7 +66,7 @@ foreach ($page_fields as $key => $field) {
                         'id' => "extend_" . $biothirdpart->key,
                         'cols' => 25,
                         'style' => 'display: inline-block;width:50%;'
-                    ));
+                    ), false);
                 }
                 ?>
                 <aside class="buttons">
