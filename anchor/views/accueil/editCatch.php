@@ -1,6 +1,8 @@
 <?php echo $header;
 $catchImage = false;
 $catchPhrase = false;
+$catchImage_en = false;
+$catchPhrase_en = false;
 foreach ($fields as $field) {
     switch ($field->key) {
         case 'catchphrase':
@@ -8,6 +10,12 @@ foreach ($fields as $field) {
             break;
         case 'catchimage':
             $catchImage = $field;
+            break;
+        case 'catchphrase_en':
+            $catchPhrase_en = $field;
+            break;
+        case 'catchimage_en':
+            $catchImage_en = $field;
             break;
         default:
             break;
@@ -27,21 +35,31 @@ foreach ($fields as $field) {
             <div class="wrap">
                 <?php
                 if ($catchPhrase) {
-                    echo Form::text('extend[' . $catchPhrase->key . ']', $catchPhrase->value->text, array(
+                    $v = array_key_exists('text', $catchPhrase->value) ? $catchPhrase->value->text : "";
+                    echo Form::text('extend[' . $catchPhrase->key . ']', $v, array(
 //                        'placeholder' => $catchPhrase->label,
                         'id' => "extend_" . $catchPhrase->key,
                         'label' => Html::entities($catchPhrase->label)
                     ));
                 }
+                if ($catchPhrase_en) {
+                    $v = array_key_exists('text', $catchPhrase_en->value) ? $catchPhrase_en->value->text : "";
+                    echo Form::text('extend[' . $catchPhrase_en->key . ']', $v, array(
+//                        'placeholder' => $catchPhrase_en->label,
+                        'id' => "extend_" . $catchPhrase_en->key,
+                        'label' => Html::entities($catchPhrase_en->label)
+                    ));
+                }
                 if ($catchImage) {
-                    echo Form::text("extend[" . $catchImage->key . "]", $catchImage->value->text, array(
+                    $v = array_key_exists('text', $catchImage->value) ? $catchImage->value->text : "";
+                    echo Form::text("extend[" . $catchImage->key . "]", $v, array(
                         'placeholder' => $catchImage->label,
                         'autocomplete' => 'off',
                         'id' => 'extend_' . $catchImage->key,
                         'class' => 'upload_filename hide'
                     ));
 
-                    echo "<p><img src='/content/".$catchImage->value->text."' alt='' class='file-image-preview'></p>";
+                    echo "<p><img src='/content/" . $v . "' alt='' class='file-image-preview'></p>";
                     echo '<div class="upload_explain">Glissez une image ici pour définir l\'image de votre accroche.</div>' .
                         '<div id="upload-file-progress"><progress value="0"></progress></div>';
                 }

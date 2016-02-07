@@ -3,10 +3,10 @@ $catchImage = false;
 $catchPhrase = false;
 foreach ($fields as $field) {
     switch ($field->key) {
-        case 'catchphrase':
+        case 'catchphrase_en':
             $catchPhrase = $field;
             break;
-        case 'catchimage':
+        case 'catchimage_en':
             $catchImage = $field;
             break;
         default:

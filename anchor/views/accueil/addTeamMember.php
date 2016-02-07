@@ -1,6 +1,7 @@
 <?php echo $header;
 $teamMemberName = false;
 $teamMemberJob = false;
+$teamMemberJob_en = false;
 foreach ($fields as $field) {
     switch ($field->key) {
         case 'teammembername':
@@ -8,6 +9,9 @@ foreach ($fields as $field) {
             break;
         case 'teammemberjob':
             $teamMemberJob = $field;
+            break;
+        case 'teammemberjob_en':
+            $teamMemberJob_en = $field;
             break;
         default:
             break;
@@ -37,6 +41,12 @@ foreach ($fields as $field) {
                     echo Form::text('extend[' . $teamMemberJob->key . ']', '', array(
                         'placeholder' => $teamMemberJob->label,
                         'id' => "extend_" . $teamMemberJob->key
+                    ));
+                }
+                if ($teamMemberJob_en) {
+                    echo Form::text('extend[' . $teamMemberJob_en->key . ']', '', array(
+                        'placeholder' => $teamMemberJob_en->label,
+                        'id' => "extend_" . $teamMemberJob_en->key
                     ));
                 }
                 ?>

@@ -52,47 +52,48 @@ foreach ($page_fields as $key => $field) {
         <fieldset class="main">
             <div class="wrap">
                 <hgroup class="wrap">
-                    <h1 id="fr">Français</h1>
+                    <h1 id="en">Anglais</h1>
                 </hgroup>
                 <?php
-                $r = [$biofirstpart_en, $biosecondpart_en, $biothirdpart_en, $bioimage_en];
+                $r = [$biofirstpart, $biosecondpart, $biothirdpart, $bioimage];
                 foreach ($r as $f) {
                     $v = array_key_exists('text', $f->value) ? $f->value->text : "";
                     echo "<input type='text' name='extend[" . $f->key . "]' class='hidden hide' value='" . $v . "'>";
                 }
-                if ($bioimage) {
-                    echo Form::text("extend[" . $bioimage->key . "]", $bioimage->value->text, array(
-                        'placeholder' => $bioimage->label,
+                if ($bioimage_en) {
+                    $val = array_key_exists('text', $bioimage_en->value) ? $bioimage_en->value->text : "";
+                    echo Form::text("extend[" . $bioimage_en->key . "]", $val, array(
+                        'placeholder' => $bioimage_en->label,
                         'autocomplete' => 'off',
-                        'id' => 'extend_' . $bioimage->key,
+                        'id' => 'extend_' . $bioimage_en->key,
                         'class' => 'upload_filename hide'
                     ));
-                    echo "<p><img src='/content/" . $bioimage->value->text . "' alt='' class='file-image-preview'></p>";
+                    echo "<p><img src='/content/" . $val . "' alt='' class='file-image-preview'></p>";
                     echo '<div class="upload_explain">Glissez une image ici pour définir l\'image de votre biographie.</div>' .
                         '<div id="upload-file-progress"><progress value="0"></progress></div>';
                 }
                 ?>
                 <?php
-                if ($biofirstpart) {
-                    echo Form::textarea('extend[' . $biofirstpart->key . ']', isset($biofirstpart->value->text) ? $biofirstpart->value->text : "", array(
-                        'placeholder' => $biofirstpart->label,
-                        'id' => "extend_" . $biofirstpart->key,
+                if ($biofirstpart_en) {
+                    echo Form::textarea('extend[' . $biofirstpart_en->key . ']', array_key_exists('text', $biofirstpart_en->value) ? $biofirstpart_en->value->text : "", array(
+                        'placeholder' => $biofirstpart_en->label,
+                        'id' => "extend_" . $biofirstpart_en->key,
                         'rows' => '5',
                         'style' => 'height:auto!important;'
                     ));
                 }
-                if ($biosecondpart) {
-                    echo Form::textarea('extend[' . $biosecondpart->key . ']', isset($biosecondpart->value->text) ? $biosecondpart->value->text : "", array(
-                        'placeholder' => $biosecondpart->label,
-                        'id' => "extend_" . $biosecondpart->key,
+                if ($biosecondpart_en) {
+                    echo Form::textarea('extend[' . $biosecondpart_en->key . ']', array_key_exists('text', $biosecondpart_en->value) ? $biosecondpart_en->value->text : "", array(
+                        'placeholder' => $biosecondpart_en->label,
+                        'id' => "extend_" . $biosecondpart_en->key,
                         'cols' => 25,
                         'style' => 'display: inline-block;width:50%;'
                     ), false);
                 }
-                if ($biothirdpart) {
-                    echo Form::textarea('extend[' . $biothirdpart->key . ']', isset($biothirdpart->value->text) ? $biothirdpart->value->text : "", array(
-                        'placeholder' => $biothirdpart->label,
-                        'id' => "extend_" . $biothirdpart->key,
+                if ($biothirdpart_en) {
+                    echo Form::textarea('extend[' . $biothirdpart_en->key . ']', array_key_exists('text', $biothirdpart_en->value) ? $biothirdpart_en->value->text : "", array(
+                        'placeholder' => $biothirdpart_en->label,
+                        'id' => "extend_" . $biothirdpart_en->key,
                         'cols' => 25,
                         'style' => 'display: inline-block;width:50%;'
                     ), false);

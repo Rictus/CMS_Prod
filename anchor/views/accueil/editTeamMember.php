@@ -1,6 +1,7 @@
 <?php echo $header;
 $teamMemberName = false;
 $teamMemberJob = false;
+$teamMemberJob_en = false;
 foreach ($fields as $field) {
     switch ($field->key) {
         case 'teammembername':
@@ -8,6 +9,9 @@ foreach ($fields as $field) {
             break;
         case 'teammemberjob':
             $teamMemberJob = $field;
+            break;
+        case 'teammemberjob_en':
+            $teamMemberJob_en = $field;
             break;
         default:
             break;
@@ -26,15 +30,21 @@ foreach ($fields as $field) {
             <div class="wrap split">
                 <?php
                 if ($teamMemberName) {
-                    echo Form::text('extend[' . $teamMemberName->key . ']', $teamMemberName->value->text, array(
+                    echo Form::text('extend[' . $teamMemberName->key . ']', isset($teamMemberName->value->text) ? $teamMemberName->value->text : "", array(
                         'label' => $teamMemberName->label,
                         'id' => "extend_" . $teamMemberName->key
                     ));
                 }
                 if ($teamMemberJob) {
-                    echo Form::text('extend[' . $teamMemberJob->key . ']', $teamMemberJob->value->text, array(
+                    echo Form::text('extend[' . $teamMemberJob->key . ']', isset($teamMemberJob->value->text) ? $teamMemberJob->value->text : "", array(
                         'label' => $teamMemberJob->label,
                         'id' => "extend_" . $teamMemberJob->key
+                    ));
+                }
+                if ($teamMemberJob_en) {
+                    echo Form::text('extend[' . $teamMemberJob_en->key . ']', isset($teamMemberJob_en->value->text) ? $teamMemberJob_en->value->text : "", array(
+                        'label' => $teamMemberJob_en->label,
+                        'id' => "extend_" . $teamMemberJob_en->key
                     ));
                 }
                 ?>

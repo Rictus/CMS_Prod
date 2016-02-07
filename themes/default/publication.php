@@ -121,10 +121,8 @@ function displayHTMLPublicationCol($ar)
         }
     }
     echo '<div class="publicationColTitle">' . $public . '</div>';
-    //foreach ($ar[$firstYear] as $publication) {//Start from last as it is the older
     for ($artIT = count($ar[$firstYear]) - 1; $artIT >= 0; $artIT--) {
         $publication = $ar[$firstYear][$artIT];
-
         displayHTMLPublication($publication->data);
     }
 
