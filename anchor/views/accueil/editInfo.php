@@ -23,6 +23,9 @@ if (!$variableInfo) {
                     case 'custom_introfirstpart':
                     case 'custom_introsecondpart':
                     case 'custom_introthirdpart':
+                    case 'custom_introfirstpart_en':
+                    case 'custom_introsecondpart_en':
+                    case 'custom_introthirdpart_en':
                         echo Form::textarea('value', $variableInfo->value, array(
                             'class' => 'ckeditorgo'
                         ));

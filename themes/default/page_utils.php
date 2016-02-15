@@ -176,7 +176,7 @@ function displayDossierSummary_PostLink($summaryInArticlePage = true, $post)
         echo '<a class="summary-link" href=./posts/' . $postSlug . '>' . $postTitle . '</a> ';
 }
 
-function displayDossierSummary($summaryInArticlePage = true)
+function displayDossierSummary($summaryInArticlePage = true,$dossierbigtitle, $masculintitle, $feminintitle)
 {
     $lang = getLanguage();
     $posts = Registry::get('posts');
@@ -187,7 +187,7 @@ function displayDossierSummary($summaryInArticlePage = true)
 <div class='summary col-lg-6 col-lg-offset-3 col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 col-xs-12'>";
 
     if (!$summaryInArticlePage)
-        echo "<h1 class='pageTitle'>Étude et information <br>en andrologie & sexologie.</h1>"; //could be page title from admin
+        echo "<h1 class='pageTitle'>".$dossierbigtitle."</h1>"; //could be page title from admin
 
 
     echo "
@@ -202,7 +202,7 @@ function displayDossierSummary($summaryInArticlePage = true)
         }
     }
 //Then displaying typeofproblem=female
-    echo "<div class='summary-col-title'>Problème féminin</div>";
+    echo "<div class='summary-col-title'>".$feminintitle."</div>";
     for ($i = 0; $i < count($posts); $i++) {
         $curPost = $posts[$i]->data;
         if ($curPost['extends']['targetlanguage'] == $lang) {
@@ -216,7 +216,7 @@ function displayDossierSummary($summaryInArticlePage = true)
 
     echo "
     <div class='summary-col col-lg-6 col-md-6 col-sm-6 col-xs-12'>";
-    echo "<div class='summary-col-title'>Problème masculin</div>";
+    echo "<div class='summary-col-title'>".$masculintitle."</div>";
     //Then displaying typeofproblem=male
     for ($i = 0; $i < count($posts); $i++) {
         $curPost = $posts[$i]->data;

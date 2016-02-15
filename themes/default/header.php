@@ -1,26 +1,5 @@
 <?php
-
-
-$known_langs = array('fr', 'en');
-$user_pref_langs = explode(',', $_SERVER['HTTP_ACCEPT_LANGUAGE']);
-
-foreach ($user_pref_langs as $idx => $lang) {
-    $lang = substr($lang, 0, 2);
-    if (in_array($lang, $known_langs)) {
-        break;
-    }
-}
-switch ($lang) {
-    case 'en':
-        setlocale(LC_ALL, 'en_UK');
-        break;
-    case 'fr':
-    default:
-        $lang = 'fr';
-        setlocale(LC_ALL, 'fr_FR');
-        break;
-}
-$GLOBALS['lang'] = $lang;
+include("langVars.php");
 theme_include('page_utils');
 ?>
 <!doctype html>
@@ -76,10 +55,8 @@ theme_include('page_utils');
                      alt="Logo du site de Ronald Virag">
             </a>
 
-            <div class="headline">Sous la direction du Docteur Ronald Virag
-                <div class="underHeadline">
-                    Membre de l’Académie Nationale de Chirurgie
-                </div>
+            <div class="headline"><?php echo $headline[0]; ?>
+                <div class="underHeadline"><?php echo $headline[1]; ?></div>
             </div>
 
         </div>

@@ -1,3 +1,6 @@
+<?php
+include("langVars.php");
+?>
 <footer id="bottom">
     <ul>
         <?php if (has_menu_items()): ?>
@@ -17,23 +20,23 @@
             <div class="row">
                 <ul>
                     <li>
-                        <a href="#">Info éditeur</a>
+                        <a href="#"><?php echo $publisherinfo; ?>
                     </li>
                     <li>
-                        <a href="#">Mentions legales</a>
+                        <a href="#"><?php echo $legalnotices; ?>
                     </li>
                     <li>
-                        <a href="#">Credits</a>
+                        <a href="#"><?php echo $credits; ?>
                     </li>
                 </ul>
             </div>
             <div class="row">
                 <ul>
                     <li>
-                        <a href="#">Plan du site</a>
+                        <a href="#"><?php echo $siteplan; ?>
                     </li>
                     <li>
-                        <a href="#">Reseaux sociaux</a>
+                        <a href="#"><?php echo $socialnetworks; ?>
                     </li>
                 </ul>
 
@@ -44,8 +47,7 @@
 
 <script>
     $(".videodetector").each(function (index, element) {
-        if ($("iframe", element).length == 0)
-        {
+        if ($("iframe", element).length == 0) {
             $(element).removeClass("videodetector");
         }
     });

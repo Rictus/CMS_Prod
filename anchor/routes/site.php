@@ -49,18 +49,22 @@ Route::get($routes, function ($offset = 1) use ($posts_page) {
     for ($i = 0; $i < count($postsAccueil); $i++) {
         $postId = $postsAccueil[$i]->data["id"];
         $teammembername_extend = Extend::value(Extend::field('post', 'teammembername', $postId));
+        $teammemberjob_en_extend = Extend::value(Extend::field('post', 'teammemberjob_en', $postId));
         $teammemberjob_extend = Extend::value(Extend::field('post', 'teammemberjob', $postId));
         $catchphrase_extend = Extend::value(Extend::field('post', 'catchphrase', $postId));
+        $catchphrase_en_extend = Extend::value(Extend::field('post', 'catchphrase_en', $postId));
         $catchimage_extend = Extend::value(Extend::field('post', 'catchimage', $postId));
 
         //Get team
         if (!is_null($teammembername_extend) && !is_null($teammemberjob_extend)) {
             $postsAccueil[$i]->data['teammembername'] = $teammembername_extend;
             $postsAccueil[$i]->data['teammemberjob'] = $teammemberjob_extend;
+            $postsAccueil[$i]->data['teammemberjob_en'] = $teammemberjob_en_extend;
             $team[] = $postsAccueil[$i];
         } //Get catch
-        else if (!is_null($catchimage_extend) && !is_null($catchphrase_extend)) {
+        else if (!is_null($catchimage_extend) && !is_null($catchphrase_extend) && !is_null($catchphrase_en_extend)) {
             $catch['catchphrase'] = $catchphrase_extend;
+            $catch['catchphrase_en'] = $catchphrase_en_extend;
             $catch['catchimage'] = $catchimage_extend;
         }
     }
@@ -85,6 +89,10 @@ Route::get($routes, function ($offset = 1) use ($posts_page) {
     Registry::set('biofirstpart', Extend::value(Extend::field('page', 'biofirstpart', $biopage->id)));
     Registry::set('biosecondpart', Extend::value(Extend::field('page', 'biosecondpart', $biopage->id)));
     Registry::set('biothirdpart', Extend::value(Extend::field('page', 'biothirdpart', $biopage->id)));
+
+    Registry::set('biofirstpart_en', Extend::value(Extend::field('page', 'biofirstpart_en', $biopage->id)));
+    Registry::set('biosecondpart_en', Extend::value(Extend::field('page', 'biosecondpart_en', $biopage->id)));
+    Registry::set('biothirdpart_en', Extend::value(Extend::field('page', 'biothirdpart_en', $biopage->id)));
 
     // get last post from blog
     list($nbBlogPost, $blogPosts) = Post::listing(Category::slug('blog'), 1, 1000);

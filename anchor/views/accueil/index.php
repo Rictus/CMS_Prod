@@ -24,9 +24,23 @@
         <hgroup class="wrap">
             <h1>Introduction de votre site</h1>
         </hgroup>
+        <hgroup class="wrap"><h1>Français</h1></hgroup>
         <ul class="main list">
             <?php
             $introParts = ['custom_introfirstpart', 'custom_introsecondpart', 'custom_introthirdpart'];
+            foreach ($introParts as $part) {
+                echo "<li>" .
+                    "<a href='" . Uri::to('admin/accueil/editInfo/' . $part) . "'>" .
+                    "<strong>" . strip_tags(Config::meta($part)) . "</strong>" .
+                    "</a>" .
+                    "</li>";
+            }
+            ?>
+        </ul>
+        <hgroup class="wrap"><h1>Anglais</h1></hgroup>
+        <ul class="main list">
+            <?php
+            $introParts = ['custom_introfirstpart_en', 'custom_introsecondpart_en', 'custom_introthirdpart_en'];
             foreach ($introParts as $part) {
                 echo "<li>" .
                     "<a href='" . Uri::to('admin/accueil/editInfo/' . $part) . "'>" .
@@ -46,9 +60,23 @@
 
             </nav>
         </hgroup>
+        <hgroup class="wrap"><h1>Français</h1></hgroup>
         <ul class="main list">
             <?php
             $introParts = ['custom_address1', 'custom_address2', 'custom_mail', 'custom_telnumber'];
+            foreach ($introParts as $part) {
+                echo "<li>" .
+                    "<a href='" . Uri::to('admin/accueil/editInfo/' . $part) . "'>" .
+                    "<strong>" . strip_tags(Config::meta($part)) . "</strong>" .
+                    "</a>" .
+                    "</li>";
+            }
+            ?>
+        </ul>
+        <hgroup class="wrap"><h1>Anglais</h1></hgroup>
+        <ul class="main list">
+            <?php
+            $introParts = ['custom_address1_en', 'custom_address2_en', 'custom_mail_en', 'custom_telnumber_en'];
             foreach ($introParts as $part) {
                 echo "<li>" .
                     "<a href='" . Uri::to('admin/accueil/editInfo/' . $part) . "'>" .
@@ -107,6 +135,7 @@
                         <p>
                             <?php echo $member->teammemberjob; ?>
                         </p>
+
                         <p>
                             <?php echo $member->teammemberjob_en; ?>
                         </p>

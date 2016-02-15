@@ -30,7 +30,7 @@ switch (article_category_slug()) {
         break;
     case 'dossier':
         //Here, adding the summary
-        displayDossierSummary(true);
+        displayDossierSummary(true, $dossierbigtitle, $masculintitle, $feminintitle);
         break;
     case 'publication':
         break;

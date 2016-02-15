@@ -52,7 +52,7 @@ foreach ($fields as $field) {
                         'class' => 'btn'
                     )); ?>
 
-                    <?php echo Html::link('admin/posts/delete/' . $post->id, __('global.delete'), array(
+                    <?php echo Html::link('admin/blog/delete/' . $post->id, __('global.delete'), array(
                         'class' => 'btn delete red'
                     )); ?>
                 </aside>

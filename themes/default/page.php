@@ -1,4 +1,5 @@
 <?php
+include("langVars.php");
 theme_include('header');
 switch (page_slug()) {
     case 'blog':
@@ -7,7 +8,7 @@ switch (page_slug()) {
         break;
     case 'dossier':
         echo page_content();
-        displayDossierSummary(false);
+        displayDossierSummary(false, $dossierbigtitle, $masculintitle, $feminintitle);
         break;
     case 'publication':
         echo page_content();

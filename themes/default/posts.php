@@ -1,27 +1,25 @@
 <?php
+include("langVars.php");
 theme_include('header');
 theme_include('header_image');
+$lang = $GLOBALS['lang'];
 ?>
     <div class="content">
         <div class="bigText wrap">
-            <?php echo site_meta('introfirstpart'); ?>
+            <?php echo $introfirstpart; ?>
         </div>
         <div class="">
             <div class="listOfPostsContainer">
                 <div class="listOfPosts">
-                    <?php echo site_meta('introsecondpart'); ?>
+                    <?php echo $introsecondpart ?>
                 </div>
                 <div class="listOfPosts">
-                    <?php echo site_meta('introthirdpart'); ?>
+                    <?php echo $introthirdpart; ?>
                 </div>
             </div>
         </div>
 
         <?php
-        $bioimage = Registry::get('bioimage');
-        $biofirstpart = Registry::get('biofirstpart');
-        $biosecondpart = Registry::get('biosecondpart');
-        $biothirdpart = Registry::get('biothirdpart');
 
         ?>
         <div class="bio row">
@@ -38,25 +36,24 @@ theme_include('header_image');
                     <div class="bioContent col-lg-6 col-md-6 col-sm-9 col-xs-10"><?php echo $biosecondpart; ?></div>
                     <div class="bioContent col-lg-6 col-md-6 col-sm-9 col-xs-10"><?php echo $biothirdpart; ?></div>
                 </div>
-                <a class="link pre-chevron" href="https://fr.wikipedia.org/wiki/Ronald_Virag">En savoir plus</a>
+                <a class="link pre-chevron"
+                   href="https://fr.wikipedia.org/wiki/Ronald_Virag"><?php echo $knowmore; ?></a>
             </div>
         </div>
 
         <div class="team">
-            <div class="title">
-                Notre équipe
-            </div>
+            <div class="title"><?php echo $ourteam; ?></div>
             <?php
             function displayTeamMember($teamMember)
             {
+                $name = $teamMember['teammemberjob'];
+                $job = $teamMember['teammembername'];
                 echo '<div class="peopleDesc">
-                <div class="job">' . $teamMember['teammemberjob'] . '</div>
-                <div class="people">' . $teamMember['teammembername'] . '</div>
+                <div class="job">' . $name . '</div>
+                <div class="people">' . $job . '</div>
                 </div>';
             }
 
-
-            $team = Registry::get('team');
             $nbItemsPerRow = 4;
             $totalNbRow = ceil(count($team) / $nbItemsPerRow);
             for ($rowNumber = 0; $rowNumber < $totalNbRow; $rowNumber++) {
@@ -155,11 +152,11 @@ if (count($books) > 0) {
             displayBook($books[$nbBookDisplayed]->data);
             $nbBookDisplayed++;
         } else {
-             array_splice($books, $nbBookDisplayed,1);
+            array_splice($books, $nbBookDisplayed, 1);
         }
     }
 
-    echo '</div><div class="linkContainer"><a href="/publication" class="link pre-chevron">Accéder aux livres</a></div></div>';
+    echo '</div><div class="linkContainer"><a href="/publication" class="link pre-chevron">' . $accessbooks . '</a></div></div>';
 }
 ?>
 

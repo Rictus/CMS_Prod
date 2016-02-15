@@ -1,7 +1,5 @@
 <?php
-$catch = Registry::get('catch');
-$catchImage = $catch['catchimage'];
-$catchPhrase = $catch['catchphrase'];
+include("langVars.php");
 $catchPhraseLength = strlen($catchPhrase);
 $middleIndex = (int)floor(strlen($catchPhrase) / 2);
 $leftIterator = $middleIndex;
@@ -42,7 +40,8 @@ if ($foundedIndex != -1) {
         ?>
     </div>
     <div class="buttons">
-        <a class="button button_white pre-icon_call" href="http://www.docteur-virag-sexologie.fr/appointment">Nous contacter</a>
-        <a class="button button_white" href="#">Testez-vous</a>
+        <a class="button button_white pre-icon_call"
+           href="http://www.docteur-virag-sexologie.fr/appointment"><?php echo $contactus; ?></a>
+        <a class="button button_white" href="#"><?php echo $testyourself; ?></a>
     </div>
 </div>
