@@ -5,29 +5,39 @@ Route::collection(array('before' => 'auth'), function () {
     /*
         List all posts and paginate through them
     */
-    Route::get(array('admin/blog', 'admin/blog/(:num)'), function ($page = 1) {
+    Route::get(array('admin/blog', 'admin/blog/(:num)', 'admin/blog/(:num)/(:any)'), function ($page = 1, $lang = 'all') {
+        $lang = ($lang == 'fr' || $lang == 'en' || $lang = 'all') ? $lang : 'all';
         $currentPageCategoryId = getCurrentPageCategoryId('blog');
-        $perpage = Config::meta('posts_per_page');
-        $total = Post::where('category', '=', $currentPageCategoryId)->count();
-        $posts = Post::where('category', '=', $currentPageCategoryId)->sort('created', 'asc')->take($perpage)->skip(($page - 1) * $perpage)->get();
         $url = Uri::to('admin/blog');
+        $perpage = Config::meta('posts_per_page');
+        $allPosts = Post::where('category', '=', $currentPageCategoryId)->sort('created', 'asc')->get();
+        $allPostsSelectedLanguage = [];
+        $curPagePosts = [];
+        $indexFirstOk = ($page - 1) * $perpage;
+        $indexLastOk = $indexFirstOk + $perpage;
 
-        //Adding extend fields for each posts
-        for ($i = 0; $i < count($posts); $i++) {
-            $posts[$i]->targetlanguage = Extend::value(Extend::field('post', 'targetlanguage', $posts[$i]->id));
+        for ($i = 0; $i < count($allPosts); $i++) { //Getting all posts for selected language
+            $allPosts[$i]->targetlanguage = Extend::value(Extend::field('post', 'targetlanguage', $allPosts[$i]->id));
+            if ($lang == 'all' || $allPosts[$i]->targetlanguage == $lang) {
+                $allPostsSelectedLanguage[] = $allPosts[$i];
+            }
         }
 
-        $pagination = new Paginator($posts, $total, $page, $perpage, $url);
-
+        $i = $indexFirstOk;
+        while ($i < count($allPostsSelectedLanguage) && $i < $indexLastOk) { //Getting all posts for current page
+            $curPagePosts[] = $allPostsSelectedLanguage[$i];
+            $i++;
+        }
+        $pagination = new Paginator($curPagePosts, count($allPostsSelectedLanguage), $page, $perpage, $url, $lang);
         $vars['messages'] = Notify::read();
         $vars['posts'] = $pagination;
         $vars['categories'] = Category::sort('title')->get();
+        $vars['choosenlanguage'] = $lang;
 
         return View::create('blog/index', $vars)
             ->partial('header', 'partials/header')
             ->partial('footer', 'partials/footer');
     });
-
 
     /*
         Add new blog post

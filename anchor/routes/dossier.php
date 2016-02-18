@@ -1,33 +1,7 @@
 <?php
 
 
-
-
 Route::collection(array('before' => 'auth'), function () {
-
-    /*
-        List all posts and paginate through them
-    */
-    Route::get(array('admin/dossiers', 'admin/dossiers/(:num)'), function ($page = 1) {
-        $currentPageCategoryId = getCurrentPageCategoryId('dossier');
-        $perpage = Config::meta('posts_per_page');
-        $total = Post::where('category', '=', $currentPageCategoryId)->count();
-        $posts = Post::where('category', '=', $currentPageCategoryId)->sort('created', 'asc')->take($perpage)->skip(($page - 1) * $perpage)->get();
-        $url = Uri::to('admin/dossiers');
-
-        $pagination = new Paginator($posts, $total, $page, $perpage, $url);
-        //Adding extend fields for each posts
-        for ($i = 0; $i < count($posts); $i++) {
-            $posts[$i]->targetlanguage = Extend::value(Extend::field('post', 'targetlanguage', $posts[$i]->id));
-        }
-        $vars['messages'] = Notify::read();
-        $vars['posts'] = $pagination;
-        $vars['categories'] = Category::sort('title')->get();
-
-        return View::create('dossiers/index', $vars)
-            ->partial('header', 'partials/header')
-            ->partial('footer', 'partials/footer');
-    });
 
     /*
         Edit post
@@ -281,6 +255,45 @@ Route::collection(array('before' => 'auth'), function () {
 
         return Response::json($output);
     });
+
+
+    /*
+        List all posts and paginate through them
+    */
+    Route::get(array('admin/dossiers', 'admin/dossiers/(:num)', 'admin/dossiers/(:num)/(:any)'), function ($page = 1, $lang = 'all') {
+        $lang = ($lang == 'fr' || $lang == 'en' || $lang = 'all') ? $lang : 'all';
+        $currentPageCategoryId = getCurrentPageCategoryId('dossier');
+        $url = Uri::to('admin/dossiers');
+        $perpage = Config::meta('posts_per_page');
+        $allPosts = Post::where('category', '=', $currentPageCategoryId)->sort('created', 'asc')->get();
+        $allPostsSelectedLanguage = [];
+        $curPagePosts = [];
+        $indexFirstOk = ($page - 1) * $perpage;
+        $indexLastOk = $indexFirstOk + $perpage;
+
+        for ($i = 0; $i < count($allPosts); $i++) { //Getting all posts for selected language
+            $allPosts[$i]->targetlanguage = Extend::value(Extend::field('post', 'targetlanguage', $allPosts[$i]->id));
+            if ($lang == 'all' || $allPosts[$i]->targetlanguage == $lang) {
+                $allPostsSelectedLanguage[] = $allPosts[$i];
+            }
+        }
+
+        $i = $indexFirstOk;
+        while ($i < count($allPostsSelectedLanguage) && $i < $indexLastOk) { //Getting all posts for current page
+            $curPagePosts[] = $allPostsSelectedLanguage[$i];
+            $i++;
+        }
+        $pagination = new Paginator($curPagePosts, count($allPostsSelectedLanguage), $page, $perpage, $url, $lang);
+        $vars['messages'] = Notify::read();
+        $vars['posts'] = $pagination;
+        $vars['categories'] = Category::sort('title')->get();
+        $vars['choosenlanguage'] = $lang;
+
+        return View::create('dossiers/index', $vars)
+            ->partial('header', 'partials/header')
+            ->partial('footer', 'partials/footer');
+    });
+
 });
 //
 //

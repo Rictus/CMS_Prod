@@ -31,24 +31,28 @@ if (!$variableInfo) {
                         ));
                         break;
                     case 'custom_address1':
+                    case 'custom_address1_en':
                         $label = "Adresse partie 1";
                         echo Form::text('value', $variableInfo->value, array(
                             'label' => $label
                         ));
                         break;
                     case 'custom_address2':
+                    case 'custom_address2_en':
                         $label = "Adresse partie 2";
                         echo Form::text('value', $variableInfo->value, array(
                             'label' => $label
                         ));
                         break;
                     case 'custom_mail':
+                    case 'custom_mail_en':
                         $label = "Adresse email de contact";
                         echo Form::text('value', $variableInfo->value, array(
                             'label' => $label
                         ));
                         break;
                     case 'custom_telnumber':
+                    case 'custom_telnumber_en':
                         $label = "Numéro de téléphone";
                         echo Form::text('value', $variableInfo->value, array(
                             'label' => $label

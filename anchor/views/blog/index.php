@@ -10,13 +10,28 @@
     <section class="wrap">
         <?php echo $messages; ?>
 
+        <nav class="sidebar">
+            <?php
+            $lang = $choosenlanguage;
+            echo Html::link('admin/blog/', __('global.all'), array(
+                'class' => $lang == 'all' ? 'active' : ''
+            ));
+            echo Html::link('admin/blog/1/fr', 'Français', array(
+                'class' => $lang == 'fr' ? 'active' : ''
+            ));
+            echo Html::link('admin/blog/1/en', 'Anglais', array(
+                'class' => $lang == 'en' ? 'active' : ''
+            ));
+            ?>
+        </nav>
+
         <?php if ($posts->count): ?>
             <ul class="main list">
-                <?php foreach ($posts->results as $article):?>
+                <?php foreach ($posts->results as $article): ?>
                     <li>
                         <a href="<?php echo Uri::to('admin/blog/edit/' . $article->id); ?>">
                             <strong><?php echo $article->title; ?></strong>
-                            <strong><?php echo $article->targetlanguage == "fr" ? "Français": "Anglais"; ?></strong>
+                            <strong><?php echo $article->targetlanguage == "fr" ? "Français" : "Anglais"; ?></strong>
 				<span>
 					<time><?php echo Date::format($article->created); ?></time>
 
@@ -32,6 +47,7 @@
                 <?php endforeach; ?>
             </ul>
         <?php endif; ?>
+        <aside class="paging"><?php echo $posts->links(); ?></aside>
 
     </section>
 

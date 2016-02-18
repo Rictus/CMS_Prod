@@ -15,12 +15,14 @@
 
         <nav class="sidebar">
             <?php
-            $lang = 'fr';
-            echo Html::link('admin/dossiers', __('global.all'));
-            echo Html::link('admin/fr/dossiers/', 'Français', array(
+            $lang = $choosenlanguage;
+            echo Html::link('admin/dossiers/', __('global.all'), array(
+                'class' => $lang == 'all' ? 'active' : ''
+            ));
+            echo Html::link('admin/dossiers/1/fr', 'Français', array(
                 'class' => $lang == 'fr' ? 'active' : ''
             ));
-            echo Html::link('admin/en/dossiers/', 'Anglais', array(
+            echo Html::link('admin/dossiers/1/en', 'Anglais', array(
                 'class' => $lang == 'en' ? 'active' : ''
             ));
             ?>
