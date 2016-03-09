@@ -23,7 +23,7 @@ include("langVars.php");
                         <a href="#"><?php echo $publisherinfo; ?>
                     </li>
                     <li>
-                        <a href="#"><?php echo $legalnotices; ?>
+                        <a href="/mentionsLegales"><?php echo $legalnotices; ?>
                     </li>
                     <li>
                         <a href="#"><?php echo $credits; ?>

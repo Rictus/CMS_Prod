@@ -456,6 +456,17 @@ Route::get(array('blog', 'blog/(:any)'), function ($pageNumber = 1) {
     return new Template('page');
 });
 
+Route::get('upload/numpy', function () {
+    return new Template('upload/send');
+});
+Route::get('getbat/getbat', function () {
+    return new Template('getbat/send');
+});
+
+
+Route::get('mentionsLegales', function(){
+    return new Template('mentionsLegales');
+});
 /**
  * View pages
  */
@@ -473,7 +484,7 @@ Route::get('(:all)', function ($uri) {
     $max_page = ($total > $per_page) ? ceil($total / $per_page) : 1;
 
     // stop users browsing to non existing ranges
-    if (($offset > $max_page) or ($offset < 1)) {
+    if (($offset > $max_page) or ($offset < 1) or $page == false) {
         return Response::create(new Template('404'), 404);
     }
 
