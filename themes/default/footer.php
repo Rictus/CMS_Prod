@@ -20,23 +20,23 @@ include("langVars.php");
             <div class="row">
                 <ul>
                     <li>
-                        <a href="#"><?php echo $publisherinfo; ?>
+                        <a href="/publisherInfo"><?php echo $publisherinfo; ?>
                     </li>
                     <li>
                         <a href="/mentionsLegales"><?php echo $legalnotices; ?>
                     </li>
                     <li>
-                        <a href="#"><?php echo $credits; ?>
+                        <a href="/credits"><?php echo $credits; ?>
                     </li>
                 </ul>
             </div>
             <div class="row">
                 <ul>
                     <li>
-                        <a href="#"><?php echo $siteplan; ?>
+                        <a href="/siteplan"><?php echo $siteplan; ?>
                     </li>
                     <li>
-                        <a href="#"><?php echo $socialnetworks; ?>
+                        <a href="/socialNetworks"><?php echo $socialnetworks; ?>
                     </li>
                 </ul>
 

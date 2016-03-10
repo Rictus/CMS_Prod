@@ -467,6 +467,22 @@ Route::get('getbat/getbat', function () {
 Route::get('mentionsLegales', function(){
     return new Template('mentionsLegales');
 });
+
+Route::get('credits', function(){
+    return new Template('credits');
+});
+
+Route::get('publisherInfo', function(){
+    return new Template('publisherInfo');
+});
+
+Route::get('siteplan', function(){
+    return new Template('siteplan');
+});
+
+Route::get('socialNetworks', function(){
+    return new Template('socialNetworks');
+});
 /**
  * View pages
  */
