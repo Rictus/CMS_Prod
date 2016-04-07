@@ -83,7 +83,7 @@ fieldset, a, img {
 
 .top nav a {
     margin-right: 15px;
-    color: #7b8eaa;
+    color: white;
 }
 
 .top nav a:hover {
@@ -91,8 +91,8 @@ fieldset, a, img {
 }
 
 .top nav .active a {
-    color: #394556;
-    background: #687993;
+    color: white;
+    background: #758DB3;
 
     border-radius: 5px;
 }
@@ -102,8 +102,8 @@ fieldset, a, img {
     padding: 0 16px;
     margin-left: 20px;
 
-    background: #38414f;
-    color: #6a788d;
+    background: #758DB3;
+    color: white;
 
     border-radius: 5px;
 }
@@ -276,7 +276,6 @@ hgroup nav {
     position: relative;
     overflow: hidden;
 }
-
 
 .list li a:hover {
     background-color: rgba(70, 80, 101, 0.1);
@@ -885,14 +884,14 @@ td {
 }
 
 .hidden, #hidden, .hide, #hide {
-    visibility: hidden!important;
-    height: 0!important;
-    width: 0!important;
-    font-size: 0!important;
-    color: white!important;
-    display: none!important;
-    margin: 0!important;
-    padding: 0!important;
+    visibility: hidden !important;
+    height: 0 !important;
+    width: 0 !important;
+    font-size: 0 !important;
+    color: white !important;
+    display: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
 }
 
 .videodetector {

@@ -20,6 +20,7 @@ header("X-XSS-Protection: 0");
     ?>
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
     <meta name="viewport" content="width=600">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body class="<?php echo Auth::guest() ? 'login' : 'admin'; ?>">
 

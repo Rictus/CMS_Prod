@@ -35,9 +35,6 @@ include("langVars.php");
                     <li>
                         <a href="/siteplan"><?php echo $siteplan; ?>
                     </li>
-                    <li>
-                        <a href="/socialNetworks"><?php echo $socialnetworks; ?>
-                    </li>
                 </ul>
 
             </div>
