@@ -30,7 +30,7 @@ class Post extends Base
                 Base::table('users.real_name as author_name')));
     }
 
-    public static function listing($category = null, $page = 1, $per_page = 10)
+    public static function listing($category = null, $page = 1, $per_page = 10, $language = false)
     {
         // get total
         $query = static::left_join(Base::table('users'), Base::table('users.id'), '=', Base::table('posts.author'))
@@ -50,8 +50,20 @@ class Post extends Base
                 Base::table('users.id as author_id'),
                 Base::table('users.bio as author_bio'),
                 Base::table('users.real_name as author_name')));
+        $outputPosts = array();
+        if ($language !== false) {
 
-        return array($total, $posts);
+            for ($i = 0; $i < count($posts); $i++) {
+                $post_lang = Extend::value(Extend::field('post', 'targetlanguage', $posts[$i]->data["id"]));
+                if ($post_lang === $language) {
+                    $outputPosts[] = $posts[$i];
+                }
+            }
+        } else {
+            $outputPosts = $posts;
+
+        }
+        return array($total, $outputPosts);
     }
 
     public static function search($term, $page = 1, $per_page = 10)

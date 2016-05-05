@@ -24,7 +24,7 @@ while ($foundedIndex == -1 && ($leftIterator >= 0 || $rightIterator < $catchPhra
     }
 }
 if ($foundedIndex != -1) {
-    $catchPhrase = "<div>" . substr($catchPhrase, 0, $foundedIndex + 1) . "</div><div class='bold'>" . substr($catchPhrase, $foundedIndex + 1) . "</div>";
+    $catchPhrase = "<div>" . substr($catchPhrase, 0, $foundedIndex + 1) . "</div><div class=''>" . substr($catchPhrase, $foundedIndex + 1) . "</div>";
 } else {
     $catchPhrase = "<div>" . $catch . "</div>";
 }

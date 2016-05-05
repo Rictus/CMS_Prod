@@ -71,6 +71,7 @@ $lang = $GLOBALS['lang'];
 
         <?php
         $lastBlogPost = Registry::get('lastBlogPost');
+        $lastBlogPost_en = Registry::get('lastBlogPost_en');
 
 
         function appendPreviewArticles($article, $sizeLimit = 350)
@@ -98,7 +99,12 @@ $lang = $GLOBALS['lang'];
         }
 
         if ($lastBlogPost != false):
-            $lastBlogPost = $lastBlogPost->data;
+            if ($GLOBALS['lang'] === 'en') {
+                $lastBlogPost = $lastBlogPost_en->data;
+            } else //if( $GLOBALS['lang']==='fr')
+            {
+                $lastBlogPost = $lastBlogPost->data;
+            }
 
             echo ' <div class="lastPost">';
             appendPreviewArticles($lastBlogPost, 100);

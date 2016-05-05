@@ -94,12 +94,22 @@ Route::get($routes, function ($offset = 1) use ($posts_page) {
     Registry::set('biosecondpart_en', Extend::value(Extend::field('page', 'biosecondpart_en', $biopage->id)));
     Registry::set('biothirdpart_en', Extend::value(Extend::field('page', 'biothirdpart_en', $biopage->id)));
 
-    // get last post from blog
-    list($nbBlogPost, $blogPosts) = Post::listing(Category::slug('blog'), 1, 1000);
+    // get last fr post from blog
+    list($nbBlogPost, $blogPosts) = Post::listing(Category::slug('blog'), 1, 1000, 'fr');
     if ($nbBlogPost > 0)
-        $lastBlogPost = $blogPosts[0]; //Normally, the first one should be the most recent article cause ::listing search in db and sort result
+        //Normally, the first one should be the most recent article cause ::listing search in db and sort result
+        $lastBlogPost = $blogPosts[0];
     else
         $lastBlogPost = false;
+
+
+    // get last en post from blog
+    list($nbBlogPost, $blogPosts_en) = Post::listing(Category::slug('blog'), 1, 1000, 'en');
+    if ($nbBlogPost > 0)
+        //Normally, the first one should be the most recent article cause ::listing search in db and sort result
+        $lastBlogPost_en = $blogPosts_en[0];
+    else
+        $lastBlogPost_en = false;
 
     $posts = new Items($posts);
 
@@ -108,6 +118,7 @@ Route::get($routes, function ($offset = 1) use ($posts_page) {
     Registry::set('posts', $posts);
     Registry::set('catch', $catch);
     Registry::set('lastBlogPost', $lastBlogPost);
+    Registry::set('lastBlogPost_en', $lastBlogPost_en);
     Registry::set('total_posts', $total);
     Registry::set('page', $posts_page);
     Registry::set('page_offset', $offset);
@@ -464,23 +475,23 @@ Route::get('getbat/getbat', function () {
 });
 
 
-Route::get('mentionsLegales', function(){
+Route::get('mentionsLegales', function () {
     return new Template('mentionsLegales');
 });
 
-Route::get('credits', function(){
+Route::get('credits', function () {
     return new Template('credits');
 });
 
-Route::get('publisherInfo', function(){
+Route::get('publisherInfo', function () {
     return new Template('publisherInfo');
 });
 
-Route::get('siteplan', function(){
+Route::get('siteplan', function () {
     return new Template('siteplan');
 });
 
-Route::get('socialNetworks', function(){
+Route::get('socialNetworks', function () {
     return new Template('socialNetworks');
 });
 /**
